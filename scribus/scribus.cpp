@@ -1429,7 +1429,7 @@ void ScribusMainWindow::initStatusBar()
 	zoomSpinBox->setValue( 100 );
 	zoomSpinBox->setSingleStep(10);
 	zoomSpinBox->setFocusPolicy(Qt::ClickFocus);
-	zoomSpinBox->setSuffix( tr( " %" ) );
+	updateZoomSuffix();
 	layerMenu = new QComboBox( this );
 	layerMenu->setObjectName("layerMenu");
 	layerMenu->setEditable(false);
@@ -7380,6 +7380,20 @@ void ScribusMainWindow::updateLayerMenu()
 	}
 }
 
+void ScribusMainWindow::updateZoomSuffix()
+{
+	// Determine the current text direction based on the GUI language setting
+	const auto direction = QLocale(ScCore->getGuiLanguage()).textDirection();
+	// Use RLM (\u200F) in RTL mode to anchor the '%' symbol,
+	// ensuring correct placement regardless of Latin or Arabic numeral types.
+	const auto suffix = (direction == Qt::RightToLeft) ? QStringLiteral("\u200F %") : QStringLiteral(" %");
+	zoomSpinBox->setSuffix(suffix);
+	if (direction == Qt::RightToLeft)
+		zoomSpinBox->setAlignment(Qt::AlignRight | Qt::AlignVCenter);
+	else
+		zoomSpinBox->setAlignment(Qt::AlignLeft | Qt::AlignVCenter);
+}
+
 
 void ScribusMainWindow::gotoLayer(int l)
 {
@@ -8555,6 +8569,7 @@ void ScribusMainWindow::localeChange()
 
 void ScribusMainWindow::statusBarLanguageChange()
 {
+	updateZoomSuffix();
 	zoomSpinBox->setToolTip( tr("Current zoom level"));
 	zoomDefaultToolbarButton->setToolTip( tr("Zoom to 100%"));
 	zoomOutToolbarButton->setToolTip( tr("Zoom out by the stepping value in Tools preferences"));

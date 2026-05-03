@@ -185,6 +185,7 @@ public:
 	void RestoreBookMarks();
 	QStringList  scrapbookNames() const;
 	void updateLayerMenu();
+	void updateZoomSuffix();
 	void emergencySave();
 	QStringList findRecoverableFile();
 	bool recoverFile(const QStringList& foundFiles);
