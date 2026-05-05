@@ -626,16 +626,21 @@ void PropertiesPalette_Table::updateBorders()
 
 	PageItem_Table* table = m_item->asTable();
 	TableSides selectedSides = sideSelector->selection();
-	if (m_doc->appMode != modeEditTable)
+
+	if (m_doc->appMode == modeEditTable)
 	{
-		table->setBorders(m_currentBorder, selectedSides);
+		// Edit mode: apply to selected cells. If no cells are selected,
+		// do nothing -- the user hasn't told us what to edit.
+		const QSet<TableCell>& selection = table->selectedCells();
+		if (!selection.isEmpty())
+			table->setCellBorders(selection, m_currentBorder, selectedSides);
 	}
 	else
 	{
-		QSet<TableCell> cells = table->selectedCells();
-		if (cells.isEmpty())
-			cells.insert(table->activeCell());
-		table->setCellBorders(cells, m_currentBorder, selectedSides);
+		// Normal mode: implicit whole-table selection. Apply to all cells
+		// and keep the table-level fallback in sync.
+		table->setBorders(m_currentBorder, selectedSides);
+		table->setCellBorders(table->cells(), m_currentBorder, selectedSides);
 	}
 	table->update();
 }
