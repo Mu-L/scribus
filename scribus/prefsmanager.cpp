@@ -192,6 +192,7 @@ void PrefsManager::initDefaults()
 	appPrefs.uiPrefs.iconSet = "1_7_0";
 	appPrefs.guidesPrefs.marginsShown = true;
 	appPrefs.guidesPrefs.framesShown = true;
+	appPrefs.guidesPrefs.tableCellFramesShown = false;
 	appPrefs.guidesPrefs.layerMarkersShown = false;
 	appPrefs.guidesPrefs.gridShown = false;
 	appPrefs.guidesPrefs.guidesShown = true;
@@ -1417,6 +1418,7 @@ bool PrefsManager::writePref(const QString& filePath)
 	deGuides.setAttribute("ShowGuides", static_cast<int>(appPrefs.guidesPrefs.guidesShown));
 	deGuides.setAttribute("ShowColumnBorders", static_cast<int>(appPrefs.guidesPrefs.colBordersShown));
 	deGuides.setAttribute("ShowFrames", static_cast<int>(appPrefs.guidesPrefs.framesShown));
+	deGuides.setAttribute("ShowTableCellFrames", static_cast<int>(appPrefs.guidesPrefs.tableCellFramesShown));
 	deGuides.setAttribute("ShowLayerMarkers", static_cast<int>(appPrefs.guidesPrefs.layerMarkersShown));
 	deGuides.setAttribute("ShowMargins", static_cast<int>(appPrefs.guidesPrefs.marginsShown));
 	deGuides.setAttribute("ShowBaselineGrid", static_cast<int>(appPrefs.guidesPrefs.baselineGridShown));
@@ -2158,6 +2160,7 @@ bool PrefsManager::readPref(const QString& filePath)
 			appPrefs.guidesPrefs.guidesShown = static_cast<bool>(dc.attribute("ShowGuides", "1").toInt());
 			appPrefs.guidesPrefs.colBordersShown = static_cast<bool>(dc.attribute("ShowColumnBorders", "0").toInt());
 			appPrefs.guidesPrefs.framesShown = static_cast<bool>(dc.attribute("ShowFrames", "1").toInt());
+			appPrefs.guidesPrefs.tableCellFramesShown = static_cast<bool>(dc.attribute("ShowTableCellFrames", "0").toInt());
 			appPrefs.guidesPrefs.layerMarkersShown = static_cast<bool>(dc.attribute("ShowLayerMarkers", "0").toInt());
 			appPrefs.guidesPrefs.marginsShown = static_cast<bool>(dc.attribute("ShowMargins", "1").toInt());
 			appPrefs.guidesPrefs.baselineGridShown = static_cast<bool>(dc.attribute("ShowBaselineGrid", "1").toInt());

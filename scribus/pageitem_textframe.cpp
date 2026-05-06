@@ -3622,7 +3622,7 @@ void PageItem_TextFrame::DrawObj_Decoration(ScPainter *p)
 	if ((!isEmbedded) && (!m_Doc->RePos))
 	{
 		double scpInv = 0.0;
-		if ((drawFrame()) && (m_Doc->guidesPrefs().framesShown) && (no_stroke))
+		if ((drawFrame()) && (m_Doc->guidesPrefs().framesShown) && (no_stroke) && (!isTableCellTextFrame() || m_Doc->guidesPrefs().tableCellFramesShown))
 		{
 			p->setPen(PrefsManager::instance().appPrefs.displayPrefs.frameNormColor, scpInv, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
 			if ((isBookmark) || (m_isAnnotation))
@@ -3666,7 +3666,7 @@ void PageItem_TextFrame::DrawObj_Decoration(ScPainter *p)
 			double ofy = m_height - ofwh * 3;
 			p->drawSharpRect(ofx, ofy, ofwh, ofwh);
 		}
-		if (no_fill && no_stroke && m_Doc->guidesPrefs().framesShown)
+		if (no_fill && no_stroke && m_Doc->guidesPrefs().framesShown && (!isTableCellTextFrame() || m_Doc->guidesPrefs().tableCellFramesShown))
 		{
 			p->setPen(PrefsManager::instance().appPrefs.displayPrefs.frameNormColor, scpInv, Qt::SolidLine, Qt::FlatCap, Qt::MiterJoin);
 			if (m_Locked)

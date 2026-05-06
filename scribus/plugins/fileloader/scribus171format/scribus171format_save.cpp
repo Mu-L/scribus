@@ -418,6 +418,7 @@ bool Scribus171Format::saveFile(const QString & fileName, const FileFormat & /* 
 		docu.writeAttribute("ShowFrames", static_cast<int>(m_Doc->guidesPrefs().framesShown));
 		docu.writeAttribute("ShowControls", static_cast<int>(m_Doc->guidesPrefs().showControls));
 	}
+	docu.writeAttribute("ShowTableCellFrames", static_cast<int>(m_Doc->guidesPrefs().tableCellFramesShown));
 	docu.writeAttribute("ShowLayerMarkers", static_cast<int>(m_Doc->guidesPrefs().layerMarkersShown));
 	docu.writeAttribute("ShowMargins", static_cast<int>(m_Doc->guidesPrefs().marginsShown));
 	docu.writeAttribute("ShowBaselineGrid", static_cast<int>(m_Doc->guidesPrefs().baselineGridShown));

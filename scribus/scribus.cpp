@@ -1277,6 +1277,7 @@ void ScribusMainWindow::initMenuBar()
 	scrMenuMgr->addMenuItemString("viewShowMargins", "ViewDocument");
 	scrMenuMgr->addMenuItemString("viewShowBleeds", "ViewDocument");
 	scrMenuMgr->addMenuItemString("viewShowFrames", "ViewDocument");
+	scrMenuMgr->addMenuItemString("viewShowTableCellFrames", "ViewDocument");
 	scrMenuMgr->addMenuItemString("viewShowLayerMarkers", "ViewDocument");
 	scrMenuMgr->createMenu("ViewGrids", tr("Grids and Guides"), "View");
 	scrMenuMgr->addMenuItemString("ViewGrids", "View");
@@ -2511,6 +2512,7 @@ void ScribusMainWindow::newActWin(QMdiSubWindow *w)
 	scrActions["viewShowMargins"]->setChecked(doc->guidesPrefs().marginsShown);
 	scrActions["viewShowBleeds"]->setChecked(doc->guidesPrefs().showBleed);
 	scrActions["viewShowFrames"]->setChecked(doc->guidesPrefs().framesShown);
+	scrActions["viewShowTableCellFrames"]->setChecked(doc->guidesPrefs().tableCellFramesShown);
 	scrActions["viewShowLayerMarkers"]->setChecked(doc->guidesPrefs().layerMarkersShown);
 	scrActions["viewShowGrid"]->setChecked(doc->guidesPrefs().gridShown);
 	scrActions["viewShowGuides"]->setChecked(doc->guidesPrefs().guidesShown);
@@ -5573,6 +5575,7 @@ void ScribusMainWindow::ToggleAllGuides()
 		doc->guidesPrefs().showBleed = m_guidesStatus[GS_BLEED];
 		toggleMarks();
 		toggleFrames();
+		toggleTableCellFrames();
 		toggleLayerMarkers();
 		toggleGrid();
 		toggleGuides();
@@ -5616,6 +5619,7 @@ void ScribusMainWindow::ToggleAllGuides()
 	scrActions["viewShowMargins"]->setChecked(doc->guidesPrefs().marginsShown);
 	scrActions["viewShowBleeds"]->setChecked(doc->guidesPrefs().showBleed);
 	scrActions["viewShowFrames"]->setChecked(doc->guidesPrefs().framesShown);
+	scrActions["viewShowTableCellFrames"]->setChecked(doc->guidesPrefs().tableCellFramesShown);
 	scrActions["viewShowLayerMarkers"]->setChecked(doc->guidesPrefs().layerMarkersShown);
 	scrActions["viewShowGrid"]->setChecked(doc->guidesPrefs().gridShown);
 	scrActions["viewShowGuides"]->setChecked(doc->guidesPrefs().guidesShown);
@@ -5652,6 +5656,15 @@ void ScribusMainWindow::toggleFrames()
 		return;
 	m_guidesStatus[GS_ALL] = false;
 	doc->guidesPrefs().framesShown = !doc->guidesPrefs().framesShown;
+	view->DrawNew();
+}
+
+void ScribusMainWindow::toggleTableCellFrames()
+{
+	if (!doc)
+		return;
+	doc->guidesPrefs().tableCellFramesShown = !doc->guidesPrefs().tableCellFramesShown;
+	scrActions["viewShowTableCellFrames"]->setChecked(doc->guidesPrefs().tableCellFramesShown);
 	view->DrawNew();
 }
 
@@ -6659,6 +6672,7 @@ void ScribusMainWindow::slotDocSetup()
 	scrActions["viewShowMargins"]->setChecked(doc->guidesPrefs().marginsShown);
 	scrActions["viewShowBleeds"]->setChecked(doc->guidesPrefs().showBleed);
 	scrActions["viewShowFrames"]->setChecked(doc->guidesPrefs().framesShown);
+	scrActions["viewShowTableCellFrames"]->setChecked(doc->guidesPrefs().tableCellFramesShown);
 	scrActions["viewShowLayerMarkers"]->setChecked(doc->guidesPrefs().layerMarkersShown);
 	scrActions["viewShowGrid"]->setChecked(doc->guidesPrefs().gridShown);
 	scrActions["viewShowGuides"]->setChecked(doc->guidesPrefs().guidesShown);

@@ -35,6 +35,7 @@ TableCell::TableCell(int row, int column, PageItem_Table *table) : d(new TableCe
 	d->textFrame->OwnPage = table->OwnPage;
 	d->textFrame->OnMasterPage = table->OnMasterPage;
 	d->textFrame->m_layerID = table->m_layerID;
+	d->textFrame->setIsTableCellTextFrame(true);
 
 	setValid(true);
 	setRow(row);

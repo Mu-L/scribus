@@ -2763,6 +2763,7 @@ void Scribus171Format::readGuideSettings(ScribusDoc* doc, const ScXmlStreamAttri
 		doc->guidesPrefs().guidesShown = attrs.valueAsBool("SHOWGUIDES", true);
 		doc->guidesPrefs().colBordersShown = attrs.valueAsBool("showcolborders", false);
 		doc->guidesPrefs().framesShown = attrs.valueAsBool("SHOWFRAME", true);
+		doc->guidesPrefs().tableCellFramesShown = attrs.valueAsBool("SHOWTABLECELLFRAMES", false);
 		doc->guidesPrefs().layerMarkersShown = attrs.valueAsBool("SHOWLAYERM", false);
 		doc->guidesPrefs().marginsShown = attrs.valueAsBool("SHOWMARGIN", true);
 		doc->guidesPrefs().baselineGridShown = attrs.valueAsBool("SHOWBASE", false);
@@ -2819,6 +2820,7 @@ void Scribus171Format::readGuideSettings(ScribusDoc* doc, const ScXmlStreamAttri
 		doc->guidesPrefs().guidesShown = attrs.valueAsBool("ShowGuides", true);
 		doc->guidesPrefs().colBordersShown = attrs.valueAsBool("ShowColumnBorders", false);
 		doc->guidesPrefs().framesShown = attrs.valueAsBool("ShowFrames", true);
+		doc->guidesPrefs().tableCellFramesShown = attrs.valueAsBool("ShowTableCellFrames", false);
 		doc->guidesPrefs().layerMarkersShown = attrs.valueAsBool("ShowLayerMarkers", false);
 		doc->guidesPrefs().marginsShown = attrs.valueAsBool("ShowMargins", true);
 		doc->guidesPrefs().baselineGridShown = attrs.valueAsBool("ShowBaselineGrid", false);

@@ -710,6 +710,8 @@ void ActionManager::initViewMenuActions()
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 	name = "viewShowFrames";
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
+	name = "viewShowTableCellFrames";
+	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 	name = "viewShowLayerMarkers";
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 	name = "viewShowImages";
@@ -758,6 +760,7 @@ void ActionManager::initViewMenuActions()
 	(*scrActions)["viewShowMargins"]->setToggleAction(true);
 	(*scrActions)["viewShowBleeds"]->setToggleAction(true);
 	(*scrActions)["viewShowFrames"]->setToggleAction(true);
+	(*scrActions)["viewShowTableCellFrames"]->setToggleAction(true);
 	(*scrActions)["viewShowLayerMarkers"]->setToggleAction(true);
 	(*scrActions)["viewShowImages"]->setToggleAction(true);
 	(*scrActions)["viewShowGrid"]->setToggleAction(true);
@@ -780,6 +783,7 @@ void ActionManager::initViewMenuActions()
 	(*scrActions)["viewShowMargins"]->setChecked(true);
 	(*scrActions)["viewShowBleeds"]->setChecked(true);
 	(*scrActions)["viewShowFrames"]->setChecked(true);
+	(*scrActions)["viewShowTableCellFrames"]->setChecked(false);
 	(*scrActions)["viewShowLayerMarkers"]->setChecked(false);
 	(*scrActions)["viewShowImages"]->setChecked(true);
 	(*scrActions)["viewShowGuides"]->setChecked(true);
@@ -798,6 +802,7 @@ void ActionManager::initViewMenuActions()
 	connect( (*scrActions)["viewShowMargins"], SIGNAL(triggered()), mainWindow, SLOT(toggleMarks()) );
 	connect( (*scrActions)["viewShowBleeds"], SIGNAL(triggered()), mainWindow, SLOT(toggleBleeds()) );
 	connect( (*scrActions)["viewShowFrames"], SIGNAL(triggered()), mainWindow, SLOT(toggleFrames()) );
+	connect( (*scrActions)["viewShowTableCellFrames"], SIGNAL(triggered()), mainWindow, SLOT(toggleTableCellFrames()) );
 	connect( (*scrActions)["viewShowLayerMarkers"], SIGNAL(triggered()), mainWindow, SLOT(toggleLayerMarkers()) );
 	connect( (*scrActions)["viewShowImages"], SIGNAL(triggered()), mainWindow, SLOT(toggleImageVisibility()) );
 	connect( (*scrActions)["viewShowGrid"], SIGNAL(triggered()), mainWindow, SLOT(toggleGrid()) );
@@ -1716,6 +1721,7 @@ void ActionManager::languageChange()
 	(*scrActions)["viewShowMargins"]->setTexts( tr("Show &Margins"));
 	(*scrActions)["viewShowBleeds"]->setTexts( tr("Show Bleeds"));
 	(*scrActions)["viewShowFrames"]->setTexts( tr("Show &Frames"));
+	(*scrActions)["viewShowTableCellFrames"]->setTexts( tr("Show Table Cell &Outlines"));
 	(*scrActions)["viewShowLayerMarkers"]->setTexts( tr("Show Layer Indicators"));
 	(*scrActions)["viewShowImages"]->setTexts( tr("Show &Images"));
 	(*scrActions)["viewShowGrid"]->setTexts( tr("Show &Grid"));
@@ -2390,6 +2396,7 @@ void ActionManager::createDefaultMenus()
 		<< "viewShowMargins"
 		<< "viewShowBleeds"
 		<< "viewShowFrames"
+		<< "viewShowTableCellFrames"
 		<< "viewShowLayerMarkers"
 		<< "viewShowImages"
 		<< "viewShowGrid"

@@ -465,6 +465,7 @@ public slots:
 	void toggleMarks();
 	void toggleBleeds();
 	void toggleFrames();
+	void toggleTableCellFrames();
 	void toggleLayerMarkers();
 	void toggleTextLinks();
 	void toggleTextControls();

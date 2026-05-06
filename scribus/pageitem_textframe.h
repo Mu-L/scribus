@@ -58,6 +58,8 @@ public:
 	const PageItem_TextFrame * asTextFrame() const override { return this; }
 	bool isTextFrame() const override { return true; }
 	bool isTextContainer() const override { return true; }
+	bool isTableCellTextFrame() const { return m_isTableCellTextFrame; }
+	void setIsTableCellTextFrame(bool isTableCellTextFrame){ m_isTableCellTextFrame = isTableCellTextFrame; }
 
 	void clearContents() override;
 	void truncateContents() override;
@@ -130,6 +132,7 @@ private:
 	bool checkKeyIsShortcut(QKeyEvent *k);
 	QRectF m_origAnnotPos;
 	void updateBulletsNum();
+	bool m_isTableCellTextFrame { false };
 
 private slots:
 	void slotInvalidateLayout(int firstItem, int endItem);
