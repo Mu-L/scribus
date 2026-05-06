@@ -10,6 +10,7 @@ for which a new license (GPL+exception) is in place.
 #include <QListWidget>
 #include <QListWidgetItem>
 #include <QScopedValueRollback>
+#include <QSignalBlocker>
 #include <QWidget>
 
 #include "appmodehelper.h"
@@ -141,7 +142,7 @@ void PropertiesPalette_Table::handleSelectionChanged()
 	else
 		m_item = nullptr;
 
-	sideSelector->setSelection(TableSide::All);
+	syncSideSelectorToCells();
 
 	updateFillControls();
 	updateStyleControls();
@@ -155,6 +156,7 @@ void PropertiesPalette_Table::handleCellSelectionChanged()
 		return;
 	updateFillControls();
 	updateStyleControls();
+	syncSideSelectorToCells();
 	on_sideSelector_selectionChanged();
 }
 
@@ -229,25 +231,54 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 	if (!m_item || !m_item->isTable())
 		return;
 
-	// Remember which border line was selected before we rebuild the list,
-	// so we can restore it. Otherwise the user loses their editing context
-	// every time they change which sides are selected.
-	int previousRow = borderLineList->currentRow();
+	TableSides newSelection = sideSelector->selection();
+	TableSides changedSides = newSelection ^ m_lastSelection;
+	bool turnedOn = (newSelection & changedSides) != 0;
+	m_lastSelection = newSelection;
 
-	/*
-	 * Figure out the selection state. Either
-	 *
-	 * 1) Some sides are selected and they all have the same border, or
-	 * 2) Some sides are selected but they have different borders, or
-	 * 3) No sides are selected.
-	 */
+	// If no changes (e.g. external sync), nothing to do beyond UI refresh below.
+	if (changedSides != TableSide::None)
+	{
+		PageItem_Table* table = m_item->asTable();
+		QScopedValueRollback<bool> dontResizeRb(m_doc->dontResize, true);
+
+		if (turnedOn)
+		{
+			// User added a border on these sides. Apply the current border;
+			// create a default 1pt black if the user hasn't configured one yet.
+			if (m_currentBorder.isNull())
+			{
+				m_currentBorder = TableBorder(1.0, Qt::SolidLine, "Black", 100);
+			}
+
+			QSet<TableCell> cells = effectiveCells();
+			table->setCellBorders(cells, m_currentBorder, changedSides);
+
+			if (m_doc->appMode != modeEditTable)
+				table->setBorders(m_currentBorder, changedSides);
+		}
+		else
+		{
+			// User removed a border on these sides. Set to a null border.
+			QSet<TableCell> cells = effectiveCells();
+			TableBorder nullBorder;
+			table->setCellBorders(cells, nullBorder, changedSides);
+
+			if (m_doc->appMode != modeEditTable)
+				table->setBorders(nullBorder, changedSides);
+		}
+
+		table->update();
+	}
+
+	// Now refresh the border-line list to show what's on the currently-bold sides.
+	// Reuse the existing logic that figures out borderState across selected sides.
 	State borderState = Unset;
 	m_currentBorder = TableBorder();
-	TableSides selectedSides = sideSelector->selection();
-	PageItem_Table* table = m_item->asTable();
 	bool tableEditMode = (m_doc->appMode == modeEditTable);
+	PageItem_Table* table = m_item->asTable();
 
-	if (selectedSides & TableSide::Left)
+	if (newSelection & TableSide::Left)
 	{
 		TableBorder leftBorder = tableEditMode ? table->activeCell().leftBorder() : table->leftBorder();
 		if (borderState == Unset && !leftBorder.isNull())
@@ -258,8 +289,7 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 		else if (m_currentBorder != leftBorder)
 			borderState = TriState;
 	}
-
-	if (selectedSides & TableSide::Right)
+	if (newSelection & TableSide::Right)
 	{
 		TableBorder rightBorder = tableEditMode ? table->activeCell().rightBorder() : table->rightBorder();
 		if (borderState == Unset && !rightBorder.isNull())
@@ -270,11 +300,10 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 		else if (m_currentBorder != rightBorder)
 			borderState = TriState;
 	}
-
-	if (selectedSides & TableSide::Top)
+	if (newSelection & TableSide::Top)
 	{
 		TableBorder topBorder = tableEditMode ? table->activeCell().topBorder() : table->topBorder();
-		if (borderState == Unset && !table->topBorder().isNull())
+		if (borderState == Unset && !topBorder.isNull())
 		{
 			m_currentBorder = topBorder;
 			borderState = Set;
@@ -282,8 +311,7 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 		else if (m_currentBorder != topBorder)
 			borderState = TriState;
 	}
-
-	if (selectedSides & TableSide::Bottom)
+	if (newSelection & TableSide::Bottom)
 	{
 		TableBorder bottomBorder = tableEditMode ? table->activeCell().bottomBorder() : table->bottomBorder();
 		if (borderState == Unset && !bottomBorder.isNull())
@@ -297,14 +325,12 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 
 	if (borderState == Set)
 	{
-		/// Some sides selected and they have same border.
 		addBorderLineButton->setEnabled(true);
 		removeBorderLineButton->setEnabled(true);
 		borderLineList->setEnabled(true);
 	}
 	else if (borderState == TriState)
 	{
-		/// Some sides selected but they have different border.
 		m_currentBorder = TableBorder();
 		addBorderLineButton->setEnabled(true);
 		removeBorderLineButton->setEnabled(true);
@@ -312,16 +338,14 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 	}
 	else
 	{
-		/// No sides selected.
 		m_currentBorder = TableBorder();
 		addBorderLineButton->setEnabled(false);
 		removeBorderLineButton->setEnabled(false);
 		borderLineList->setEnabled(false);
 	}
 
+	int previousRow = borderLineList->currentRow();
 	updateBorderLineList();
-
-	// Restore the previously-selected row if it's still valid.
 	if (previousRow >= 0 && previousRow < borderLineList->count())
 		borderLineList->setCurrentRow(previousRow);
 }
@@ -625,6 +649,61 @@ void PropertiesPalette_Table::on_buttonClearCellStyle_clicked()
 
 	table->adjustTable();
 	table->update();
+}
+
+void PropertiesPalette_Table::syncSideSelectorToCells()
+{
+	if (!m_item || !m_item->isTable())
+		return;
+
+	QSet<TableCell> cells = effectiveCells();
+	if (cells.isEmpty())
+		return;
+
+	bool anyLeft = false, anyRight = false, anyTop = false, anyBottom = false;
+
+	for (const TableCell& cell : cells)
+	{
+		if (!cell.leftBorder().isNull())
+			anyLeft = true;
+		if (!cell.rightBorder().isNull())
+			anyRight = true;
+		if (!cell.topBorder().isNull())
+			anyTop = true;
+		if (!cell.bottomBorder().isNull())
+			anyBottom = true;
+	}
+
+	TableSides sidesWithBorders = TableSide::None;
+	if (anyLeft)
+		sidesWithBorders |= TableSide::Left;
+	if (anyRight)
+		sidesWithBorders |= TableSide::Right;
+	if (anyTop)
+		sidesWithBorders |= TableSide::Top;
+	if (anyBottom)
+		sidesWithBorders |= TableSide::Bottom;
+
+	// Block signals so the external sync isn't interpreted as a user click.
+	QSignalBlocker blocker(sideSelector);
+	sideSelector->setSelection(sidesWithBorders);
+
+	m_lastSelection = sidesWithBorders;
+}
+
+QSet<TableCell> PropertiesPalette_Table::effectiveCells() const
+{
+	PageItem_Table* table = m_item->asTable();
+	if (m_doc->appMode == modeEditTable)
+	{
+		const QSet<TableCell>& selected = table->selectedCells();
+		if (!selected.isEmpty())
+			return selected;
+		QSet<TableCell> single;
+		single.insert(table->activeCell());
+		return single;
+	}
+	return table->cells();
 }
 
 void PropertiesPalette_Table::updateBorders()
