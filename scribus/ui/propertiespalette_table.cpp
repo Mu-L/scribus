@@ -229,6 +229,11 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 	if (!m_item || !m_item->isTable())
 		return;
 
+	// Remember which border line was selected before we rebuild the list,
+	// so we can restore it. Otherwise the user loses their editing context
+	// every time they change which sides are selected.
+	int previousRow = borderLineList->currentRow();
+
 	/*
 	 * Figure out the selection state. Either
 	 *
@@ -315,6 +320,10 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 	}
 
 	updateBorderLineList();
+
+	// Restore the previously-selected row if it's still valid.
+	if (previousRow >= 0 && previousRow < borderLineList->count())
+		borderLineList->setCurrentRow(previousRow);
 }
 
 void PropertiesPalette_Table::updateBorderLineList()
