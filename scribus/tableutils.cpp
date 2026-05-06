@@ -27,8 +27,15 @@ namespace TableUtils
 			const TableBorder& firstBorder, bool firstInh,
 			const TableBorder& secondBorder, bool secondInh)
 	{
-		// If one is inherited and the other is explicitly set, pass the
-		// explicitly-set one as firstBorder so it wins our symmetric tie-break.
+		// If one side has been explicitly cleared (set to null but not inherited)
+		// and the other is inherited, the explicit clear wins -- the user has
+		// expressed intent to have no border there.
+		if (!firstInh && firstBorder.isNull() && secondInh)
+			return firstBorder;
+		if (!secondInh && secondBorder.isNull() && firstInh)
+			return secondBorder;
+
+		// Otherwise, prefer explicitly-set over inherited when widths tie.
 		if (firstInh && !secondInh)
 			return collapseBorders(secondBorder, firstBorder);
 		return collapseBorders(firstBorder, secondBorder);
@@ -44,6 +51,10 @@ namespace TableUtils
 			const TableBorder& cellBorder, bool cellInh,
 			const TableBorder& tableBorder)
 	{
+		// Explicit null cell border wins over the table fallback.
+		if (!cellInh && cellBorder.isNull())
+			return cellBorder;
+
 		if (cellInh)
 			return collapseBorders(tableBorder, cellBorder);
 		return collapseBorders(cellBorder, tableBorder);
