@@ -16,6 +16,7 @@ for which a new license (GPL+exception) is in place.
 #include "scribusapi.h"
 #include "scguardedptr.h"
 #include "tableborder.h"
+#include "tablecell.h"
 #include "units.h"
 
 #include "ui_propertiespalette_tablebase.h"
@@ -23,7 +24,7 @@ for which a new license (GPL+exception) is in place.
 class PageItem;
 class ScribusMainWindow;
 class ScribusDoc;
-class TableCell;
+
 
 /**
  * Widget for table properties in the Properties Palette.
