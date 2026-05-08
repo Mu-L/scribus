@@ -461,6 +461,7 @@ void CollapsedTablePainter::paintCellFill(const TableCell& cell, ScPainter* p) c
 	QColor color;
 	table()->SetQColor(&color, colorName, cell.fillShade());
 	p->setBrush(color);
+	p->setBrushOpacity(1.0 - cell.fillShade());
 	p->setFillMode(ScPainter::Solid);
 	p->setStrokeMode(ScPainter::None);
 
