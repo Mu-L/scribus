@@ -1642,7 +1642,7 @@ void ActionManager::languageChange()
 	(*scrActions)["tableDeleteRows"]->setTexts(tr("Delete Rows"));
 	(*scrActions)["tableDeleteColumns"]->setTexts(tr("Delete Columns"));
 	(*scrActions)["tableMergeCells"]->setTexts(tr("Merge Cells"));
-	(*scrActions)["tableSplitCells"]->setTexts(tr("Split Cells..."));
+	(*scrActions)["tableSplitCells"]->setTexts(tr("Unmerge Cells..."));
 	(*scrActions)["tableSetRowHeights"]->setTexts(tr("Set Row Heights..."));
 	(*scrActions)["tableSetColumnWidths"]->setTexts(tr("Set Column Widths..."));
 	(*scrActions)["tableDistributeRowsEvenly"]->setTexts(tr("Distribute Rows Evenly"));

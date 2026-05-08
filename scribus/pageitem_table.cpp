@@ -919,6 +919,11 @@ void PageItem_Table::mergeCells(int row, int column, int numRows, int numCols)
 
 void PageItem_Table::splitCell(int row, int column, int numRows, int numCols)
 {
+	// The menu label for this operation is "Unmerge Cells", but the
+	// code keeps the "split" name. The numRows/numCols parameters are unused.
+	// This only unmerges to the original cells. Word-style subdivision into
+	// row x column split cells is not possible in Scribus's grid table model.
+
 	Q_UNUSED(numRows);
 	Q_UNUSED(numCols);
 
