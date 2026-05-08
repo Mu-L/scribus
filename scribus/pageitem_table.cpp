@@ -919,8 +919,37 @@ void PageItem_Table::mergeCells(int row, int column, int numRows, int numCols)
 
 void PageItem_Table::splitCell(int row, int column, int numRows, int numCols)
 {
-	// Not implemented.
+	Q_UNUSED(numRows);
+	Q_UNUSED(numCols);
+
+	ASSERT_VALID();
+
+	if (!validCell(row, column))
+		return;
+
+	// Find the merged area containing the target cell, if any.
+	QMutableListIterator<CellArea> areaIt(m_cellAreas);
+	while (areaIt.hasNext())
+	{
+		CellArea area = areaIt.next();
+		if (area.contains(row, column))
+		{
+			// Reset the spanning cell's row and column span.
+			TableCell spanningCell = cellAt(area.row(), area.column());
+			spanningCell.setRowSpan(1);
+			spanningCell.setColumnSpan(1);
+
+			// Remove the merged area.
+			areaIt.remove();
+			break;
+		}
+	}
+
+	updateCells();
+
 	emit changed();
+
+	ASSERT_VALID();
 }
 
 QSet<int> PageItem_Table::selectedRows() const
@@ -1732,6 +1761,14 @@ void PageItem_Table::applicableActions(QStringList& actionList)
 		actionList << "tableDeleteColumns";
 	if (selectedCells > 1)
 		actionList << "tableMergeCells";
+	// Split is the inverse of merge: enabled when the active cell is merged
+	// (spans more than one row or column).
+	if (tableEdit && selectedCells == 1)
+	{
+		const TableCell active = activeCell();
+		if (active.isValid() && (active.rowSpan() > 1 || active.columnSpan() > 1))
+			actionList << "tableSplitCells";
+	}
 	if (tableEdit)
 		actionList << "tableSetRowHeights";
 	if (tableEdit)

@@ -9162,6 +9162,31 @@ void ScribusDoc::itemSelection_MergeTableCells()
 	changedPagePreview();
 }
 
+void ScribusDoc::itemSelection_SplitTableCells()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	if (!table)
+		return;
+	if (appMode != modeEditTable)
+		return;
+
+	// Split applies to the active cell when it's a merged cell.
+	TableCell active = table->activeCell();
+	if (!active.isValid() || (active.rowSpan() == 1 && active.columnSpan() == 1))
+		return;
+
+	QScopedValueRollback<bool> dontResizeRb(dontResize, true);
+	table->splitCell(active.row(), active.column(), 1, 1);
+	table->adjustTable();
+	table->update();
+	m_ScMW->updateTableMenuActions();
+	changed();
+	changedPagePreview();
+}
+
 void ScribusDoc::itemSelection_SetTableRowHeights()
 {
 	PageItem* item = m_Selection->itemAt(0);

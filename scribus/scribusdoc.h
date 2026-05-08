@@ -1741,9 +1741,12 @@ public slots:
 	/**
 	 * Splits cells in a table.
 	 *
-	 * TODO: Implement this.
+	 * The selected cell will be resplit resulting in new cells.
+	 *
+	 * If no table is selected, or if the application is not in table edit mode, or if less
+	 * than two cells is selected, then this slot does nothing.
 	 */
-	void itemSelection_SplitTableCells() {}
+	void itemSelection_SplitTableCells();
 
 	/**
 	 * Sets the height of rows in a table.

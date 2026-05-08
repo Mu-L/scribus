@@ -1375,7 +1375,7 @@ void AppModeHelper::updateTableMenuActions(const ScribusDoc* doc)
 		(*a_scrActions)["tableDeleteRows"]->setEnabled(false);
 		(*a_scrActions)["tableDeleteColumns"]->setEnabled(false);
 		(*a_scrActions)["tableMergeCells"]->setEnabled(false);
-		(*a_scrActions)["tableSplitCells"]->setEnabled(false); // Not implemented.
+		(*a_scrActions)["tableSplitCells"]->setEnabled(false);
 		(*a_scrActions)["tableSetRowHeights"]->setEnabled(false);
 		(*a_scrActions)["tableSetColumnWidths"]->setEnabled(false);
 		(*a_scrActions)["tableDistributeRowsEvenly"]->setEnabled(false);
@@ -1398,7 +1398,7 @@ void AppModeHelper::updateTableMenuActions(const ScribusDoc* doc)
 	(*a_scrActions)["tableDeleteColumns"]->setEnabled(tableEdit &&
 		((selectedColumns < 1 && tableColumns > 1) || (selectedColumns > 0 && selectedColumns < tableColumns)));
 	(*a_scrActions)["tableMergeCells"]->setEnabled(selectedCells > 1);
-	(*a_scrActions)["tableSplitCells"]->setEnabled(false); // Not implemented.
+	(*a_scrActions)["tableSplitCells"]->setEnabled(true);
 	(*a_scrActions)["tableSetRowHeights"]->setEnabled(tableEdit);
 	(*a_scrActions)["tableSetColumnWidths"]->setEnabled(tableEdit);
 	if (tableEdit)
@@ -1782,7 +1782,7 @@ void AppModeHelper::mainWindowCloseLastDoc()
 	(*a_scrActions)["tableDeleteRows"]->setEnabled(false);
 	(*a_scrActions)["tableDeleteColumns"]->setEnabled(false);
 	(*a_scrActions)["tableMergeCells"]->setEnabled(false);
-	(*a_scrActions)["tableSplitCells"]->setEnabled(false); // Not implemented.
+	(*a_scrActions)["tableSplitCells"]->setEnabled(false);
 	(*a_scrActions)["tableSetRowHeights"]->setEnabled(false);
 	(*a_scrActions)["tableSetColumnWidths"]->setEnabled(false);
 	(*a_scrActions)["tableDistributeRowsEvenly"]->setEnabled(false);
@@ -2012,7 +2012,7 @@ void AppModeHelper::setStartupActionsEnabled(bool enabled)
 	(*a_scrActions)["tableDeleteRows"]->setEnabled(false);
 	(*a_scrActions)["tableDeleteColumns"]->setEnabled(false);
 	(*a_scrActions)["tableMergeCells"]->setEnabled(false);
-	(*a_scrActions)["tableSplitCells"]->setEnabled(false); // Not implemented.
+	(*a_scrActions)["tableSplitCells"]->setEnabled(false);
 	(*a_scrActions)["tableSetRowHeights"]->setEnabled(false);
 	(*a_scrActions)["tableSetColumnWidths"]->setEnabled(false);
 	(*a_scrActions)["tableDistributeRowsEvenly"]->setEnabled(false);

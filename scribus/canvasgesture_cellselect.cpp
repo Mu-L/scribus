@@ -32,7 +32,9 @@ void CellSelect::activate(bool fromGesture)
 
 void CellSelect::deactivate(bool forGesture)
 {
-	table()->clearSelection();
+	// Don't clear selection here -- callers decide whether to clear based
+	// on context. This lets right-click preserve the selection while the
+	// gesture stops to allow context menu display.
 	CanvasGesture::deactivate(forGesture);
 }
 
@@ -42,6 +44,7 @@ void CellSelect::keyPressEvent(QKeyEvent* event)
 	{
 		// Cancel the cell selection.
 		event->accept();
+		table()->clearSelection();
 		m_view->stopGesture();
 	}
 }
@@ -50,23 +53,16 @@ void CellSelect::mousePressEvent(QMouseEvent* event)
 {
 	event->accept();
 
-	if (event->button() == Qt::RightButton)
+	if (event->button() != Qt::RightButton)
 	{
-		// Show the table popup menu.
-		m_view->setCursor(Qt::ArrowCursor);
-		m_view->m_ScMW->scrMenuMgr->runMenuAtPos("ItemTable", event->globalPosition().toPoint());
-	}
-	else
-	{
-		// Clear selection.
+		// For non-right-click, clear the cell selection -- the user is
+		// starting a fresh interaction.
 		table()->clearSelection();
-
-		// Stop the gesture.
-		m_view->stopGesture();
-
-		// Pass the mouse press to the delegate (table editing canvas mode).
-		delegate()->mousePressEvent(event);
 	}
+
+	// Stop the gesture and forward to the canvas mode for handling.
+	m_view->stopGesture();
+	delegate()->mousePressEvent(event);
 }
 
 void CellSelect::mouseReleaseEvent(QMouseEvent* event)
