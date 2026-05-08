@@ -41,6 +41,7 @@
 #include "iconmanager.h"
 #include "loadsaveplugin.h"
 #include "pageitem_line.h"
+#include "pageitem_table.h"
 #include "prefscontext.h"
 #include "prefsfile.h"
 #include "prefsmanager.h"
@@ -51,6 +52,7 @@
 #include "scribusdoc.h"
 #include "scribusview.h"
 #include "selection.h"
+#include "tablehandle.h"
 #include "textframespellchecker.h"
 #include "ui/aligndistribute.h"
 #include "ui/contextmenu.h"
@@ -957,6 +959,30 @@ void CanvasMode_Normal::mousePressEvent(QMouseEvent *m)
 //	{
 //		m_view->startDragTimer();
 //	}
+
+
+	// After selection processing, if we ended up with a single table item
+	// selected and the click was inside a cell interior, enter edit mode
+	// immediately. This avoids requiring a separate double-click to enter
+	//edit mode
+	if (m->button() == Qt::LeftButton && m_doc->m_Selection->count() == 1)
+	{
+		currItem = m_doc->m_Selection->itemAt(0);
+		if (currItem && currItem->isTable())
+		{
+			PageItem_Table* table = currItem->asTable();
+			const QPointF canvasPoint(mousePointDoc.x(), mousePointDoc.y());
+			const double threshold = m_doc->guidesPrefs().grabRadius / m_canvas->scale();
+			TableHandle handle = table->hitTest(canvasPoint, threshold);
+			if (handle.type() == TableHandle::CellSelect)
+			{
+				m_view->requestMode(modeEditTable);
+				m_view->slotSetCurs(globalPos.x(), globalPos.y());
+				m_ScMW->setTBvals(currItem);
+			}
+		}
+	}
+
 	m_canvas->PaintSizeRect(QRect());
 }
 
