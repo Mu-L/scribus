@@ -708,6 +708,12 @@ private:
 	// Undo/redo column width action
 	void restoreTableColumnWidth(SimpleState *state, bool isUndo);
 
+	// Undo/redo table cell merge action
+	void restoreTableMergeCells(SimpleState *state, bool isUndo);
+
+	// Undo/redo table cell unmerge action
+	void restoreTableUnmergeCells(SimpleState *state, bool isUndo);
+
 private:
 	//<<Data we need to save
 	/// List of rows of cells in the table.

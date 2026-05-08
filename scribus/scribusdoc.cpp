@@ -9150,12 +9150,19 @@ void ScribusDoc::itemSelection_MergeTableCells()
 	const int numRows = selectedRows.last() - row + 1;
 	const int numColumns = selectedColumns.last() - column + 1;
 
+	UndoTransaction transaction;
+	if (UndoManager::undoEnabled())
+		transaction = m_undoManager->beginTransaction(table->getUName(), Um::ITable, Um::TableMergeCells, "", Um::ITable);
+
 	QScopedValueRollback<bool> dontResizeRb(dontResize, true);
 	table->mergeCells(row, column, numRows, numColumns);
 
 	m_View->stopGesture(); // FIXME: Don't use m_View.
 	table->adjustTable();
 	table->update();
+
+	if (transaction)
+			transaction.commit();
 
 	m_ScMW->updateTableMenuActions();
 	changed();
@@ -9178,10 +9185,18 @@ void ScribusDoc::itemSelection_SplitTableCells()
 	if (!active.isValid() || (active.rowSpan() == 1 && active.columnSpan() == 1))
 		return;
 
+	UndoTransaction transaction;
+	if (UndoManager::undoEnabled())
+		transaction = m_undoManager->beginTransaction(table->getUName(), Um::ITable, Um::TableUnmergeCells, "", Um::ITable);
+
 	QScopedValueRollback<bool> dontResizeRb(dontResize, true);
 	table->splitCell(active.row(), active.column(), 1, 1);
 	table->adjustTable();
 	table->update();
+
+	if (transaction)
+			transaction.commit();
+
 	m_ScMW->updateTableMenuActions();
 	changed();
 	changedPagePreview();

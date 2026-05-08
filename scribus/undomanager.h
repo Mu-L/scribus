@@ -452,6 +452,8 @@ public:
 	static QString TableStyle;
 	static QString TableRowHeight;
 	static QString TableColumnWidth;
+	static QString TableMergeCells;
+	static QString TableUnmergeCells;
 	static QString SetFont;
 	static QString SetFontSize;
 	static QString SetFontWidth;

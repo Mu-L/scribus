@@ -14,6 +14,7 @@ for which a new license (GPL+exception) is in place.
 #include <QMutableSetIterator>
 #include <QPointF>
 #include <QRectF>
+#include <QScopedValueRollback>
 #include <QSet>
 #include <QString>
 #include <QTransform>
@@ -869,6 +870,17 @@ void PageItem_Table::mergeCells(int row, int column, int numRows, int numCols)
 	if (!validCell(row, column) || !validCell(row + numRows - 1, column + numCols - 1))
 		return;
 
+	if (UndoManager::undoEnabled())
+	{
+		SimpleState *ss = new SimpleState(Um::TableMergeCells, QString(), Um::ITable);
+		ss->set("TABLE_MERGE_CELLS");
+		ss->set("ROW", row);
+		ss->set("COLUMN", column);
+		ss->set("NUM_ROWS", numRows);
+		ss->set("NUM_COLS", numCols);
+		undoManager->action(this, ss);
+	}
+
 	CellArea newArea(row, column, numCols, numRows);
 
 	// Unite intersecting areas.
@@ -932,19 +944,44 @@ void PageItem_Table::splitCell(int row, int column, int numRows, int numCols)
 	if (!validCell(row, column))
 		return;
 
+	// Find the merged area to record what we're undoing.
+	CellArea targetArea;
+	bool foundArea = false;
+	for (const CellArea& area : m_cellAreas)
+	{
+		if (area.contains(row, column))
+		{
+			targetArea = area;
+			foundArea = true;
+			break;
+		}
+	}
+	if (!foundArea)
+		return;
+
+	if (UndoManager::undoEnabled())
+	{
+		SimpleState *ss = new SimpleState(Um::TableUnmergeCells, QString(), Um::ITable);
+		ss->set("TABLE_UNMERGE_CELLS");
+		ss->set("ROW", targetArea.row());
+		ss->set("COLUMN", targetArea.column());
+		ss->set("NUM_ROWS", targetArea.height());
+		ss->set("NUM_COLS", targetArea.width());
+		undoManager->action(this, ss);
+	}
+
+	// Now do the actual split (unchanged from before, using targetArea).
+
 	// Find the merged area containing the target cell, if any.
 	QMutableListIterator<CellArea> areaIt(m_cellAreas);
 	while (areaIt.hasNext())
 	{
 		CellArea area = areaIt.next();
-		if (area.contains(row, column))
+		if (area.row() == targetArea.row() && area.column() == targetArea.column())
 		{
-			// Reset the spanning cell's row and column span.
 			TableCell spanningCell = cellAt(area.row(), area.column());
 			spanningCell.setRowSpan(1);
 			spanningCell.setColumnSpan(1);
-
-			// Remove the merged area.
 			areaIt.remove();
 			break;
 		}
@@ -2278,6 +2315,16 @@ void PageItem_Table::restore(UndoState *state, bool isUndo)
 		restoreTableColumnWidth(simpleState, isUndo);
 		doUpdate = true;
 	}
+	else if (simpleState->contains("TABLE_MERGE_CELLS"))
+	{
+		restoreTableMergeCells(simpleState, isUndo);
+		doUpdate = true;
+	}
+	else if (simpleState->contains("TABLE_UNMERGE_CELLS"))
+	{
+		restoreTableUnmergeCells(simpleState, isUndo);
+		doUpdate = true;
+	}
 	else
 	{
 		PageItem::restore(state, isUndo);
@@ -2615,4 +2662,52 @@ void PageItem_Table::restoreTableColumnWidth(SimpleState *state, bool isUndo)
 		double newWidth = state->getDouble("NEW_COLUMN_WIDTH");
 		resizeColumn(column, newWidth, strategy);
 	}
+}
+
+void PageItem_Table::restoreTableMergeCells(SimpleState *state, bool isUndo)
+{
+	int row = state->getInt("ROW");
+	int column = state->getInt("COLUMN");
+	int numRows = state->getInt("NUM_ROWS");
+	int numCols = state->getInt("NUM_COLS");
+
+	QScopedValueRollback<bool> rb(m_Doc->dontResize, true);
+	UndoManager::instance()->setUndoEnabled(false);
+
+	if (isUndo)
+	{
+		// Undo merge = split the merged cell back to its constituents.
+		splitCell(row, column, numRows, numCols);
+	}
+	else
+	{
+		// Redo merge = merge again.
+		mergeCells(row, column, numRows, numCols);
+	}
+
+	UndoManager::instance()->setUndoEnabled(true);
+}
+
+void PageItem_Table::restoreTableUnmergeCells(SimpleState *state, bool isUndo)
+{
+	int row = state->getInt("ROW");
+	int column = state->getInt("COLUMN");
+	int numRows = state->getInt("NUM_ROWS");
+	int numCols = state->getInt("NUM_COLS");
+
+	QScopedValueRollback<bool> rb(m_Doc->dontResize, true);
+	UndoManager::instance()->setUndoEnabled(false);
+
+	if (isUndo)
+	{
+		// Undo split = re-merge.
+		mergeCells(row, column, numRows, numCols);
+	}
+	else
+	{
+		// Redo split = split again.
+		splitCell(row, column, numRows, numCols);
+	}
+
+	UndoManager::instance()->setUndoEnabled(true);
 }
