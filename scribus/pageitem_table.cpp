@@ -1794,9 +1794,14 @@ void PageItem_Table::applicableActions(QStringList& actionList)
 	const int selectedCells = tableEdit ? this->selectedCells().size() : 0;
 
 	if (!tableEdit || selectedCells<1)
+	{
 		actionList << "tableInsertRows";
-	if (!tableEdit || selectedCells<1)
 		actionList << "tableInsertColumns";
+		actionList << "fileImportText";
+		actionList << "fileImportAppendText";
+		actionList << "toolsEditWithStoryEditor";
+		actionList << "insertSampleText";
+	}
 	if (tableEdit && ((selectedRows < 1 && tableRows > 1) || (selectedRows > 0 && selectedRows < tableRows)))
 		actionList << "tableDeleteRows";
 	if ((selectedColumns < 1 && tableColumns > 1) || (selectedColumns > 0 && selectedColumns < tableColumns))
