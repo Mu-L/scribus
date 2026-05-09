@@ -816,6 +816,66 @@ double PageItem_Table::rowPosition(int row) const
 	return m_rowPositions.at(row);
 }
 
+double PageItem_Table::naturalRowHeight(int row, bool* hasContent)
+{
+	if (!validRow(row))
+	{
+		if (hasContent)
+			*hasContent = false;
+		return rowHeight(row);
+	}
+
+	double maxHeight = 0.0;
+	bool anyContent = false;
+	const int columnCount = columns();
+
+	for (int i = 0; i < columnCount; ++i)
+	{
+		TableCell cell = cellAt(row, i);
+		if (cell.row() != row)
+			continue;
+		if (cell.rowSpan() > 1)
+			continue;
+
+		if (cell.textFrame()->itemText.length() > 0)
+			anyContent = true;
+
+		double frameHeight = cell.textFrame()->naturalContentHeight();
+		double cellOverhead = cell.topPadding() + cell.bottomPadding() + cell.maxTopBorderWidth() / 2.0 + cell.maxBottomBorderWidth() / 2.0;
+		double cellHeight = frameHeight + cellOverhead;
+		maxHeight = qMax(maxHeight, cellHeight);
+	}
+
+	if (hasContent)
+		*hasContent = anyContent;
+
+	const double minHeight = 8.0;
+	return qMax(maxHeight, minHeight);
+}
+
+void PageItem_Table::adjustRowHeight(int row)
+{
+	bool hasContent = false;
+	double natural = naturalRowHeight(row, &hasContent);
+
+	// Don't shrink rows that have no content -- the user's manual sizing
+	// should be preserved when there's nothing to fit.
+	if (!hasContent)
+		return;
+
+	if (qFuzzyCompare(natural, rowHeight(row)))
+		return;
+
+	resizeRow(row, natural, MoveFollowing);
+}
+
+void PageItem_Table::adjustAllRowHeights()
+{
+	const int rowCount = rows();
+	for (int i = 0; i < rowCount; ++i)
+		adjustRowHeight(i);
+}
+
 double PageItem_Table::columnWidth(int column) const
 {
 	if (!validColumn(column))
@@ -1826,6 +1886,7 @@ void PageItem_Table::applicableActions(QStringList& actionList)
 		actionList << "tableDistributeColumnsEvenly";
 	actionList << "tableAdjustFrameToTable";
 	actionList << "tableAdjustTableToFrame";
+	actionList << "tableAdjustRowHeights";
 }
 
 void PageItem_Table::DrawObj_Item(ScPainter *p, const QRectF& /*e*/)

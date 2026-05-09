@@ -6046,3 +6046,49 @@ void PageItem_TextFrame::setTextFrameHeight()
 	m_Doc->regionsChanged()->update(QRect());
 	m_Doc->changedPagePreview();
 }
+
+double PageItem_TextFrame::naturalContentHeight()
+{
+	// Temporarily expand the frame, iterating if needed, until layout
+	// reports a height strictly less than what we gave it -- meaning
+	// the layout had room to spare and the natural height is honest.
+	// Without this, content overflowing the current frame is excluded
+	// from the layout's reported size.
+	const double savedHeight = m_height;
+	double tryHeight = qMax(m_height, 100.0);
+	double naturalH = 0.0;
+
+	for (int i = 0; i < 10; ++i)
+	{
+		setHeight(tryHeight);
+		updateClip();
+		invalidateLayout(false);
+		layout();
+
+		if (textLayout.lines() <= 0)
+		{
+			naturalH = 0.0;
+			break;
+		}
+
+		naturalH = qMax(textLayout.box()->naturalHeight(), maxY);
+
+		// If naturalH < tryHeight, layout had headroom; trust the answer.
+		if (naturalH < tryHeight - 0.5)
+			break;
+
+		// Otherwise layout filled the whole frame -- might be truncated.
+		tryHeight *= 2.0;
+	}
+
+	double height = textToFrameDistTop() + textToFrameDistBottom();
+	if (textLayout.lines() > 0)
+		height += naturalH;
+
+	setHeight(savedHeight);
+	updateClip();
+	invalidateLayout(false);
+	layout();
+
+	return std::ceil(height);
+}

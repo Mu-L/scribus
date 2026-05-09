@@ -677,6 +677,8 @@ void ActionManager::initTableMenuActions()
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 	name = "tableAdjustTableToFrame";
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
+	name = "tableAdjustRowHeights";
+	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 }
 
 void ActionManager::initViewMenuActions()
@@ -1261,6 +1263,7 @@ void ActionManager::disconnectNewDocActions()
 	(*scrActions)["tableDistributeColumnsEvenly"]->disconnect();
 	(*scrActions)["tableAdjustFrameToTable"]->disconnect();
 	(*scrActions)["tableAdjustTableToFrame"]->disconnect();
+	(*scrActions)["tableAdjustRowHeights"]->disconnect();
 	(*scrActions)["itemAdjustFrameHeightToText"]->disconnect();
 	(*scrActions)["itemAdjustFrameToImage"]->disconnect();
 	(*scrActions)["itemAdjustImageToFrame"]->disconnect();
@@ -1320,6 +1323,7 @@ void ActionManager::connectNewDocActions(ScribusDoc *currDoc)
 	connect( (*scrActions)["tableDistributeColumnsEvenly"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_DistributeTableColumnsEvenly()));
 	connect( (*scrActions)["tableAdjustFrameToTable"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_AdjustFrameToTable()));
 	connect( (*scrActions)["tableAdjustTableToFrame"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_AdjustTableToFrame()));
+	connect( (*scrActions)["tableAdjustRowHeights"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_AdjustTableRowHeights()));
 	connect( (*scrActions)["itemAdjustFrameHeightToText"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_AdjustFrameHeightToText()) );
 	connect( (*scrActions)["itemAdjustFrameToImage"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_AdjustFrametoImageSize()) );
 	connect( (*scrActions)["itemAdjustImageToFrame"], SIGNAL(triggered()), currDoc, SLOT(itemSelection_AdjustImagetoFrameSize()) );
@@ -1649,6 +1653,7 @@ void ActionManager::languageChange()
 	(*scrActions)["tableDistributeColumnsEvenly"]->setTexts(tr("Distribute Columns Evenly"));
 	(*scrActions)["tableAdjustFrameToTable"]->setTexts(tr("Adjust Frame to Table"));
 	(*scrActions)["tableAdjustTableToFrame"]->setTexts(tr("Adjust Table to Frame"));
+	(*scrActions)["tableAdjustRowHeights"]->setTexts( tr("Adjust Row Height to Text"));
 	(*scrActions)["itemAdjustFrameHeightToText"]->setTexts( tr("Adjust Frame Height to Text"));
 	(*scrActions)["itemAdjustFrameToImage"]->setTexts( tr("Adjust Frame to Image"));
 	(*scrActions)["itemAdjustImageToFrame"]->setTexts( tr("Adjust Image to Frame"));
@@ -2421,7 +2426,8 @@ void ActionManager::createDefaultMenus()
 		<< "tableDistributeRowsEvenly"
 		<< "tableDistributeColumnsEvenly"
 		<< "tableAdjustFrameToTable"
-		<< "tableAdjustTableToFrame";
+		<< "tableAdjustTableToFrame"
+		<< "tableAdjustRowHeights";
 	//Extras
 	++itmenu;
 	itmenu->second

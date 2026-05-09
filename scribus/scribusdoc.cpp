@@ -16729,6 +16729,42 @@ void ScribusDoc::itemSelection_AdjustFrameHeightToText( Selection *customSelecti
 	itemSelection->itemAt(0)->emitAllToGUI();
 }
 
+void ScribusDoc::itemSelection_AdjustTableRowHeights()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	if (!table)
+		return;
+
+	QScopedValueRollback<bool> dontResizeRb(dontResize, true);
+
+	UndoTransaction transaction;
+	if (UndoManager::undoEnabled())
+		transaction = m_undoManager->beginTransaction(table->getUName(), Um::ITable, Um::TableRowHeight, "", Um::IResize);
+
+	if (appMode == modeEditTable && !table->selectedRows().isEmpty())
+	{
+		// Adjust only the selected rows.
+		for (int row : table->selectedRows())
+			table->adjustRowHeight(row);
+	}
+	else
+	{
+		// No row selection -- adjust all rows.
+		table->adjustAllRowHeights();
+	}
+
+	table->adjustFrameToTable();
+	table->update();
+	changed();
+	changedPagePreview();
+
+	if (transaction)
+		transaction.commit();
+}
+
 void ScribusDoc::itemSelection_AdjustFrameToTable()
 {
 	// TODO: Do this in an undo transaction?

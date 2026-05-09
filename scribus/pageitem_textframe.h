@@ -173,6 +173,7 @@ protected:
 
 public:
 	void setTextFrameHeight();
+	double naturalContentHeight();
 };
 
 #endif

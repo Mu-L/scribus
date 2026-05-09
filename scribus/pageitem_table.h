@@ -210,6 +210,21 @@ public:
 	 */
 	const QList<double>& rowPositions() const { return m_rowPositions; }
 
+	/// Returns the natural row height -- the height needed to display the
+	/// content of all cells starting in this row at their current widths,
+	/// honoring text distance padding. Returns the row's current height
+	/// if no cells contribute to the calculation (e.g. row only contains
+	/// cells merged from earlier rows).
+	double naturalRowHeight(int row, bool* hasContent = nullptr);
+
+	/// Resizes the row to its natural content height, leaving the row
+	/// untouched if no cells contribute to the calculation. See
+	/// naturalRowHeight().
+	void adjustRowHeight(int row);
+
+	/// Calls adjustRowHeight() on every row.
+	void adjustAllRowHeights();
+
 	/**
 	 * Inserts @a numColumns columns before the column at @a index.
 	 *

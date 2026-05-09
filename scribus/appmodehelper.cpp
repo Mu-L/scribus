@@ -1382,6 +1382,7 @@ void AppModeHelper::updateTableMenuActions(const ScribusDoc* doc)
 		(*a_scrActions)["tableDistributeColumnsEvenly"]->setEnabled(false);
 		(*a_scrActions)["tableAdjustFrameToTable"]->setEnabled(false);
 		(*a_scrActions)["tableAdjustTableToFrame"]->setEnabled(false);
+		(*a_scrActions)["tableAdjustRowHeights"]->setEnabled(false);
 		return;
 	}
 
@@ -1417,6 +1418,7 @@ void AppModeHelper::updateTableMenuActions(const ScribusDoc* doc)
 	}
 	(*a_scrActions)["tableAdjustFrameToTable"]->setEnabled(true);
 	(*a_scrActions)["tableAdjustTableToFrame"]->setEnabled(true);
+	(*a_scrActions)["tableAdjustRowHeights"]->setEnabled(true);
 }
 
 void AppModeHelper::changeLayer(ScribusDoc *doc, bool clipScrapHaveData)
@@ -1791,6 +1793,7 @@ void AppModeHelper::mainWindowCloseLastDoc()
 	(*a_scrActions)["tableDistributeColumnsEvenly"]->setEnabled(false);
 	(*a_scrActions)["tableAdjustFrameToTable"]->setEnabled(false);
 	(*a_scrActions)["tableAdjustTableToFrame"]->setEnabled(false);
+	(*a_scrActions)["tableAdjustRowHeights"]->setEnabled(false);
 
 	ScribusMainWindow* scMW = ScCore->primaryMainWindow();
 	scMW->unitSwitcher->setEnabled(false);
@@ -2021,6 +2024,7 @@ void AppModeHelper::setStartupActionsEnabled(bool enabled)
 	(*a_scrActions)["tableDistributeColumnsEvenly"]->setEnabled(false);
 	(*a_scrActions)["tableAdjustFrameToTable"]->setEnabled(false);
 	(*a_scrActions)["tableAdjustTableToFrame"]->setEnabled(false);
+	(*a_scrActions)["tableAdjustRowHeights"]->setEnabled(false);
 
 	ScribusMainWindow* scMW = ScCore->primaryMainWindow();
 	scMW->unitSwitcher->setEnabled(false);
