@@ -62,6 +62,8 @@ void CanvasMode_EditTable::activate(bool fromGesture)
 {
 	CanvasMode::activate(fromGesture);
 
+	m_canvas->resetRenderMode();
+
 	PageItem *item = m_doc->m_Selection->itemAt(0);
 	Q_ASSERT(item && item->isTable());
 	m_table = item->asTable();
