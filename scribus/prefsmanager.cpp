@@ -466,7 +466,7 @@ void PrefsManager::initDefaults()
 	appPrefs.miscPrefs.saveEmergencyFile = true;
 	// lorem ipsum defaults
 	appPrefs.miscPrefs.useStandardLI = false;
-	appPrefs.miscPrefs.paragraphsLI = 10;
+	appPrefs.miscPrefs.paragraphsLI = 1;
 	initDefaultCheckerPrefs(appPrefs.verifierPrefs.checkerPrefsList);
 	appPrefs.verifierPrefs.curCheckProfile = CommonStrings::PDF_1_4;
 	appPrefs.verifierPrefs.showPagesWithoutErrors = false;
@@ -2114,7 +2114,7 @@ bool PrefsManager::readPref(const QString& filePath)
 		{
 			appPrefs.miscPrefs.haveStylePreview = static_cast<bool>(dc.attribute("ShowStylePreview", "1").toInt());
 			appPrefs.miscPrefs.useStandardLI = static_cast<bool>(dc.attribute("LoremIpsumUseStandard", "0").toInt());
-			appPrefs.miscPrefs.paragraphsLI = dc.attribute("LoremIpsumParagraphs", "10").toInt();
+			appPrefs.miscPrefs.paragraphsLI = dc.attribute("LoremIpsumParagraphs", "1").toInt();
 			appPrefs.miscPrefs.saveEmergencyFile = static_cast<bool>(dc.attribute("saveEmergencyFile", "1").toInt());
 		}
 
