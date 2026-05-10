@@ -32,9 +32,11 @@ for which a new license (GPL+exception) is in place.
 
 // TODO: We should have a preference for this instead.
 #ifdef Q_OS_MACOS
-	static const Qt::KeyboardModifiers CellNavigationModifiers = Qt::AltModifier | Qt::KeypadModifier;
+static const Qt::KeyboardModifiers CellNavigationModifiers = Qt::AltModifier | Qt::KeypadModifier;
+static const Qt::KeyboardModifiers CellSelectionModifiers = CellNavigationModifiers | Qt::ShiftModifier;
 #else
-	static const Qt::KeyboardModifiers CellNavigationModifiers = Qt::AltModifier;
+static const Qt::KeyboardModifiers CellNavigationModifiers = Qt::AltModifier;
+static const Qt::KeyboardModifiers CellSelectionModifiers = CellNavigationModifiers | Qt::ShiftModifier;
 #endif
 
 CanvasMode_EditTable::CanvasMode_EditTable(ScribusView* view) : CanvasMode(view),
@@ -103,53 +105,55 @@ void CanvasMode_EditTable::keyPressEvent(QKeyEvent* event)
 		m_view->requestMode(modeNormal);
 	}
 
-	// Long text cursor blink on PgUp/PgDown/Up/Down/Home/End.
-	switch (event->key())
-	{
-		case Qt::Key_PageUp:
-		case Qt::Key_PageDown:
-		case Qt::Key_Up:
-		case Qt::Key_Down:
-		case Qt::Key_Home:
-		case Qt::Key_End:
-			makeLongTextCursorBlink();
-			break;
-	}
-
 	// Handle keyboard navigation between cells.
 	if (event->modifiers() == CellNavigationModifiers)
 	{
-		switch (event->key())
-		{
-			case Qt::Key_Left:
-				// Move left
-				m_table->moveLeft();
-				makeLongTextCursorBlink();
-				return;
-			case Qt::Key_Right:
-				// Move right.
-				m_table->moveRight();
-				makeLongTextCursorBlink();
-				return;
-			case Qt::Key_Up:
-				// Move up.
-				m_table->moveUp();
-				makeLongTextCursorBlink();
-				return;
-			case Qt::Key_Down:
-				// Move down.
-				m_table->moveDown();
-				makeLongTextCursorBlink();
-				return;
-		}
+		if (!moveActiveCell(event->key()))
+			return;
+		resetSelectionAnchor();
+		m_table->clearSelection();
 	}
+	else // Handle keyboard selection over cells.
+	if (event->modifiers() == CellSelectionModifiers)
+	{
+		if (!m_table->hasSelection())
+		{
+			m_selectionAnchorRow = m_table->activeCell().row();
+			m_selectionAnchorColumn = m_table->activeCell().column();
+		}
+		else if (m_selectionAnchorRow < 0)
+		{
+			// Selection exists (e.g., from mouse drag) but no keyboard anchor.
+			// Use the corner of the selection's bounding box opposite to the
+			// active cell.
+			int activeRow = m_table->activeCell().row();
+			int activeCol = m_table->activeCell().column();
 
-	// Pass all other keys to text frame of active cell.
+			int topRow = INT_MAX, bottomRow = INT_MIN;
+			int leftCol = INT_MAX, rightCol = INT_MIN;
+			for (const TableCell& cell : m_table->selectedCells())
+			{
+				topRow = qMin(topRow, cell.row());
+				bottomRow = qMax(bottomRow, cell.row() + cell.rowSpan() - 1);
+				leftCol = qMin(leftCol, cell.column());
+				rightCol = qMax(rightCol, cell.column() + cell.columnSpan() - 1);
+			}
+
+			m_selectionAnchorRow = (activeRow == bottomRow) ? topRow : bottomRow;
+			m_selectionAnchorColumn = (activeCol == rightCol) ? leftCol : rightCol;
+		}
+		if (!moveActiveCell(event->key()))
+			return;
+		m_table->clearSelection();
+		m_table->selectCells(m_selectionAnchorRow, m_selectionAnchorColumn, m_table->activeCell().row(), m_table->activeCell().column());
+	}
+	else // Pass all other keys to text frame of active cell.
 	if (!m_table->hasSelection())
 	{
 		bool repeat;
 		m_table->activeCell().textFrame()->handleModeEditKey(event, repeat);
 	}
+	makeLongTextCursorBlink();
 	updateCanvas(true);
 }
 
@@ -256,6 +260,7 @@ void CanvasMode_EditTable::mousePressEvent(QMouseEvent* event)
 				break;
 			case TableHandle::CellSelect:
 				// Move to the pressed cell and position the text cursor.
+				resetSelectionAnchor();
 				m_table->clearSelection();
 				m_table->moveTo(m_table->cellAt(canvasPoint));
 				m_view->slotSetCurs(globalPos.x(), globalPos.y());
@@ -344,14 +349,68 @@ void CanvasMode_EditTable::drawControls(QPainter* p)
 		drawTextCursor(p);
 	p->restore();
 
+	drawTableHandleHints(p);
+
 	if (m_table->hasSelection())
 		paintCellSelection(p);
+}
+
+void CanvasMode_EditTable::drawTableHandleHints(QPainter* p)
+{
+	if (!m_table || !m_canvas || !p)
+		return;
+
+	p->save();
+	p->scale(m_canvas->scale(), m_canvas->scale());
+	p->translate(-m_doc->minCanvasCoordinate.x(), -m_doc->minCanvasCoordinate.y());
+	p->setTransform(m_table->getTransform(), true);
+	p->setRenderHint(QPainter::Antialiasing);
+
+	const double threshold = m_doc->guidesPrefs().grabRadius / m_canvas->scale();
+	const QPointF offset = m_table->gridOffset();
+	const double tableW = m_table->tableWidth();
+	const double tableH = m_table->tableHeight();
+	const double tickLength = qMax(threshold * 2.0, 8.0 / m_canvas->scale());
+	const double tickWidth = qMax(2.0 / m_canvas->scale(), 1.0);
+
+	QColor markerColor(50, 150, 220, 220);
+	p->setPen(QPen(markerColor, tickWidth, Qt::SolidLine, Qt::FlatCap));
+
+	// Tick marks along the top edge (one per column boundary, including outer).
+	for (int c = 0; c <= m_table->columns(); ++c)
+	{
+		double colX = (c < m_table->columns()) ? m_table->columnPosition(c) : m_table->columnPosition(c - 1) + m_table->columnWidth(c - 1);
+		p->drawLine(QPointF(offset.x() + colX, offset.y() - tickLength), QPointF(offset.x() + colX, offset.y()));
+	}
+
+	// Tick marks along the left edge (one per row boundary, including outer).
+	for (int r = 0; r <= m_table->rows(); ++r)
+	{
+		double rowY = (r < m_table->rows()) ? m_table->rowPosition(r) : m_table->rowPosition(r - 1) + m_table->rowHeight(r - 1);
+		p->drawLine(QPointF(offset.x() - tickLength, offset.y() + rowY), QPointF(offset.x(), offset.y() + rowY));
+	}
+
+	// Tick marks along the bottom edge.
+	for (int c = 0; c <= m_table->columns(); ++c)
+	{
+		double colX = (c < m_table->columns()) ? m_table->columnPosition(c) : m_table->columnPosition(c - 1) + m_table->columnWidth(c - 1);
+		p->drawLine(QPointF(offset.x() + colX, offset.y() + tableH), QPointF(offset.x() + colX, offset.y() + tableH + tickLength));
+	}
+
+	// Tick marks along the right edge.
+	for (int r = 0; r <= m_table->rows(); ++r)
+	{
+		double rowY = (r < m_table->rows()) ? m_table->rowPosition(r) : m_table->rowPosition(r - 1) + m_table->rowHeight(r - 1);
+		p->drawLine(QPointF(offset.x() + tableW, offset.y() + rowY), QPointF(offset.x() + tableW + tickLength, offset.y() + rowY));
+	}
+
+	p->restore();
 }
 
 void CanvasMode_EditTable::paintCellSelection(QPainter* p)
 {
 	if (!m_table || !m_canvas || !p)
-		return;
+			return;
 
 	p->save();
 	p->scale(m_canvas->scale(), m_canvas->scale());
@@ -391,7 +450,11 @@ void CanvasMode_EditTable::updateCanvas(bool forceRedraw)
 	// we get refresh issues  when typing or selecting text
 	if (!m_canvas->isForcedRedraw())
 		m_canvas->setForcedRedraw(forceRedraw);
-	m_canvas->update(m_canvas->canvasToLocal(m_table->getBoundingRect()));
+	// Enlarge the update region to include the selection visual, which
+	// extends slightly outside cell boundaries.
+	QRectF tableRect = m_table->getBoundingRect();
+	tableRect.adjust(-5.0, -5.0, 5.0, 5.0);
+	m_canvas->update(m_canvas->canvasToLocal(tableRect));
 }
 
 void CanvasMode_EditTable::handleMouseDrag(QMouseEvent* event)
@@ -445,7 +508,7 @@ void CanvasMode_EditTable::handleMouseDrag(QMouseEvent* event)
 void CanvasMode_EditTable::drawTextCursor(QPainter* p)
 {
 	if ((!m_longBlink && m_blinkTime.elapsed() > QApplication::cursorFlashTime() / 2)
-		|| (m_longBlink && m_blinkTime.elapsed() > QApplication::cursorFlashTime()))
+			|| (m_longBlink && m_blinkTime.elapsed() > QApplication::cursorFlashTime()))
 	{
 		// Reset blink timer
 		m_blinkTime.restart();
@@ -483,4 +546,30 @@ void CanvasMode_EditTable::createContextMenu(PageItem *currItem, double mx, doub
 		cmen->exec(QCursor::pos());
 	m_view->setGlobalUndoMode();
 	delete cmen;
+}
+
+void CanvasMode_EditTable::resetSelectionAnchor()
+{
+	m_selectionAnchorRow = -1;
+	m_selectionAnchorColumn = -1;
+}
+
+bool CanvasMode_EditTable::moveActiveCell(int key)
+{
+	switch (key)
+	{
+		case Qt::Key_Left:
+			m_table->moveLeft();
+			return true;
+		case Qt::Key_Right:
+			m_table->moveRight();
+			return true;
+		case Qt::Key_Up:
+			m_table->moveUp();
+			return true;
+		case Qt::Key_Down:
+			m_table->moveDown();
+			return true;
+	}
+	return false;
 }

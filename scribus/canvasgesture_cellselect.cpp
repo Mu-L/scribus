@@ -46,7 +46,13 @@ void CellSelect::keyPressEvent(QKeyEvent* event)
 		event->accept();
 		table()->clearSelection();
 		m_view->stopGesture();
+		return;
 	}
+
+	// Any other key ends the gesture and is forwarded to the canvas mode,
+	// so navigation keys can extend or alter the selection.
+	m_view->stopGesture();
+	delegate()->keyPressEvent(event);
 }
 
 void CellSelect::mousePressEvent(QMouseEvent* event)
@@ -91,7 +97,7 @@ void CellSelect::mouseMoveEvent(QMouseEvent* event)
 	table()->clearSelection();
 	table()->selectCells(
 		m_startCell.row(), m_startCell.column(), m_endCell.row(), m_endCell.column());
-
+	table()->moveTo(newCell);
 	m_canvas->update();
 }
 

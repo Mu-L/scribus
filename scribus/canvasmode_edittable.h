@@ -47,6 +47,9 @@ public:
 	void mouseReleaseEvent(QMouseEvent* event) override;
 	void mouseDoubleClickEvent(QMouseEvent* event) override;
 	void drawControls(QPainter* p) override;
+	/// Draws faint hints showing where row/column-select strips and
+	/// the table-resize corner are located.
+	void drawTableHandleHints(QPainter* p);
 
 protected:
 	/**
@@ -71,6 +74,10 @@ private:
 	void makeLongTextCursorBlink();
 	/// Show the Context Menu
 	void createContextMenu(PageItem *currItem, double mx, double my);
+	/// Reset the selection anchor
+	void resetSelectionAnchor();
+	/// Move the cursor
+	bool moveActiveCell(int key);
 
 private:
 	/// Table being edited.
@@ -105,6 +112,10 @@ private:
 
 	///Parent for context menu
 	ScribusMainWindow* m_ScMW;
+
+	//Anchor cells for keyboard selection
+	int m_selectionAnchorRow { -1 };
+	int m_selectionAnchorColumn { -1 };
 };
 
 #endif // CANVASMODE_EDITTABLE_H
