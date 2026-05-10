@@ -234,49 +234,77 @@ void PropertiesPalette_Table::on_sideSelector_selectionChanged()
 	TableSides newSelection = sideSelector->selection();
 	TableSides changedSides = newSelection ^ m_lastSelection;
 	bool turnedOn = (newSelection & changedSides) != 0;
+
 	m_lastSelection = newSelection;
 
-	// If no changes (e.g. external sync), nothing to do beyond UI refresh below.
-	if (changedSides != TableSide::None)
-	{
-		PageItem_Table* table = m_item->asTable();
-		QScopedValueRollback<bool> dontResizeRb(m_doc->dontResize, true);
+	TableSides outerChanged = changedSides & TableSide::AllOuter;
+	bool didChange = false;
 
+	PageItem_Table* table = m_item->asTable();
+	QScopedValueRollback<bool> dontResizeRb(m_doc->dontResize, true);
+
+	// Outer-side handling: only when outer bits changed.
+	if (outerChanged != TableSide::None)
+	{
+		didChange = true;
 		if (turnedOn)
 		{
-			// User added a border on these sides. Apply the current border;
-			// create a default 1pt black if the user hasn't configured one yet.
 			if (m_currentBorder.isNull())
-			{
 				m_currentBorder = TableBorder(1.0, Qt::SolidLine, "Black", 100);
-			}
 
 			QSet<TableCell> cells = effectiveCells();
-			table->setCellBorders(cells, m_currentBorder, changedSides);
+			table->setCellBorders(cells, m_currentBorder, outerChanged);
 
 			if (m_doc->appMode != modeEditTable)
-				table->setBorders(m_currentBorder, changedSides);
+				table->setBorders(m_currentBorder, outerChanged);
 		}
 		else
 		{
-			// User removed a border on these sides. Set to a null border.
 			QSet<TableCell> cells = effectiveCells();
 			TableBorder nullBorder;
-			table->setCellBorders(cells, nullBorder, changedSides);
+			table->setCellBorders(cells, nullBorder, outerChanged);
 
 			if (m_doc->appMode != modeEditTable)
-				table->setBorders(nullBorder, changedSides);
+				table->setBorders(nullBorder, outerChanged);
 		}
-
-		table->update();
 	}
+
+	// Inner-horizontal handling: independent of outer changes.
+	if (changedSides & TableSide::InnerHorizontal)
+	{
+		didChange = true;
+		QSet<TableCell> cells = effectiveCells();
+		bool innerHOn = (newSelection & TableSide::InnerHorizontal) != 0;
+
+		if (innerHOn && m_currentBorder.isNull())
+			m_currentBorder = TableBorder(1.0, Qt::SolidLine, "Black", 100);
+
+		TableBorder borderToApply = innerHOn ? m_currentBorder : TableBorder();
+		applyToInnerHorizontal(cells, borderToApply);
+	}
+
+	// Inner-vertical handling: independent of outer changes.
+	if (changedSides & TableSide::InnerVertical)
+	{
+		didChange = true;
+		QSet<TableCell> cells = effectiveCells();
+		bool innerVOn = (newSelection & TableSide::InnerVertical) != 0;
+
+		if (innerVOn && m_currentBorder.isNull())
+			m_currentBorder = TableBorder(1.0, Qt::SolidLine, "Black", 100);
+
+		TableBorder borderToApply = innerVOn ? m_currentBorder : TableBorder();
+		applyToInnerVertical(cells, borderToApply);
+	}
+
+	if (didChange)
+		table->update();
 
 	// Now refresh the border-line list to show what's on the currently-bold sides.
 	// Reuse the existing logic that figures out borderState across selected sides.
 	State borderState = Unset;
 	m_currentBorder = TableBorder();
 	bool tableEditMode = (m_doc->appMode == modeEditTable);
-	PageItem_Table* table = m_item->asTable();
 
 	if (newSelection & TableSide::Left)
 	{
@@ -447,6 +475,34 @@ QColor PropertiesPalette_Table::getColor(const QString& colorName, int shade) co
 		return QColor();
 
 	return ScColorEngine::getDisplayColor(m_doc->PageColors.value(colorName), m_doc, shade);
+}
+
+void PropertiesPalette_Table::applyToInnerHorizontal(const QSet<TableCell>& cells, const TableBorder& border)
+{
+	PageItem_Table* table = m_item->asTable();
+	for (TableCell cell : cells)
+	{
+		TableCell below = table->cellAt(cell.row() + cell.rowSpan(), cell.column());
+		if (cells.contains(below))
+		{
+			cell.setBottomBorder(border);
+			below.setTopBorder(border);
+		}
+	}
+}
+
+void PropertiesPalette_Table::applyToInnerVertical(const QSet<TableCell>& cells, const TableBorder& border)
+{
+	PageItem_Table* table = m_item->asTable();
+	for (TableCell cell : cells)
+	{
+		TableCell right = table->cellAt(cell.row(), cell.column() + cell.columnSpan());
+		if (cells.contains(right))
+		{
+			cell.setRightBorder(border);
+			right.setLeftBorder(border);
+		}
+	}
 }
 
 void PropertiesPalette_Table::on_borderLineList_currentRowChanged(int row)
@@ -660,7 +716,11 @@ void PropertiesPalette_Table::syncSideSelectorToCells()
 	if (cells.isEmpty())
 		return;
 
+	PageItem_Table* table = m_item->asTable();
+
 	bool anyLeft = false, anyRight = false, anyTop = false, anyBottom = false;
+	bool anyInnerH = false, anyInnerV = false;
+	bool hasInteriorEdges = false;
 
 	for (const TableCell& cell : cells)
 	{
@@ -672,23 +732,43 @@ void PropertiesPalette_Table::syncSideSelectorToCells()
 			anyTop = true;
 		if (!cell.bottomBorder().isNull())
 			anyBottom = true;
+
+		// Check vertical adjacency for inner-horizontal edges.
+		TableCell below = table->cellAt(cell.row() + cell.rowSpan(), cell.column());
+		if (cells.contains(below))
+		{
+			hasInteriorEdges = true;
+			if (!cell.bottomBorder().isNull() || !below.topBorder().isNull())
+				anyInnerH = true;
+		}
+		// Check horizontal adjacency for inner-vertical edges.
+		TableCell right = table->cellAt(cell.row(), cell.column() + cell.columnSpan());
+		if (cells.contains(right))
+		{
+			hasInteriorEdges = true;
+			if (!cell.rightBorder().isNull() || !right.leftBorder().isNull())
+				anyInnerV = true;
+		}
 	}
 
-	TableSides sidesWithBorders = TableSide::None;
+	TableSides sides;
 	if (anyLeft)
-		sidesWithBorders |= TableSide::Left;
+		sides |= TableSide::Left;
 	if (anyRight)
-		sidesWithBorders |= TableSide::Right;
+		sides |= TableSide::Right;
 	if (anyTop)
-		sidesWithBorders |= TableSide::Top;
+		sides |= TableSide::Top;
 	if (anyBottom)
-		sidesWithBorders |= TableSide::Bottom;
+		sides |= TableSide::Bottom;
+	if (anyInnerH)
+		sides |= TableSide::InnerHorizontal;
+	if (anyInnerV)
+		sides |= TableSide::InnerVertical;
 
-	// Block signals so the external sync isn't interpreted as a user click.
 	QSignalBlocker blocker(sideSelector);
-	sideSelector->setSelection(sidesWithBorders);
-
-	m_lastSelection = sidesWithBorders;
+	sideSelector->setSelection(sides);
+	sideSelector->setInnerActive(hasInteriorEdges);
+	m_lastSelection = sides;
 }
 
 QSet<TableCell> PropertiesPalette_Table::effectiveCells() const

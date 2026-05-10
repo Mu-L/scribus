@@ -126,6 +126,8 @@ private:
 	void updateBorders();
 	/// Returns the color with name @a colorName and shade @a shade as a QColor.
 	QColor getColor(const QString& colorName, int shade) const;
+	void applyToInnerHorizontal(const QSet<TableCell>& cells, const TableBorder& border);
+	void applyToInnerVertical(const QSet<TableCell>& cells, const TableBorder& border);
 
 private:
 	/// The current main window.
