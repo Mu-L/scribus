@@ -54,8 +54,8 @@ void PropertiesPalette_Table::iconSetChange()
 
 	addBorderLineButton->setIcon(iconManager.loadIcon("stroke-add"));
 	removeBorderLineButton->setIcon(iconManager.loadIcon("stroke-remove"));
-	buttonClearTableStyle->setIcon(iconManager.loadIcon("edit-clear"));
-	buttonClearCellStyle->setIcon(iconManager.loadIcon("edit-clear"));
+	buttonClearTableStyle->setIcon(iconManager.loadIcon("reset"));
+	buttonClearCellStyle->setIcon(iconManager.loadIcon("reset"));
 }
 
 void PropertiesPalette_Table::handleUpdateRequest(int updateFlags)
