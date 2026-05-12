@@ -1820,6 +1820,7 @@ void PageItem_Table::unsetDirectFormatting()
 	m_style.setParent("");
 	m_style.erase();
 	m_style.setParent(parentStyle);
+	m_style.update(m_style.context());
 	adjustTableToFrame();
 	adjustFrameToTable();
 	updateCells();

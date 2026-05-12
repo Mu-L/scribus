@@ -133,6 +133,7 @@ void TableCell::unsetDirectFormatting()
 	d->style.setParent("");
 	d->style.erase();
 	d->style.setParent(parentStyle);
+	d->style.update(d->style.context());
 }
 
 void TableCell::updateContent()
