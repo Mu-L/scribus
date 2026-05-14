@@ -541,9 +541,26 @@ void PageItem_Table::insertRows(int index, int numRows)
 	if (index < 0 || index > rows() || numRows < 1)
 		return;
 
+	if (UndoManager::undoEnabled())
+	{
+		SimpleState *ss = new SimpleState(Um::TableRowInsert, QString(), Um::ITable);
+		ss->set("TABLE_INSERT_ROWS");
+		ss->set("INDEX", index);
+		ss->set("NUM_ROWS", numRows);
+		undoManager->action(this, ss);
+	}
+
 	double rowHeight = m_rowHeights.at(qMax(index - 1, 0));
 	double rowPosition = index == 0 ? 0.0 : m_rowPositions.at(index - 1) + rowHeight;
 
+	// Inherit borders from the adjacent existing row (the row above the
+	// insertion point, or row 0 if inserting at the top). Table styles don't
+	// yet define borders; when they do, this should defer to the style's
+	// border definitions.
+	const int templateRow = (index > 0) ? index - 1 : 0;
+	const bool haveTemplate = (rows() > 0);
+
+	UndoManager::instance()->setUndoEnabled(false);
 	for (int row = index; row < index + numRows; ++row)
 	{
 		// Insert row height and position.
@@ -555,7 +572,18 @@ void PageItem_Table::insertRows(int index, int numRows)
 		QList<TableCell> cellRow;
 		cellRow.reserve(columns());
 		for (int col = 0; col < columns(); ++col)
-			cellRow.append(TableCell(row, col, this));
+		{
+			TableCell newCell(row, col, this);
+			if (haveTemplate)
+			{
+				TableCell tpl = cellAt(templateRow, col);
+				newCell.setLeftBorder(tpl.leftBorder());
+				newCell.setRightBorder(tpl.rightBorder());
+				newCell.setTopBorder(tpl.topBorder());
+				newCell.setBottomBorder(tpl.bottomBorder());
+			}
+			cellRow.append(newCell);
+		}
 		m_cellRows.insert(row, cellRow);
 	}
 
@@ -579,6 +607,7 @@ void PageItem_Table::insertRows(int index, int numRows)
 
 	// Update cells. TODO: Not for entire table.
 	updateCells();
+	UndoManager::instance()->setUndoEnabled(true);
 
 	emit changed();
 
@@ -649,9 +678,26 @@ void PageItem_Table::insertColumns(int index, int numColumns)
 	if (index < 0 || index > columns() || numColumns < 1)
 		return;
 
+	if (UndoManager::undoEnabled())
+	{
+		SimpleState *ss = new SimpleState(Um::TableColumnInsert, QString(), Um::ITable);
+		ss->set("TABLE_INSERT_COLUMNS");
+		ss->set("INDEX", index);
+		ss->set("NUM_COLUMNS", numColumns);
+		undoManager->action(this, ss);
+	}
+
 	double columnWidth = m_columnWidths.at(qMax(index - 1, 0));
 	double columnPosition = index == 0 ? 0.0 : m_columnPositions.at(index - 1) + columnWidth;
 
+	// Inherit borders from the adjacent existing column (the column to the
+	// left of the insertion point, or column 0 if inserting at the start).
+	// Table styles don't yet define borders; when they do, this should defer
+	// to the style's border definitions.
+	const int templateCol = (index > 0) ? index - 1 : 0;
+	const bool haveTemplate = (columns() > 0);
+
+	UndoManager::instance()->setUndoEnabled(false);
 	for (int col = index; col < index + numColumns; ++col)
 	{
 		// Insert column width and position.
@@ -661,7 +707,18 @@ void PageItem_Table::insertColumns(int index, int numColumns)
 
 		// Insert a column of cells.
 		for (int row = 0; row < rows(); ++row)
-			m_cellRows[row].insert(col, TableCell(row, col, this));
+		{
+			TableCell newCell(row, col, this);
+			if (haveTemplate)
+			{
+				TableCell tpl = cellAt(row, templateCol);
+				newCell.setLeftBorder(tpl.leftBorder());
+				newCell.setRightBorder(tpl.rightBorder());
+				newCell.setTopBorder(tpl.topBorder());
+				newCell.setBottomBorder(tpl.bottomBorder());
+			}
+			m_cellRows[row].insert(col, newCell);
+		}
 	}
 
 	// Adjust following columns.
@@ -684,6 +741,7 @@ void PageItem_Table::insertColumns(int index, int numColumns)
 
 	// Update cells. TODO: Not for entire table.
 	updateCells();
+	UndoManager::instance()->setUndoEnabled(true);
 
 	emit changed();
 
@@ -2392,6 +2450,16 @@ void PageItem_Table::restore(UndoState *state, bool isUndo)
 		restoreTableUnmergeCells(simpleState, isUndo);
 		doUpdate = true;
 	}
+	else if (simpleState->contains("TABLE_INSERT_ROWS"))
+	{
+		restoreTableInsertRows(simpleState, isUndo);
+		doUpdate = true;
+	}
+	else if (simpleState->contains("TABLE_INSERT_COLUMNS"))
+	{
+		restoreTableInsertColumns(simpleState, isUndo);
+		doUpdate = true;
+	}
 	else
 	{
 		PageItem::restore(state, isUndo);
@@ -2775,6 +2843,44 @@ void PageItem_Table::restoreTableUnmergeCells(SimpleState *state, bool isUndo)
 		// Redo split = split again.
 		splitCell(row, column, numRows, numCols);
 	}
+
+	UndoManager::instance()->setUndoEnabled(true);
+}
+
+void PageItem_Table::restoreTableInsertRows(SimpleState *state, bool isUndo)
+{
+	int index = state->getInt("INDEX");
+	int numRows = state->getInt("NUM_ROWS");
+
+	QScopedValueRollback<bool> rb(m_Doc->dontResize, true);
+	UndoManager::instance()->setUndoEnabled(false);
+
+	if (isUndo)
+		removeRows(index, numRows);
+	else
+		insertRows(index, numRows);
+
+	adjustTable();
+	updateClip();
+
+	UndoManager::instance()->setUndoEnabled(true);
+}
+
+void PageItem_Table::restoreTableInsertColumns(SimpleState *state, bool isUndo)
+{
+	int index = state->getInt("INDEX");
+	int numColumns = state->getInt("NUM_COLUMNS");
+
+	QScopedValueRollback<bool> rb(m_Doc->dontResize, true);
+	UndoManager::instance()->setUndoEnabled(false);
+
+	if (isUndo)
+		removeColumns(index, numColumns);
+	else
+		insertColumns(index, numColumns);
+
+	adjustTable();
+	updateClip();
 
 	UndoManager::instance()->setUndoEnabled(true);
 }

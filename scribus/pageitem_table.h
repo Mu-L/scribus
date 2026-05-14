@@ -729,6 +729,12 @@ private:
 	// Undo/redo table cell unmerge action
 	void restoreTableUnmergeCells(SimpleState *state, bool isUndo);
 
+	// Undo/redo table row insert
+	void restoreTableInsertRows(SimpleState *state, bool isUndo);
+
+	// Undo/redo table column insert
+	void restoreTableInsertColumns(SimpleState *state, bool isUndo);
+
 private:
 	//<<Data we need to save
 	/// List of rows of cells in the table.
