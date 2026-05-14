@@ -1,6 +1,36 @@
 Scribus - 1.7.4 (Released 2026-xx-xx)
 =========================================
-https://bugs.scribus.net/changelog_page.php?version_id=xxx
+https://bugs.scribus.net/changelog_page.php?version_id=139
+
+0011749: [Tables]  "Select All" command during table edition should select whole cell text (cbradney)
+0011750: [Tables]  Clicking inside currently edited table's cell should move editing place where the click has occured (cbradney)
+0017813: [Tables]  alt-shift-arrow to select table cells in table mode (cbradney)
+0015295: [Typography]  OpenType features in Arabic font are not fully supported
+0017810: [Text Frames / Story Editor]  Incorrect Character Scaling Icons in Story Editor (cbradney)
+0013142: [Tables]  background color % in tables (cbradney)
+0011748: [Tables]  Keyboard use to navigate inside a table (cbradney)
+0011941: [Tables]  Context menu unavailable in selected table cells (cbradney)
+0008090: [Tables]  Impossible to create a line colour for a table (cbradney)
+0010829: [Tables]  Selecting rows and columns in tables (cbradney)
+0014486: [Tables]  Split Cells (cbradney)
+0008111: [Tables]  Alt+click doesn't work for selecting table cells (cbradney)
+0011548: [Tables]  Changing the settings for table borders in the PP doesn't affect the table or cells (cbradney)
+0013617: [Tables]  Very Hard to use Table Properties to set cell borders & very limited options for colour etc. (cbradney)
+0010831: [Tables]  Setting table border and background colors only work on single cells (cbradney)
+0014253: [Tables]  lines types in borders cannot be removed (cbradney)
+0011551: [Tables]  Table/cell indication is clumsy (cbradney)
+0014935: [Tables]  Table borders cannot be changed (cbradney)
+0014252: [Tables]  changing table borders affects only some lines (cbradney)
+0017001: [Tables]  Table Border Weirdness (cbradney)
+0014806: [NLS]  [PATCH] RTL interface glitches: cuts off the beginning of the Arabic-translated menus and wrong % direction (Fahad)
+0014544: [General]  Layout should aware of RTL pages (cbradney)
+0017804: [General]  Page layout changes from facing pages, right page first to single page corrupt first page layout (cbradney)
+0003992: [Printing]  Scribus ignores printer options (cbradney)
+0017759: [General]  Remove scribus/text/nlsconfig.h (cbradney)
+0014723: [General]  [PATCH] Add variable for document directory to render-frame processing (cbradney)
+0017801: [General]  Search and replace: selection is not cleared when selecting text in a different chain of text (cbradney)
+0017756: [Text Frames / Story Editor]  Search crashes when searching a document without (text) frames (ale)
+0017795: [Text Frames / Story Editor]  Scribus' memory occupation grows if Spellchecker is enabled until the kernel kills Scribus (cbradney)
 
 Scribus - 1.7.3 (Released 2026-04-13)
 =========================================
