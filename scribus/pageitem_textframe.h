@@ -70,6 +70,20 @@ public:
 	* @param keyRepeat a reference to the keyRepeat property
 	*/
 	void handleModeEditKey(QKeyEvent *k, bool& keyRepeat) override;
+	/**
+	 * Returns true if the text cursor is on the first visual line of the
+	 * laid-out text. An empty frame (no lines) is treated as on the first
+	 * line. Used by table-cell navigation to decide whether Up should
+	 * escape to the cell above.
+	 */
+	bool cursorOnFirstLine() const;
+	/**
+	 * Returns true if the text cursor is on the last visual line of the
+	 * laid-out text. An empty frame (no lines) is treated as on the last
+	 * line. Used by table-cell navigation to decide whether Down should
+	 * escape to the cell below.
+	 */
+	bool cursorOnLastLine() const;
 	void deleteSelectedTextFromFrame();
 	void ExpandSel(int oldPos);
 	void deselectAll();

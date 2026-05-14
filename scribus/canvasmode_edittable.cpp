@@ -30,15 +30,6 @@ for which a new license (GPL+exception) is in place.
 #include "tablehandle.h"
 #include "ui/contextmenu.h"
 
-// TODO: We should have a preference for this instead.
-#ifdef Q_OS_MACOS
-static const Qt::KeyboardModifiers CellNavigationModifiers = Qt::AltModifier | Qt::KeypadModifier;
-static const Qt::KeyboardModifiers CellSelectionModifiers = CellNavigationModifiers | Qt::ShiftModifier;
-#else
-static const Qt::KeyboardModifiers CellNavigationModifiers = Qt::AltModifier;
-static const Qt::KeyboardModifiers CellSelectionModifiers = CellNavigationModifiers | Qt::ShiftModifier;
-#endif
-
 CanvasMode_EditTable::CanvasMode_EditTable(ScribusView* view) : CanvasMode(view),
 	m_canvasUpdateTimer(new QTimer(view)),
 	m_selectRowCursor(IconManager::instance().loadCursor("cursor-select-row")),
@@ -94,65 +85,87 @@ void CanvasMode_EditTable::keyPressEvent(QKeyEvent* event)
 {
 	event->accept();
 
-	// Handle some keys specific to this mode.
+	// Escape: exit table edit mode.
 	if (event->key() == Qt::Key_Escape)
 	{
-		// Deselect text in active frame.
 		PageItem_TextFrame* activeFrame = m_table->activeCell().textFrame();
 		activeFrame->itemText.deselectAll();
 		activeFrame->HasSel = false;
-		// Go back to normal mode.
 		m_view->requestMode(modeNormal);
+		return;
 	}
 
-	// Handle keyboard navigation between cells.
-	if (event->modifiers() == CellNavigationModifiers)
-	{
-		if (!moveActiveCell(event->key()))
-			return;
-		resetSelectionAnchor();
-		m_table->clearSelection();
-	}
-	else // Handle keyboard selection over cells.
-	if (event->modifiers() == CellSelectionModifiers)
-	{
-		if (!m_table->hasSelection())
-		{
-			m_selectionAnchorRow = m_table->activeCell().row();
-			m_selectionAnchorColumn = m_table->activeCell().column();
-		}
-		else if (m_selectionAnchorRow < 0)
-		{
-			// Selection exists (e.g., from mouse drag) but no keyboard anchor.
-			// Use the corner of the selection's bounding box opposite to the
-			// active cell.
-			int activeRow = m_table->activeCell().row();
-			int activeCol = m_table->activeCell().column();
+	const int key = event->key();
+	const Qt::KeyboardModifiers mods = event->modifiers();
+	// Arrow keys may carry KeypadModifier on macOS and some Linux layouts; mask it out before modifier comparisons.
+	const Qt::KeyboardModifiers effMods = mods & ~Qt::KeypadModifier;
+	const bool isArrow = (key == Qt::Key_Left  || key == Qt::Key_Right
+						  || key == Qt::Key_Up    || key == Qt::Key_Down);
 
-			int topRow = INT_MAX, bottomRow = INT_MIN;
-			int leftCol = INT_MAX, rightCol = INT_MIN;
-			for (const TableCell& cell : m_table->selectedCells())
+	// Tab / Shift+Tab: move to next/previous cell. Tab in the last cell
+	// appends a new row, matching Word/Writer.
+	if (key == Qt::Key_Tab && effMods == Qt::NoModifier)
+	{
+		const TableCell active = m_table->activeCell();
+		const bool atLastCell =
+				(active.row()    + active.rowSpan()    - 1 == m_table->rows()    - 1) &&
+				(active.column() + active.columnSpan() - 1 == m_table->columns() - 1);
+		if (atLastCell)
+			m_table->insertRows(m_table->rows(), 1);
+		navigateCells(Qt::Key_Right);
+	}
+	else if (key == Qt::Key_Backtab) // Qt delivers Shift+Tab as Backtab.
+	{
+		navigateCells(Qt::Key_Left);
+	}
+	// Plain arrow: caret movement within cell, escaping to next cell at edges.
+	// Shift+arrow: extend text selection within cell, escaping to cell-range
+	// selection at edges.
+	// Plain arrow or Shift+arrow handling.
+	else if (isArrow && (effMods == Qt::NoModifier || effMods == Qt::ShiftModifier))
+	{
+		const bool extending = (effMods == Qt::ShiftModifier);
+
+		if (m_table->hasSelection())
+		{
+			// Already in cell-range selection mode.
+			if (extending)
 			{
-				topRow = qMin(topRow, cell.row());
-				bottomRow = qMax(bottomRow, cell.row() + cell.rowSpan() - 1);
-				leftCol = qMin(leftCol, cell.column());
-				rightCol = qMax(rightCol, cell.column() + cell.columnSpan() - 1);
+				// Continue extending the cell range.
+				extendCellSelection(key);
 			}
-
-			m_selectionAnchorRow = (activeRow == bottomRow) ? topRow : bottomRow;
-			m_selectionAnchorColumn = (activeCol == rightCol) ? leftCol : rightCol;
+			else
+			{
+				// Plain arrow collapses the cell selection and moves one cell.
+				m_table->clearSelection();
+				resetSelectionAnchor();
+				navigateCells(key);
+			}
 		}
-		if (!moveActiveCell(event->key()))
-			return;
-		m_table->clearSelection();
-		m_table->selectCells(m_selectionAnchorRow, m_selectionAnchorColumn, m_table->activeCell().row(), m_table->activeCell().column());
+		else
+		{
+			// No cell selection: caret-level movement, escaping at edges.
+			if (cursorAtCellBoundary(key))
+			{
+				if (extending)
+					extendCellSelection(key);
+				else
+					navigateCells(key);
+			}
+			else
+			{
+				bool repeat;
+				m_table->activeCell().textFrame()->handleModeEditKey(event, repeat);
+			}
+		}
 	}
-	else // Pass all other keys to text frame of active cell.
-	if (!m_table->hasSelection())
+	// Everything else: pass to the active cell's text frame.
+	else if (!m_table->hasSelection())
 	{
 		bool repeat;
 		m_table->activeCell().textFrame()->handleModeEditKey(event, repeat);
 	}
+
 	makeLongTextCursorBlink();
 	updateCanvas(true);
 }
@@ -572,4 +585,90 @@ bool CanvasMode_EditTable::moveActiveCell(int key)
 			return true;
 	}
 	return false;
+}
+
+void CanvasMode_EditTable::navigateCells(int key)
+{
+	if (!moveActiveCell(key))
+		return;
+
+	resetSelectionAnchor();
+	m_table->clearSelection();
+
+	// Place the caret predictably in the destination cell: at offset 0 when
+	// entering from the left/top, at end-of-text when entering from the
+	// right/bottom. This mirrors Word/Writer behavior.
+	PageItem_TextFrame* tf = m_table->activeCell().textFrame();
+	tf->itemText.deselectAll();
+	tf->HasSel = false;
+	tf->itemText.setCursorPosition((key == Qt::Key_Left || key == Qt::Key_Up) ? tf->itemText.length() : 0);
+}
+
+void CanvasMode_EditTable::extendCellSelection(int key)
+{
+	if (!m_table->hasSelection())
+	{
+		m_selectionAnchorRow    = m_table->activeCell().row();
+		m_selectionAnchorColumn = m_table->activeCell().column();
+	}
+	else if (m_selectionAnchorRow < 0)
+	{
+		// Selection exists (e.g. from mouse drag) but no keyboard anchor.
+		// Use the corner of the bounding box opposite the active cell.
+		int activeRow = m_table->activeCell().row();
+		int activeCol = m_table->activeCell().column();
+		int topRow = INT_MAX, bottomRow = INT_MIN;
+		int leftCol = INT_MAX, rightCol = INT_MIN;
+		for (const TableCell& cell : m_table->selectedCells())
+		{
+			topRow    = qMin(topRow,    cell.row());
+			bottomRow = qMax(bottomRow, cell.row()    + cell.rowSpan()    - 1);
+			leftCol   = qMin(leftCol,   cell.column());
+			rightCol  = qMax(rightCol,  cell.column() + cell.columnSpan() - 1);
+		}
+		m_selectionAnchorRow = (activeRow == bottomRow) ? topRow  : bottomRow;
+		m_selectionAnchorColumn = (activeCol == rightCol)  ? leftCol : rightCol;
+	}
+
+	if (!moveActiveCell(key))
+		return;
+
+	// Clear any in-cell text selection in the cell we just left; we're now
+	// in cell-range mode.
+	PageItem_TextFrame* tf = m_table->activeCell().textFrame();
+	tf->itemText.deselectAll();
+	tf->HasSel = false;
+
+	m_table->clearSelection();
+	m_table->selectCells(m_selectionAnchorRow, m_selectionAnchorColumn,  m_table->activeCell().row(), m_table->activeCell().column());
+}
+
+bool CanvasMode_EditTable::cursorAtCellBoundary(int key) const
+{
+	PageItem_TextFrame* tf = m_table->activeCell().textFrame();
+	const int len = tf->itemText.length();
+
+	if (len == 0)
+		return true;
+
+	const int pos = tf->itemText.cursorPosition();
+	bool result = false;
+
+	switch (key)
+	{
+		case Qt::Key_Left:
+			result = (pos <= 0);
+			break;
+		case Qt::Key_Right:
+			result = (pos >= len);
+			break;
+		case Qt::Key_Up:
+			result = tf->cursorOnFirstLine();
+			break;
+		case Qt::Key_Down:
+			result = tf->cursorOnLastLine();
+			break;
+	}
+
+	return result;
 }

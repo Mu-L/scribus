@@ -78,6 +78,9 @@ private:
 	void resetSelectionAnchor();
 	/// Move the cursor
 	bool moveActiveCell(int key);
+	void navigateCells(int key);
+	void extendCellSelection(int key);
+	bool cursorAtCellBoundary(int key) const;
 
 private:
 	/// Table being edited.

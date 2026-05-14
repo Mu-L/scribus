@@ -4570,6 +4570,23 @@ void PageItem_TextFrame::handleModeEditKey(QKeyEvent *k, bool& keyRepeat)
 		keyRepeat = false;
 }
 
+bool PageItem_TextFrame::cursorOnFirstLine() const
+{
+	if (textLayout.lines() <= 0)
+		return true;
+	const int pos = itemText.cursorPosition();
+	return pos <= textLayout.line(0)->lastChar();
+}
+
+bool PageItem_TextFrame::cursorOnLastLine() const
+{
+	const int n = textLayout.lines();
+	if (n <= 0)
+		return true;
+	const int pos = itemText.cursorPosition();
+	return pos >= textLayout.line(n - 1)->firstChar();
+}
+
 void PageItem_TextFrame::deleteSelectedTextFromFrame(/*bool findNotes*/)
 {
 	if (itemText.length() <= 0)
