@@ -16,6 +16,7 @@ class ScribusDoc;
 class PageItem;
 class PageItem_Table;
 class PageItem_TextFrame;
+class ParagraphStyle;
 
 
 #ifndef SCCLIPBOARDPROCESSOR_H
