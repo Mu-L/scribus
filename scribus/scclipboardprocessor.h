@@ -14,6 +14,7 @@ for which a new license (GPL+exception) is in place.
 
 class ScribusDoc;
 class PageItem;
+class PageItem_Table;
 
 
 
