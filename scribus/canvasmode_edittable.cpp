@@ -589,15 +589,17 @@ bool CanvasMode_EditTable::moveActiveCell(int key)
 
 void CanvasMode_EditTable::navigateCells(int key)
 {
+	const int beforeRow = m_table->activeCell().row();
+	const int beforeCol = m_table->activeCell().column();
+
 	if (!moveActiveCell(key))
 		return;
+
+	tryRowWrap(key, beforeRow, beforeCol);
 
 	resetSelectionAnchor();
 	m_table->clearSelection();
 
-	// Place the caret predictably in the destination cell: at offset 0 when
-	// entering from the left/top, at end-of-text when entering from the
-	// right/bottom. This mirrors Word/Writer behavior.
 	PageItem_TextFrame* tf = m_table->activeCell().textFrame();
 	tf->itemText.deselectAll();
 	tf->HasSel = false;
@@ -626,21 +628,23 @@ void CanvasMode_EditTable::extendCellSelection(int key)
 			leftCol   = qMin(leftCol,   cell.column());
 			rightCol  = qMax(rightCol,  cell.column() + cell.columnSpan() - 1);
 		}
-		m_selectionAnchorRow = (activeRow == bottomRow) ? topRow  : bottomRow;
+		m_selectionAnchorRow    = (activeRow == bottomRow) ? topRow  : bottomRow;
 		m_selectionAnchorColumn = (activeCol == rightCol)  ? leftCol : rightCol;
 	}
 
 	if (!moveActiveCell(key))
 		return;
 
-	// Clear any in-cell text selection in the cell we just left; we're now
-	// in cell-range mode.
+	// No row-wrap during selection extension: Word stops at row edges with
+	// Shift+arrow, and a rectangular cell selection can't represent the
+	// L-shaped region that row-wrap would imply.
+
 	PageItem_TextFrame* tf = m_table->activeCell().textFrame();
 	tf->itemText.deselectAll();
 	tf->HasSel = false;
 
 	m_table->clearSelection();
-	m_table->selectCells(m_selectionAnchorRow, m_selectionAnchorColumn,  m_table->activeCell().row(), m_table->activeCell().column());
+	m_table->selectCells(m_selectionAnchorRow, m_selectionAnchorColumn, m_table->activeCell().row(), m_table->activeCell().column());
 }
 
 bool CanvasMode_EditTable::cursorAtCellBoundary(int key) const
@@ -671,4 +675,27 @@ bool CanvasMode_EditTable::cursorAtCellBoundary(int key) const
 	}
 
 	return result;
+}
+
+bool CanvasMode_EditTable::tryRowWrap(int key, int beforeRow, int beforeCol)
+{
+	// Returns true if the active cell didn't change after moveActiveCell()
+	// and we successfully wrapped to a different row. Right at end of row
+	// wraps to (row+1, 0); Left at start of row wraps to (row-1, lastCol).
+	// Vertical motion does not wrap.
+	if (m_table->activeCell().row() != beforeRow ||
+		m_table->activeCell().column() != beforeCol)
+		return false;
+
+	if (key == Qt::Key_Right && beforeRow + 1 < m_table->rows())
+	{
+		m_table->moveTo(m_table->cellAt(beforeRow + 1, 0));
+		return true;
+	}
+	if (key == Qt::Key_Left && beforeRow > 0)
+	{
+		m_table->moveTo(m_table->cellAt(beforeRow - 1, m_table->columns() - 1));
+		return true;
+	}
+	return false;
 }

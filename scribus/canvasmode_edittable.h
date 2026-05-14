@@ -81,6 +81,7 @@ private:
 	void navigateCells(int key);
 	void extendCellSelection(int key);
 	bool cursorAtCellBoundary(int key) const;
+	bool tryRowWrap(int key, int beforeRow, int beforeCol);
 
 private:
 	/// Table being edited.

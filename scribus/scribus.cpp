@@ -4734,6 +4734,8 @@ void ScribusMainWindow::slotEditPaste(bool forcePlainText)
 		else if (ScMimeData::clipboardHasHTML() && !forcePlainText)
 		{
 			ScClipboardProcessor scclipproc(doc, currItem);
+			if (doc->appMode == modeEditTable)
+				scclipproc.setDestTable(selItem->asTable());
 			QString clipContent = QApplication::clipboard()->mimeData()->html();
 			scclipproc.setContent(clipContent, ScClipboardProcessor::ContentType::HTML);
 			scclipproc.process();

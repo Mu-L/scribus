@@ -37,10 +37,16 @@ class ScClipboardProcessor
 
 		void setContent(const QString& content, ContentType contentType);
 		void setDocAndPageItem(ScribusDoc* doc, PageItem *pageItem);
+		/**
+		 * Dumps all MIME formats currently on the clipboard to qDebug, with size
+		 * and content (truncated when large).
+		 * Debug aid for understanding what various applications place on the clipboard.
+		 */
+		static void debugDumpClipboard();
 		bool process();
 		const QString &data();
 		void reset();
-		void dumpClipboardData();
+		void setDestTable(PageItem_Table *table);
 
 	protected:
 		struct TextSegment
@@ -54,6 +60,28 @@ class ScClipboardProcessor
 			QString family;
 		};
 
+		struct ParsedTableParagraph
+		{
+			QString className;
+			QList<TextSegment> segments;
+		};
+
+		struct ParsedTableCell
+		{
+			int row = 0;
+			int column = 0;
+			int rowSpan = 1;
+			int columnSpan = 1;
+			QList<ParsedTableParagraph> paragraphs;
+		};
+
+		struct ParsedTable
+		{
+			int rows = 0;
+			int columns = 0;
+			QList<ParsedTableCell> cells;
+		};
+
 		bool processText();
 		bool processHTML();
 		bool processHTML_Other();
@@ -64,6 +92,7 @@ class ScClipboardProcessor
 		bool html_MSFT_StyleToProcess(const QString &style);
 		void html_MSFT_Process_CSS(const QMap<QString, QString> &styles);
 		void html_MSFT_ParseParagraphs(xmlNode *node, QMap<QString, QString> &styles);
+		void html_MSFT_ParseTable(xmlNode *tableNode, ParsedTable &out);
 		QString html_MSFT_ExtractText(xmlNode *node, QList<TextSegment> &segments, TextSegment ts);
 
 		bool html_LibreOffice_Process();
@@ -71,7 +100,14 @@ class ScClipboardProcessor
 		void html_LibreOffice_ProcessCSS(const QMap<QString, QString> &styles);
 		void html_LibreOffice_ParseStyles(xmlNode *node, QMap<QString, QString> &styles);
 		QString html_LibreOffice_ExtractText(xmlNode *node, QList<TextSegment> &segments, TextSegment ts);
+		void html_LibreOffice_ParseTable(xmlNode *tableNode, ParsedTable &out);
 		void html_LibreOffice_ParseParagraphs(xmlNode *node, QMap<QString, QString> &styles);
+
+
+		void html_ApplyTable(const ParsedTable &pt);
+		void html_ApplyParagraphsToFrame(PageItem_TextFrame *frame, const QList<ParsedTableParagraph> &paragraphs);
+		void html_ApplySegmentsToFrame(PageItem_TextFrame *frame, const QList<TextSegment> &segments, const ParagraphStyle &seedStyle);
+
 
 		bool html_Cocoa_Process();
 		void html_Cocoa_Parse(xmlNodePtr node);
@@ -83,10 +119,11 @@ class ScClipboardProcessor
 		QString m_content;
 		ContentType m_contentType {ContentType::Unknown};
 		QString m_result;
-		bool processed {false};
+		bool processed { false };
 		QMap<QString, QString> cssStyles;
-		ScribusDoc* m_doc {nullptr};
-		PageItem* m_pageItem {nullptr};
+		ScribusDoc* m_doc { nullptr };
+		PageItem* m_pageItem { nullptr };
+		PageItem_Table* m_tablePageItem { nullptr };
 };
 
 #endif // SCCLIPBOARDPROCESSOR_H
