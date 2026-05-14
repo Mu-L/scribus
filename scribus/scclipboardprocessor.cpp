@@ -1153,10 +1153,43 @@ void ScClipboardProcessor::html_ApplyTable(const ParsedTable &pt)
 	// Expand the destination table if the pasted content would overflow.
 	const int neededRows = destRowOrigin + pt.rows;
 	const int neededCols = destColOrigin + pt.columns;
+	const int origRows = m_tablePageItem->rows();
+	const int origCols = m_tablePageItem->columns();
+	bool addedCells = false;
 	if (neededRows > m_tablePageItem->rows())
+	{
 		m_tablePageItem->insertRows(m_tablePageItem->rows(), neededRows - m_tablePageItem->rows());
+		addedCells = true;
+	}
 	if (neededCols > m_tablePageItem->columns())
+	{
 		m_tablePageItem->insertColumns(m_tablePageItem->columns(), neededCols - m_tablePageItem->columns());
+		addedCells = true;
+	}
+	//Ensure that added cells get a border. What moder may be best to be determined in the future, as table styles don't have borders yet
+	if (addedCells)
+	{
+		const TableCell templateCell = m_tablePageItem->cellAt(0, 0);
+		const TableBorder leftBorder   = templateCell.leftBorder();
+		const TableBorder rightBorder  = templateCell.rightBorder();
+		const TableBorder topBorder    = templateCell.topBorder();
+		const TableBorder bottomBorder = templateCell.bottomBorder();
+
+		for (int r = 0; r < m_tablePageItem->rows(); ++r)
+		{
+			for (int c = 0; c < m_tablePageItem->columns(); ++c)
+			{
+				// Only touch cells that are new (outside the original bounds).
+				if (r < origRows && c < origCols)
+					continue;
+				TableCell cell = m_tablePageItem->cellAt(r, c);
+				cell.setLeftBorder(leftBorder);
+				cell.setRightBorder(rightBorder);
+				cell.setTopBorder(topBorder);
+				cell.setBottomBorder(bottomBorder);
+			}
+		}
+	}
 
 	// Apply each parsed cell.
 	for (const ParsedTableCell &src : pt.cells)
@@ -1187,6 +1220,8 @@ void ScClipboardProcessor::html_ApplyTable(const ParsedTable &pt)
 		html_ApplyParagraphsToFrame(destFrame, src.paragraphs);
 	}
 
+	m_tablePageItem->adjustTable();   // if such a method exists; check the header
+	m_tablePageItem->updateClip();    // forces frame/clip recomputation
 	m_tablePageItem->update();
 }
 
