@@ -334,7 +334,7 @@ struct SingleLine
 	void setShade(int value)        { Shade = value; }
 	bool operator==(const SingleLine& other) const
 	{
-		if (!compareDouble(Width, other.Width) )
+		if (!doubleIsEqual(Width, other.Width) )
 			return false;
 		if ((Dash != other.Dash)  || (LineEnd != other.LineEnd) || (LineJoin != other.LineJoin) ||
 			(Color != other.Color)|| (Shade != other.Shade))

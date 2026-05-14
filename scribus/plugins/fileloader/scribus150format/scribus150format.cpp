@@ -4037,7 +4037,7 @@ bool Scribus150Format::readPage(ScribusDoc* doc, ScXmlStreamReader& reader)
 	{
 		QString pageSize(attrs.valueAsString("Size"));
 		PageSize ps(pageSize);
-		if (!compareDouble(ps.width(), newPage->width()) || !compareDouble(ps.height(), newPage->height()))
+		if (!doubleIsEqual(ps.width(), newPage->width()) || !doubleIsEqual(ps.height(), newPage->height()))
 			newPage->setSize(CommonStrings::customPageSize);
 		else
 			newPage->setSize(pageSize);
