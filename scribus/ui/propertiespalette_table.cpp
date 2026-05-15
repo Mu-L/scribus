@@ -18,6 +18,7 @@ for which a new license (GPL+exception) is in place.
 #include "colorcombo.h"
 #include "commonstrings.h"
 #include "iconmanager.h"
+#include "newmarginwidget.h"
 #include "pageitem_table.h"
 #include "propertiespalette_table.h"
 #include "sccolorengine.h"
@@ -41,6 +42,11 @@ PropertiesPalette_Table::PropertiesPalette_Table(QWidget* parent) : QWidget(pare
 	iconSetChange();
 	labelTable->setBuddy(tableStyleCombo);
 	labelCells->setBuddy(cellStyleCombo);
+
+	MarginStruct distances;
+
+	cellPaddingWidget->setup(distances, 0, m_unitIndex, NewMarginWidget::DistanceWidgetFlags);
+	cellPaddingWidget->toggleLabelVisibility(false);
 
 	connect(ScQApp, SIGNAL(iconSetChanged()), this, SLOT(iconSetChange()));
 
@@ -94,6 +100,9 @@ void PropertiesPalette_Table::setDocument(ScribusDoc *doc)
 
 	m_doc = doc;
 
+	m_unitRatio = m_doc->unitRatio();
+	m_unitIndex = m_doc->unitIndex();
+
 	tableStyleCombo->setDoc(m_doc);
 	cellStyleCombo->setDoc(m_doc);
 
@@ -118,6 +127,9 @@ void PropertiesPalette_Table::unsetDocument()
 void PropertiesPalette_Table::setItem(PageItem* item)
 {
 	m_item = item;
+
+	if (!m_item) return;
+
 	if (item->isTable())
 		connect(m_item->asTable(), SIGNAL(selectionChanged()), this, SLOT(handleCellSelectionChanged()), Qt::UniqueConnection);
 }
@@ -146,6 +158,7 @@ void PropertiesPalette_Table::handleSelectionChanged()
 
 	updateFillControls();
 	updateStyleControls();
+	updatePaddingControls();
 }
 
 void PropertiesPalette_Table::handleCellSelectionChanged()
@@ -203,6 +216,38 @@ void PropertiesPalette_Table::updateStyleControls()
 		buttonClearTableStyle->setEnabled(false);
 		buttonClearCellStyle->setEnabled(false);
 	}
+}
+
+void PropertiesPalette_Table::updatePaddingControls()
+{
+	if (!m_doc || !m_item || !m_item->isTable())
+		return;
+
+	QSet<TableCell> cells = effectiveCells();
+	if (cells.isEmpty())
+	{
+		PageItem_Table* table = m_item->asTable();
+		TableCell active = table->activeCell();
+		if (active.isValid())
+			cells.insert(active);
+	}
+	if (cells.isEmpty())
+		return;
+
+	// For multi-cell selections, show the first cell's values.
+	// (Mixed-value display could be added later.)
+	const TableCell& cell = *cells.cbegin();
+
+	// Set the widget's "page" dimensions to the cell's bounding rect so
+	// padding clamps stay sane.
+	QSignalBlocker blocker(cellPaddingWidget);
+	QRectF cellRect = cell.boundingRect();
+	cellPaddingWidget->setPageWidth(cellRect.width());
+	cellPaddingWidget->setPageHeight(cellRect.height());
+
+	MarginStruct padding;
+	padding.set(cell.topPadding(), cell.leftPadding(), cell.bottomPadding(), cell.rightPadding());
+	cellPaddingWidget->setNewValues(padding);
 }
 
 void PropertiesPalette_Table::setTableStyle(const QString &name)
@@ -707,6 +752,27 @@ void PropertiesPalette_Table::on_buttonClearCellStyle_clicked()
 	table->update();
 }
 
+void PropertiesPalette_Table::on_cellPaddingWidget_valuesChanged(const MarginStruct& padding)
+{
+	if (!m_doc || !m_item || !m_item->isTable())
+		return;
+
+	QScopedValueRollback<bool> dontResizeRb(m_doc->dontResize, true);
+
+	QSet<TableCell> cells = effectiveCells();
+	for (const TableCell& cell : cells)
+	{
+		TableCell c = cell;
+		c.setLeftPadding(padding.left());
+		c.setRightPadding(padding.right());
+		c.setTopPadding(padding.top());
+		c.setBottomPadding(padding.bottom());
+	}
+
+	m_item->asTable()->adjustTable();
+	m_item->asTable()->update();
+}
+
 void PropertiesPalette_Table::syncSideSelectorToCells()
 {
 	if (!m_item || !m_item->isTable())
@@ -820,5 +886,6 @@ void PropertiesPalette_Table::languageChange()
 
 void PropertiesPalette_Table::unitChange()
 {
-	// Not implemented.
+	if (m_doc)
+		cellPaddingWidget->setNewUnit(m_doc->unitIndex());
 }

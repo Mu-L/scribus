@@ -67,6 +67,7 @@ public slots:
 	/// Updates the fill controls.
 	void updateFillControls();
 	void updateStyleControls();
+	void updatePaddingControls();
 
 private slots:
 	void setTableStyle(const QString& name);
@@ -94,6 +95,7 @@ private slots:
 	void on_fillShade_valueChanged(double shade);
 	void on_buttonClearTableStyle_clicked();
 	void on_buttonClearCellStyle_clicked();
+	void on_cellPaddingWidget_valuesChanged(const MarginStruct& padding);
 
 	/// Syncs the side selector's visual state to reflect the actual borders
 	/// on the currently-selected (or all) cells.
@@ -136,6 +138,9 @@ private:
 	ScGuardedPtr<ScribusDoc> m_doc;
 	/// The currently edited item.
 	PageItem* m_item {nullptr};
+
+	double m_unitRatio {1.0};
+	int m_unitIndex {SC_PT};
 
 	/// The currently edited border.
 	TableBorder m_currentBorder;
