@@ -3393,7 +3393,7 @@ void Scribus150Format::readCellStyle(ScribusDoc *doc, ScXmlStreamReader& reader,
 		if (reader.isEndElement() && reader.name() == tagName)
 			break;
 		if (!reader.isStartElement())
-			break;
+			continue;
 		if (reader.name() == QLatin1String("TableBorderLeft"))
 		{
 			TableBorder border;
