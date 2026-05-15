@@ -1380,11 +1380,11 @@ void Scribus150Format::writeSections(ScXmlStreamWriter & docu) const
 	for (auto it = m_Doc->sections().begin() ; it != m_Doc->sections().end(); ++it )
 	{
 		docu.writeEmptyElement("Section");
-		docu.writeAttribute("Number", (*it).number);
-		docu.writeAttribute("Name", (*it).name);
-		docu.writeAttribute("From", (*it).fromindex);
-		docu.writeAttribute("To", (*it).toindex);
-		switch ((*it).type)
+		docu.writeAttribute("Number", it->number);
+		docu.writeAttribute("Name", it->name);
+		docu.writeAttribute("From", it->fromindex);
+		docu.writeAttribute("To", it->toindex);
+		switch (it->type)
 		{
 			case Type_1_2_3:
 				docu.writeAttribute("Type", "Type_1_2_3");
@@ -1439,11 +1439,11 @@ void Scribus150Format::writeSections(ScXmlStreamWriter & docu) const
 			case Type_Tibetan:
 				break;
 		}
-		docu.writeAttribute("Start", (*it).sectionstartindex);
-		docu.writeAttribute("Reversed", (*it).reversed);
-		docu.writeAttribute("Active", (*it).active);
-		docu.writeAttribute("FillChar", (*it).pageNumberFillChar.unicode());
-		docu.writeAttribute("FieldWidth", (*it).pageNumberWidth);
+		docu.writeAttribute("Start", it->sectionstartindex);
+		docu.writeAttribute("Reversed", it->reversed);
+		docu.writeAttribute("Active", it->active);
+		docu.writeAttribute("FillChar", it->pageNumberFillChar.unicode());
+		docu.writeAttribute("FieldWidth", it->pageNumberWidth);
 	}
 	docu.writeEndElement();
 }

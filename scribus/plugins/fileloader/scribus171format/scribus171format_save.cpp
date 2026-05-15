@@ -1427,16 +1427,16 @@ void Scribus171Format::writeSections(ScXmlStreamWriter & docu) const
 	for (auto it = m_Doc->sections().begin() ; it != m_Doc->sections().end(); ++it )
 	{
 		docu.writeEmptyElement("Section");
-		docu.writeAttribute("Number", (*it).number);
-		docu.writeAttribute("Name", (*it).name);
-		docu.writeAttribute("From", (*it).fromindex);
-		docu.writeAttribute("To", (*it).toindex);
-		docu.writeAttribute("Type", fromNumToString((*it).type));
-		docu.writeAttribute("Start", (*it).sectionstartindex);
-		docu.writeAttribute("Reversed", (*it).reversed);
-		docu.writeAttribute("Active", (*it).active);
-		docu.writeAttribute("FillChar", (*it).pageNumberFillChar.unicode());
-		docu.writeAttribute("FieldWidth", (*it).pageNumberWidth);
+		docu.writeAttribute("Number", it->number);
+		docu.writeAttribute("Name", it->name);
+		docu.writeAttribute("From", it->fromindex);
+		docu.writeAttribute("To", it->toindex);
+		docu.writeAttribute("Type", fromNumToString(it->type));
+		docu.writeAttribute("Start", it->sectionstartindex);
+		docu.writeAttribute("Reversed", it->reversed);
+		docu.writeAttribute("Active", it->active);
+		docu.writeAttribute("FillChar", it->pageNumberFillChar.unicode());
+		docu.writeAttribute("FieldWidth", it->pageNumberWidth);
 	}
 	docu.writeEndElement();
 }
