@@ -1172,8 +1172,7 @@ void ScClipboardProcessor::html_ApplyTable(const ParsedTable &pt)
 		// (shouldn't happen after the expansion above, but defensive).
 		if (numRows > 1 || numCols > 1)
 		{
-			if (destRow + numRows <= m_tablePageItem->rows() &&
-					destCol + numCols <= m_tablePageItem->columns())
+			if (destRow + numRows <= m_tablePageItem->rows() && destCol + numCols <= m_tablePageItem->columns())
 				m_tablePageItem->mergeCells(destRow, destCol, numRows, numCols);
 		}
 
