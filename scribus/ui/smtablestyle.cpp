@@ -208,8 +208,7 @@ void SMTableStyle::apply()
 
 	m_deleted.clear(); // Deletion done at this point.
 
-	// TODO: We should probably have something similar to this for tables/cells.
-	//m_doc->scMW()->requestUpdate(reqTextStylesUpdate);
+	m_doc->scMW()->requestUpdate(reqTableStylesUpdate);
 
 	m_doc->changed();
 	m_doc->changedPagePreview();
@@ -427,6 +426,7 @@ void SMTableStyle::setupConnections()
 	connect(m_page->fillColor, SIGNAL(currentTextChanged(QString)), this, SLOT(slotFillColor()));
 	connect(m_page->fillShade, SIGNAL(clicked()), this, SLOT(slotFillShade()));
 	connect(m_page->parentCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(slotParentChanged(QString)));
+	connect(m_page, SIGNAL(bordersChanged(TableSides, TableBorder)), this, SLOT(slotBordersChanged(TableSides, TableBorder)));
 }
 
 void SMTableStyle::removeConnections()
@@ -436,6 +436,7 @@ void SMTableStyle::removeConnections()
 	disconnect(m_page->fillColor, SIGNAL(currentTextChanged(QString)), this, SLOT(slotFillColor()));
 	disconnect(m_page->fillShade, SIGNAL(clicked()), this, SLOT(slotFillShade()));
 	disconnect(m_page->parentCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(slotParentChanged(QString)));
+	disconnect(m_page, SIGNAL(bordersChanged(TableSides, TableBorder)), this, SLOT(slotBordersChanged(TableSides, TableBorder)));
 }
 
 void SMTableStyle::slotFillColor()
@@ -519,6 +520,26 @@ void SMTableStyle::slotParentChanged(const QString &parent)
 
 	selected(sel);
 
+	if (!m_selectionIsDirty)
+	{
+		m_selectionIsDirty = true;
+		emit selectionDirty();
+	}
+}
+
+void SMTableStyle::slotBordersChanged(TableSides sides, const TableBorder &border)
+{
+	for (int i = 0; i < m_selection.count(); ++i)
+	{
+		if (sides & TableSide::Left)
+			m_selection[i]->setLeftBorder(border);
+		if (sides & TableSide::Right)
+			m_selection[i]->setRightBorder(border);
+		if (sides & TableSide::Top)
+			m_selection[i]->setTopBorder(border);
+		if (sides & TableSide::Bottom)
+			m_selection[i]->setBottomBorder(border);
+	}
 	if (!m_selectionIsDirty)
 	{
 		m_selectionIsDirty = true;

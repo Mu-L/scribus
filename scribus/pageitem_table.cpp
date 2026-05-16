@@ -557,7 +557,7 @@ void PageItem_Table::insertRows(int index, int numRows)
 	// insertion point, or row 0 if inserting at the top). Table styles don't
 	// yet define borders; when they do, this should defer to the style's
 	// border definitions.
-	const int templateRow = (index > 0) ? index - 1 : 0;
+	// const int templateRow = (index > 0) ? index - 1 : 0;
 	const bool haveTemplate = (rows() > 0);
 
 	UndoManager::instance()->setUndoEnabled(false);
@@ -573,16 +573,17 @@ void PageItem_Table::insertRows(int index, int numRows)
 		cellRow.reserve(columns());
 		for (int col = 0; col < columns(); ++col)
 		{
-			TableCell newCell(row, col, this);
-			if (haveTemplate)
-			{
-				TableCell tpl = cellAt(templateRow, col);
-				newCell.setLeftBorder(tpl.leftBorder());
-				newCell.setRightBorder(tpl.rightBorder());
-				newCell.setTopBorder(tpl.topBorder());
-				newCell.setBottomBorder(tpl.bottomBorder());
-			}
-			cellRow.append(newCell);
+			// TableCell newCell(row, col, this);
+			// if (haveTemplate)
+			// {
+			// 	TableCell tpl = cellAt(templateRow, col);
+			// 	newCell.setLeftBorder(tpl.leftBorder());
+			// 	newCell.setRightBorder(tpl.rightBorder());
+			// 	newCell.setTopBorder(tpl.topBorder());
+			// 	newCell.setBottomBorder(tpl.bottomBorder());
+			// }
+			// cellRow.append(newCell);
+			cellRow.append(TableCell(row, col, this));
 		}
 		m_cellRows.insert(row, cellRow);
 	}
@@ -694,7 +695,7 @@ void PageItem_Table::insertColumns(int index, int numColumns)
 	// left of the insertion point, or column 0 if inserting at the start).
 	// Table styles don't yet define borders; when they do, this should defer
 	// to the style's border definitions.
-	const int templateCol = (index > 0) ? index - 1 : 0;
+	// const int templateCol = (index > 0) ? index - 1 : 0;
 	const bool haveTemplate = (columns() > 0);
 
 	UndoManager::instance()->setUndoEnabled(false);
@@ -708,16 +709,17 @@ void PageItem_Table::insertColumns(int index, int numColumns)
 		// Insert a column of cells.
 		for (int row = 0; row < rows(); ++row)
 		{
-			TableCell newCell(row, col, this);
-			if (haveTemplate)
-			{
-				TableCell tpl = cellAt(row, templateCol);
-				newCell.setLeftBorder(tpl.leftBorder());
-				newCell.setRightBorder(tpl.rightBorder());
-				newCell.setTopBorder(tpl.topBorder());
-				newCell.setBottomBorder(tpl.bottomBorder());
-			}
-			m_cellRows[row].insert(col, newCell);
+			// TableCell newCell(row, col, this);
+			// if (haveTemplate)
+			// {
+			// 	TableCell tpl = cellAt(row, templateCol);
+			// 	newCell.setLeftBorder(tpl.leftBorder());
+			// 	newCell.setRightBorder(tpl.rightBorder());
+			// 	newCell.setTopBorder(tpl.topBorder());
+			// 	newCell.setBottomBorder(tpl.bottomBorder());
+			// }
+			// m_cellRows[row].insert(col, newCell);
+			m_cellRows[row].insert(col, TableCell(row, col, this));
 		}
 	}
 

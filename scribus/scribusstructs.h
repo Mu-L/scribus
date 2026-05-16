@@ -547,6 +547,7 @@ enum UpdateRequests
 	reqInlinePalUpdate   = 2048,
 	reqMarksUpdate       = 4096,
 	reqNumUpdate         = 8192,
+	reqTableStylesUpdate = 16384,
 	reqUpdateAll = 65535
 };
 

@@ -1831,6 +1831,7 @@ private:
 	bool m_flag_notesChanged {false};
 
 	void multipleDuplicateByPage(const ItemMultipleDuplicateData& mdData, Selection& selection, QString& tooltip);
+	void refreshTableItems();
 
 public:
 	bool usesMarksAndNotes() const { return m_docUsesMarksAndNotes; }

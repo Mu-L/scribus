@@ -1577,6 +1577,7 @@ void ScribusDoc::redefineTableStyles(const StyleSet<TableStyle>& newStyles, bool
 			replaceTableStyles(deletion);
 	}
 	m_docTableStyles.invalidate();
+	refreshTableItems();
 }
 
 void ScribusDoc::redefineCellStyles(const StyleSet<CellStyle>& newStyles, bool removeUnused)
@@ -1598,6 +1599,7 @@ void ScribusDoc::redefineCellStyles(const StyleSet<CellStyle>& newStyles, bool r
 			replaceCellStyles(deletion);
 	}
 	m_docCellStyles.invalidate();
+	refreshTableItems();
 }
 
 /*
@@ -14351,6 +14353,25 @@ void ScribusDoc::multipleDuplicateByPage(const ItemMultipleDuplicateData& dialog
 	setCurrentPage(oldCurrentPage);
 
 	tooltip = tr("Copied %1 item(s) on %2 page(s)").arg(selection.count()).arg(pages.size());
+}
+
+void ScribusDoc::refreshTableItems()
+{
+	auto refresh = [](const QList<PageItem*>& items)
+	{
+		for (PageItem *item : items)
+		{
+			if (item && item->isTable())
+			{
+				PageItem_Table *table = item->asTable();
+				table->adjustTable();
+				table->updateClip();
+				table->update();
+			}
+		}
+	};
+	refresh(DocItems);
+	refresh(MasterItems);
 }
 
 
