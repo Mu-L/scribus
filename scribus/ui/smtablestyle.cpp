@@ -11,6 +11,7 @@ for which a new license (GPL+exception) is in place.
 #include <QMessageBox>
 
 #include "prefsmanager.h"
+#include "scribus.h"
 #include "smtablestyle.h"
 #include "smtablestylewidget.h"
 #include "ui/scmessagebox.h"
