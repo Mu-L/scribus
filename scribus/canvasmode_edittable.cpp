@@ -29,6 +29,7 @@ for which a new license (GPL+exception) is in place.
 #include "selection.h"
 #include "tablehandle.h"
 #include "ui/contextmenu.h"
+#include "undomanager.h"
 
 CanvasMode_EditTable::CanvasMode_EditTable(ScribusView* view) : CanvasMode(view),
 	m_canvasUpdateTimer(new QTimer(view)),
@@ -219,6 +220,21 @@ void CanvasMode_EditTable::mouseMoveEvent(QMouseEvent* event)
 
 void CanvasMode_EditTable::mousePressEvent(QMouseEvent* event)
 {
+	if (UndoManager::undoEnabled())
+	{
+		SimpleState *ss = dynamic_cast<SimpleState*>(undoManager->getLastUndo());
+		if (ss)
+			ss->set("ETEA", QString(""));
+		else
+		{
+			TransactionState *ts = dynamic_cast<TransactionState*>(undoManager->getLastUndo());
+			if (ts)
+				ss = dynamic_cast<SimpleState*>(ts->last());
+			if (ss)
+				ss->set("ETEA", QString(""));
+		}
+	}
+
 	PageItem_TextFrame* activeFrame;
 
 	event->accept();
