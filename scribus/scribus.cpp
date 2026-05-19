@@ -3379,6 +3379,7 @@ bool ScribusMainWindow::loadDoc(const QString& fileName)
 			return true;
 		}
 	}
+	SpellCheckerBlocker spellBlocker;
 	UndoBlocker undoBlocker;
 	if (!fileName.isEmpty())
 	{
@@ -3441,6 +3442,7 @@ bool ScribusMainWindow::loadDoc(const QString& fileName)
 		doc->SoftProofing = false;
 		doc->Gamut = false;
 		setScriptRunning(true);
+		qDebug()<<"tfscpaused"<<TextFrameSpellChecker::instance()->isPaused();
 		bool loadSuccess = fileLoader->loadFile(doc);
 		//Do the font replacement check from here, when we have a GUI. TODO do this also somehow without the GUI
 		//This also gives the user the opportunity to cancel the load when finding there's a replacement required.
@@ -4139,6 +4141,8 @@ bool ScribusMainWindow::slotFileSaveAs()
 
 bool ScribusMainWindow::DoFileSave(const QString& fileName, QString* savedFileName, uint formatID)
 {
+	SpellCheckerBlocker spellBlocker;
+	UndoBlocker undoBlocker;
 	ScCore->fileWatcher->forceScan();
 	ScCore->fileWatcher->stop();
 	doc->reorganiseFonts();
