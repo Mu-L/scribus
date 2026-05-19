@@ -3442,7 +3442,6 @@ bool ScribusMainWindow::loadDoc(const QString& fileName)
 		doc->SoftProofing = false;
 		doc->Gamut = false;
 		setScriptRunning(true);
-		qDebug()<<"tfscpaused"<<TextFrameSpellChecker::instance()->isPaused();
 		bool loadSuccess = fileLoader->loadFile(doc);
 		//Do the font replacement check from here, when we have a GUI. TODO do this also somehow without the GUI
 		//This also gives the user the opportunity to cancel the load when finding there's a replacement required.
