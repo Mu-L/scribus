@@ -18031,6 +18031,8 @@ bool ScribusDoc::invalidateVariableTextFrames(const Mark* mrk, bool forceUpdate)
 //and update marks list in Marks Manager
 bool ScribusDoc::updateMarks(bool updateNotesMarks)
 {
+	if (masterPageMode())
+		return false;
 	if (updateNotesMarks && !notesList().isEmpty())
 	{
 		for (PageItem* item : std::as_const(DocItems))
