@@ -4631,7 +4631,7 @@ void PageItem::checkChanges(bool force)
 	}
 
 	// has the item been resized
-	if (force || ((oldWidth != m_width || oldHeight != m_height) && shouldCheck()))
+	if (force || ((!qFuzzyCompare(oldWidth, m_width) || !qFuzzyCompare(oldHeight, m_height)) && shouldCheck()))
 	{
 		resizeUndoAction();
 		spreadChanges = (textFlowMode() != TextFlowDisabled);
