@@ -9059,8 +9059,11 @@ void ScribusDoc::itemSelection_DeleteTableRows()
 		table->removeRows(index, numRows);
 	}
 
-	m_View->stopGesture(); // FIXME: Don't use m_View.
-	table->adjustTable();
+	m_View->stopGesture();
+	{
+		UndoBlocker ub;
+		table->adjustTable();
+	}
 	table->update();
 
 	m_ScMW->updateTableMenuActions();
@@ -9117,8 +9120,11 @@ void ScribusDoc::itemSelection_DeleteTableColumns()
 		table->removeColumns(index, numColumns);
 	}
 
-	m_View->stopGesture(); // FIXME: Don't use m_View.
-	table->adjustTable();
+	m_View->stopGesture();
+	{
+		UndoBlocker ub;
+		table->adjustTable();
+	}
 	table->update();
 
 	m_ScMW->updateTableMenuActions();
