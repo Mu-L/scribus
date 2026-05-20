@@ -112,7 +112,11 @@ void CanvasMode_EditTable::keyPressEvent(QKeyEvent* event)
 				(active.row()    + active.rowSpan()    - 1 == m_table->rows()    - 1) &&
 				(active.column() + active.columnSpan() - 1 == m_table->columns() - 1);
 		if (atLastCell)
+		{
 			m_table->insertRows(m_table->rows(), 1);
+			m_table->adjustTable();
+			updateCanvas();
+		}
 		navigateCells(Qt::Key_Right);
 	}
 	else if (key == Qt::Key_Backtab) // Qt delivers Shift+Tab as Backtab.
