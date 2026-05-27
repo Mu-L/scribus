@@ -42,6 +42,7 @@ public:
 		columnSpan(other.columnSpan),
 		textFrame(other.textFrame),
 		style(other.style),
+		userStyleName(other.userStyleName),
 		table(other.table) {}
 	/// Destroys the cell data.
 	~TableCellData()
@@ -65,6 +66,10 @@ public:
 	PageItem_TextFrame *textFrame {nullptr};
 	/// Style of the cell.
 	CellStyle style;
+	/// The user-chosen named cell style. Persistent; this is what gets saved.
+	/// Distinct from style.parent(), which during layout may transiently hold
+	/// the synthetic name of the cell's conditional table-area style.
+	QString userStyleName;
 	/// Table containing the cell.
 	PageItem_Table *table {nullptr};
 };
@@ -196,8 +201,9 @@ public:
 	/// Returns the named cell style for this cell.
 	const CellStyle& style() const { return d->style; }
 
-	/// Returns the cell style name for this cell.
-	QString styleName() const { return d->style.parent(); }
+	/// Returns the user-chosen cell style name for this cell (the value saved
+	/// to the document; not the transient conditional-area parent).
+	QString styleName() const { return d->userStyleName; }
 
 	/// Sets the text for this cell to @a text.
 	void setText(const QString& text);
@@ -227,6 +233,14 @@ private:
 	void setValid(bool isValid) { d->isValid = isValid; }
 	/// Updates the size and position of the cell text frame.
 	void updateContent();
+
+	/**
+	 * Splices the conditional table-area style named @a areaStyleName as this
+	 * cell's transient style parent. An empty name restores the user-chosen
+	 * style (see userStyleName). Called by the table during updateCells(); the
+	 * change is never saved.
+	 */
+	void applyAreaStyle(const QString& areaStyleName);
 
 	/// "Move" the cell down by @a numRows. E.g. increase its row by @a numRows.
 	void moveDown(int numRows) { d->row += numRows; }

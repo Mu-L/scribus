@@ -123,8 +123,19 @@ void TableCell::setBottomPadding(double padding)
 
 void TableCell::setStyle(const QString& style)
 {
+	d->userStyleName = style;
 	d->style.setParent(style);
 	d->table->updateCells();
+}
+
+void TableCell::applyAreaStyle(const QString& areaStyleName)
+{
+	// Transient reparent driven by the table's area resolution. Never saved:
+	// styleName() still reports userStyleName. An empty area name means the
+	// cell has no conditional area, so fall back to the user's chosen style.
+	const QString& parent = areaStyleName.isEmpty() ? d->userStyleName : areaStyleName;
+	if (d->style.parent() != parent)
+		d->style.setParent(parent);
 }
 
 void TableCell::unsetDirectFormatting()
