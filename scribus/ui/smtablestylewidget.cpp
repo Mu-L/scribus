@@ -469,6 +469,14 @@ void SMTableStyleWidget::rebuildAreaCombo(TableStyle* tableStyle)
 		conditionalAreaComboBox->addItem(tr("First Column"), static_cast<int>(TableArea::FirstColumn));
 	if (tableStyle->lastColumn())
 		conditionalAreaComboBox->addItem(tr("Last Column"), static_cast<int>(TableArea::LastColumn));
+	if (tableStyle->headerRows() > 0 && tableStyle->firstColumn())
+		conditionalAreaComboBox->addItem(tr("Top Left Cell"), static_cast<int>(TableArea::TopLeftCell));
+	if (tableStyle->headerRows() > 0 && tableStyle->lastColumn())
+		conditionalAreaComboBox->addItem(tr("Top Right Cell"), static_cast<int>(TableArea::TopRightCell));
+	if (tableStyle->totalRows() > 0 && tableStyle->firstColumn())
+		conditionalAreaComboBox->addItem(tr("Bottom Left Cell"), static_cast<int>(TableArea::BottomLeftCell));
+	if (tableStyle->totalRows() > 0 && tableStyle->lastColumn())
+		conditionalAreaComboBox->addItem(tr("Bottom Right Cell"), static_cast<int>(TableArea::BottomRightCell));
 	// Restore selection to current area if still present, else Whole Table.
 	int idx = conditionalAreaComboBox->findData(static_cast<int>(m_currentArea));
 	if (idx < 0)
