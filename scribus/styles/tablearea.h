@@ -35,7 +35,7 @@ enum class TableArea
 
 Q_DECLARE_METATYPE(TableArea)
 
-inline uint qHash(TableArea area, uint seed = 0)
+inline size_t qHash(TableArea area, size_t seed = 0)
 {
 	return ::qHash(static_cast<int>(area), seed);
 }
