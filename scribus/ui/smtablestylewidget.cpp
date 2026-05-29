@@ -69,6 +69,7 @@ void SMTableStyleWidget::setDoc(ScribusDoc* doc)
 		return;
 
 	fillFillColorCombo(m_Doc->PageColors);
+	paragraphStyleComboBox->setDoc(m_Doc);
 	connect(m_Doc->scMW(), SIGNAL(UpdateRequest(int)), this , SLOT(handleUpdateRequest(int)));
 }
 
@@ -83,6 +84,7 @@ void SMTableStyleWidget::show(TableStyle *tableStyle, QList<TableStyle> &tableSt
 
 	rebuildAreaCombo(tableStyle);
 	showFillForCurrentArea(tableStyle);
+	showParagraphStyleForCurrentArea(tableStyle);
 
 	setBorders(tableStyle->leftBorder(), tableStyle->rightBorder(), tableStyle->topBorder(), tableStyle->bottomBorder());
 
@@ -516,6 +518,18 @@ void SMTableStyleWidget::showFillForCurrentArea(TableStyle *tableStyle)
 	fillColor->setParentText(QString());
 	fillShade->setValue(qRound(cs.fillShade()), false);
 	fillShade->setParentValue(0);
+}
+
+void SMTableStyleWidget::showParagraphStyleForCurrentArea(TableStyle *tableStyle)
+{
+	QString psName;
+	if (m_currentArea == TableArea::WholeTable)
+		psName = tableStyle->paragraphStyleName();
+	else
+		psName = tableStyle->conditionalStyle(m_currentArea).paragraphStyleName();
+	bool b = paragraphStyleComboBox->blockSignals(true);
+	paragraphStyleComboBox->setStyle(psName);
+	paragraphStyleComboBox->blockSignals(b);
 }
 
 

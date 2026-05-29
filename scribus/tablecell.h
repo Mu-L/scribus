@@ -43,6 +43,7 @@ public:
 		textFrame(other.textFrame),
 		style(other.style),
 		userStyleName(other.userStyleName),
+		appliedParagraphStyleName(other.appliedParagraphStyleName),
 		table(other.table) {}
 	/// Destroys the cell data.
 	~TableCellData()
@@ -70,6 +71,10 @@ public:
 	/// Distinct from style.parent(), which during layout may transiently hold
 	/// the synthetic name of the cell's conditional table-area style.
 	QString userStyleName;
+	/// Last paragraph style name applied to the cell text frame's default
+	/// style, used to avoid redundant setDefaultStyle() calls on relayout.
+	/// Transient layout state; not saved.
+	QString appliedParagraphStyleName;
 	/// Table containing the cell.
 	PageItem_Table *table {nullptr};
 };

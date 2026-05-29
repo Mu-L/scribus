@@ -3827,6 +3827,8 @@ void Scribus171Format::readTableStyle(ScribusDoc *doc, ScXmlStreamReader& reader
 		newStyle.setFillColor(attrs.valueAsString("FillColor"));
 	if (attrs.hasAttribute("FillShade"))
 		newStyle.setFillShade(attrs.valueAsDouble("FillShade"));
+	if (attrs.hasAttribute("ParagraphStyleName"))
+		newStyle.setParagraphStyleName(attrs.valueAsString("ParagraphStyleName"));
 
 	// Conditional (table-area) formatting configuration.
 	if (attrs.hasAttribute("HeaderRows"))
@@ -3896,6 +3898,8 @@ void Scribus171Format::readConditionalCellStyle(ScribusDoc *doc, ScXmlStreamRead
 		newStyle.setFillShade(attrs.valueAsDouble("FillShade"));
 	if (attrs.hasAttribute("LeftPadding"))
 		newStyle.setLeftPadding(attrs.valueAsDouble("LeftPadding", 0.0));
+	if (attrs.hasAttribute("ParagraphStyleName"))
+		newStyle.setParagraphStyleName(attrs.valueAsString("ParagraphStyleName"));
 	if (attrs.hasAttribute("RightPadding"))
 		newStyle.setRightPadding(attrs.valueAsDouble("RightPadding", 0.0));
 	if (attrs.hasAttribute("TopPadding"))
@@ -3994,6 +3998,8 @@ void Scribus171Format::readCellStyle(ScribusDoc *doc, ScXmlStreamReader& reader,
 		newStyle.setFillColor(attrs.valueAsString("FillColor"));
 	if (attrs.hasAttribute("FillShade"))
 		newStyle.setFillShade(attrs.valueAsDouble("FillShade"));
+	if (attrs.hasAttribute("ParagraphStyleName"))
+		newStyle.setParagraphStyleName(attrs.valueAsString("ParagraphStyleName"));
 	if (attrs.hasAttribute("LeftPadding"))
 		newStyle.setLeftPadding(attrs.valueAsDouble("LeftPadding", 0.0));
 	if (attrs.hasAttribute("RightPadding"))

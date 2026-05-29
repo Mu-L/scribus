@@ -103,6 +103,7 @@ private slots:
 	void slotFirstColumn();
 	void slotLastColumn();
 	void slotAreaChanged(TableArea area);
+	void slotParagraphStyle(const QString& psName);
 };
 
 #endif // SMTABLESTYLES_H

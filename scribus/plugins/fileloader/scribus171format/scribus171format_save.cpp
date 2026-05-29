@@ -1040,7 +1040,8 @@ void Scribus171Format::putTableStyle(ScXmlStreamWriter &docu, const TableStyle &
 		docu.writeAttribute("FillColor", style.fillColor());
 	if (!style.isInhFillShade())
 		docu.writeAttribute("FillShade", style.fillShade());
-
+	if (!style.isInhParagraphStyleName())
+		docu.writeAttribute("ParagraphStyleName", style.paragraphStyleName());
 	// Config attributes -- must precede child elements.
 	if (style.headerRows() != 0)
 		docu.writeAttribute("HeaderRows", style.headerRows());
@@ -1144,6 +1145,8 @@ void Scribus171Format::putCellStyleBody(ScXmlStreamWriter &docu, const CellStyle
 		docu.writeAttribute("FillColor", style.fillColor());
 	if (!style.isInhFillShade())
 		docu.writeAttribute("FillShade", style.fillShade());
+	if (!style.isInhParagraphStyleName())
+		docu.writeAttribute("ParagraphStyleName", style.paragraphStyleName());
 	if (!style.isInhLeftPadding())
 		docu.writeAttribute("LeftPadding",style.leftPadding());
 	if (!style.isInhRightPadding())

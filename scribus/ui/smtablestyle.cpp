@@ -438,6 +438,7 @@ void SMTableStyle::setupConnections()
 	connect(m_page->firstColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotFirstColumn()));
 	connect(m_page->lastColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotLastColumn()));
 	connect(m_page, SIGNAL(conditionalAreaChanged(TableArea)), this, SLOT(slotAreaChanged(TableArea)));
+	connect(m_page->paragraphStyleComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotParagraphStyle(QString)));
 }
 
 void SMTableStyle::removeConnections()
@@ -455,6 +456,7 @@ void SMTableStyle::removeConnections()
 	disconnect(m_page->firstColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotFirstColumn()));
 	disconnect(m_page->lastColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotLastColumn()));
 	disconnect(m_page, SIGNAL(conditionalAreaChanged(TableArea)), this, SLOT(slotAreaChanged(TableArea)));
+	disconnect(m_page->paragraphStyleComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotParagraphStyle(QString)));
 }
 
 void SMTableStyle::slotFillColor()
@@ -663,5 +665,31 @@ void SMTableStyle::slotAreaChanged(TableArea area)
 {
 	Q_UNUSED(area)
 	if (m_selection.count() == 1)
+	{
 		m_page->showFillForCurrentArea(m_selection[0]);
+		m_page->showParagraphStyleForCurrentArea(m_selection[0]);
+	}
+}
+
+void SMTableStyle::slotParagraphStyle(const QString& psName)
+{
+	TableArea area = m_page->currentArea();
+	for (int i = 0; i < m_selection.count(); ++i)
+	{
+		if (area == TableArea::WholeTable)
+		{
+			m_selection[i]->setParagraphStyleName(psName);
+		}
+		else
+		{
+			CellStyle cs = m_selection[i]->conditionalStyle(area);
+			cs.setParagraphStyleName(psName);
+			m_selection[i]->setConditionalStyle(area, cs);
+		}
+	}
+	if (!m_selectionIsDirty)
+	{
+		m_selectionIsDirty = true;
+		emit selectionDirty();
+	}
 }
