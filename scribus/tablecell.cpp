@@ -145,7 +145,7 @@ void TableCell::applyAreaStyle(const QString& areaStyleName)
 	// uses "[Default Paragraph Style]" -- apply the default, matching how a
 	// text frame behaves when the default sentinel is chosen. We mirror the
 	// document's own convention (itemSelection_SetNamedParagraphStyle) by
-	// parenting to INHERIT_PARENT rather than to an empty string.
+	// parenting to DefaultParagraphStyle rather than to an empty string.
 	QString psName(d->style.paragraphStyleName());
 	QString parentToApply = psName.isEmpty() ? CommonStrings::DefaultParagraphStyle : psName;
 
