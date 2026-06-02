@@ -2571,7 +2571,7 @@ void Scribus171Format::WriteObjects(ScribusDoc *doc, ScXmlStreamWriter& docu, co
 						docu.writeAttribute("TopPadding",cell.topPadding());
 					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhBottomPadding())))
 						docu.writeAttribute("BottomPadding", cell.bottomPadding());
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhLeftBorder())))
+					if (!cell.style().isInhLeftBorder())
 					{
 						TableBorder tbLeft = cell.leftBorder();
 						docu.writeStartElement("TableBorderLeft");
@@ -2587,7 +2587,7 @@ void Scribus171Format::WriteObjects(ScribusDoc *doc, ScXmlStreamWriter& docu, co
 						}
 						docu.writeEndElement();
 					}
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhRightBorder())))
+					if (!cell.style().isInhRightBorder())
 					{
 						TableBorder tbRight = cell.rightBorder();
 						docu.writeStartElement("TableBorderRight");
@@ -2603,7 +2603,7 @@ void Scribus171Format::WriteObjects(ScribusDoc *doc, ScXmlStreamWriter& docu, co
 						}
 						docu.writeEndElement();
 					}
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhTopBorder())))
+					if (!cell.style().isInhTopBorder())
 					{
 						TableBorder tbTop = cell.topBorder();
 						docu.writeStartElement("TableBorderTop");
@@ -2619,7 +2619,7 @@ void Scribus171Format::WriteObjects(ScribusDoc *doc, ScXmlStreamWriter& docu, co
 						}
 						docu.writeEndElement();
 					}
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhBottomBorder())))
+					if (!cell.style().isInhBottomBorder())
 					{
 						TableBorder tbBottom = cell.bottomBorder();
 						docu.writeStartElement("TableBorderBottom");
