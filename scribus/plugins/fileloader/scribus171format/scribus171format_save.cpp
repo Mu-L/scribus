@@ -2563,13 +2563,13 @@ void Scribus171Format::WriteObjects(ScribusDoc *doc, ScXmlStreamWriter& docu, co
 						docu.writeAttribute("FillColor", cell.fillColor());
 					if (!cell.style().isInhFillShade())
 						docu.writeAttribute("FillShade", cell.fillShade());
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhLeftPadding())))
+					if (!cell.style().isInhLeftPadding())
 						docu.writeAttribute("LeftPadding",cell.leftPadding());
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhRightPadding())))
+					if (!cell.style().isInhRightPadding())
 						docu.writeAttribute("RightPadding", cell.rightPadding());
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhTopPadding())))
+					if (!cell.style().isInhTopPadding())
 						docu.writeAttribute("TopPadding",cell.topPadding());
-					if ((cstyle.isEmpty()) || ((!cstyle.isEmpty()) && ( !cs.isInhBottomPadding())))
+					if (!cell.style().isInhBottomPadding())
 						docu.writeAttribute("BottomPadding", cell.bottomPadding());
 					if (!cell.style().isInhLeftBorder())
 					{
