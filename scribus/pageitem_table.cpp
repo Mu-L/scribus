@@ -143,6 +143,12 @@ void PageItem_Table::getNamedResources(ResourceCollection& lists) const
 	if (!tableStyleName.isEmpty())
 		lists.collectTableStyle(tableStyleName);
 
+	// Also collect the resources the applied table style itself references --
+	// in particular the cell styles its conditional areas are based on -- so
+	// they travel with the table when copied/pasted to another document.
+	if (m_Doc->tableStyles().contains(tableStyleName))
+		m_Doc->tableStyles().get(tableStyleName).getNamedResources(lists);
+
 	for (int row = 0; row < rows(); ++row)
 	{
 		int colSpan = 0;
