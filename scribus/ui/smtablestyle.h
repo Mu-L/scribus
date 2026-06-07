@@ -104,6 +104,8 @@ private slots:
 	void slotLastColumn();
 	void slotAreaChanged(TableArea area);
 	void slotParagraphStyle(const QString& psName);
+	void slotBasedOnStyle(const QString& cellStyleName);
+	void slotResetToBasedOn();
 };
 
 #endif // SMTABLESTYLES_H

@@ -1017,11 +1017,6 @@ void Scribus171Format::writeCellStyles(ScXmlStreamWriter& docu) const
 	for (int i = 0; i < styleList.count(); ++i)
 	{
 		const CellStyle& style = m_Doc->cellStyles()[styleList[i]];
-		// Skip synthetic conditional cell styles -- they are runtime-only
-		// bridges, regenerated from each table style's <Conditional> children
-		// on load via syncConditionalStylesToContext().
-		if (style.name().startsWith(QLatin1String("__cond_")))
-			continue;
 		docu.writeStartElement("CellStyle");
 		putCellStyle(docu, style);
 		docu.writeEndElement();

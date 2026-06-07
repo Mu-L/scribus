@@ -74,6 +74,7 @@ class SMTableStyleWidget : public QWidget, public Ui::SMTableStyleWidget
 		void showFillForCurrentArea(TableStyle *tableStyle);
 		void showBordersForCurrentArea(TableStyle *tableStyle);
 		void showParagraphStyleForCurrentArea(TableStyle *tableStyle);
+		void showBasedOnForCurrentArea(TableStyle *tableStyle);
 
 	signals:
 		// Emitted when the user changes the border on one or more sides.

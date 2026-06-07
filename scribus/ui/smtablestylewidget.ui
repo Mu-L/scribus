@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>574</width>
-    <height>663</height>
+    <width>613</width>
+    <height>740</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -48,6 +48,34 @@
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="parentLabel_2">
+       <property name="text">
+        <string>Cell Style Based On:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="CellStyleComboBox" name="basedOnComboBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="cellStyleClearButton">
+       <property name="text">
+        <string/>
        </property>
       </widget>
      </item>
@@ -583,6 +611,11 @@
   </customwidget>
   <customwidget>
    <class>ParaStyleComboBox</class>
+   <extends>QComboBox</extends>
+   <header>ui/stylecombos.h</header>
+  </customwidget>
+  <customwidget>
+   <class>CellStyleComboBox</class>
    <extends>QComboBox</extends>
    <header>ui/stylecombos.h</header>
   </customwidget>

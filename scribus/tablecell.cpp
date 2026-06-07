@@ -132,11 +132,24 @@ void TableCell::setStyle(const QString& style)
 void TableCell::applyAreaStyle(const QString& areaStyleName)
 {
 	// Transient reparent driven by the table's area resolution. Never saved:
-	// styleName() still reports userStyleName. An empty area name means the
-	// cell has no conditional area, so fall back to the user's chosen style.
-	const QString& parent = areaStyleName.isEmpty() ? d->userStyleName : areaStyleName;
-	if (d->style.parent() != parent)
-		d->style.setParent(parent);
+	// styleName() still reports userStyleName.
+	if (areaStyleName.isEmpty())
+	{
+		// No conditional area: resolve against the document cell styles,
+		// parented to the user's chosen style.
+		d->style.setContext(&d->table->doc()->cellStyles());
+		if (d->style.parent() != d->userStyleName)
+			d->style.setParent(d->userStyleName);
+	}
+	else
+	{
+		// In a conditional area: resolve against the table's private
+		// area-style context (which itself chains to the document cell
+		// styles), parented to the bare area name.
+		d->style.setContext(&d->table->areaStyles());
+		if (d->style.parent() != areaStyleName)
+			d->style.setParent(areaStyleName);
+	}
 
 	if (!d->table || !d->table->doc())
 		return;

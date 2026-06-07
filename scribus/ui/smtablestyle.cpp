@@ -439,6 +439,8 @@ void SMTableStyle::setupConnections()
 	connect(m_page->lastColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotLastColumn()));
 	connect(m_page, SIGNAL(conditionalAreaChanged(TableArea)), this, SLOT(slotAreaChanged(TableArea)));
 	connect(m_page->paragraphStyleComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotParagraphStyle(QString)));
+	connect(m_page->basedOnComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotBasedOnStyle(QString)));
+	connect(m_page->cellStyleClearButton, SIGNAL(clicked()), this, SLOT(slotResetToBasedOn()));
 }
 
 void SMTableStyle::removeConnections()
@@ -457,6 +459,8 @@ void SMTableStyle::removeConnections()
 	disconnect(m_page->lastColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotLastColumn()));
 	disconnect(m_page, SIGNAL(conditionalAreaChanged(TableArea)), this, SLOT(slotAreaChanged(TableArea)));
 	disconnect(m_page->paragraphStyleComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotParagraphStyle(QString)));
+	disconnect(m_page->basedOnComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotBasedOnStyle(QString)));
+	disconnect(m_page->cellStyleClearButton, SIGNAL(clicked()), this, SLOT(slotResetToBasedOn()));
 }
 
 void SMTableStyle::slotFillColor()
@@ -686,6 +690,7 @@ void SMTableStyle::slotAreaChanged(TableArea area)
 		m_page->showFillForCurrentArea(m_selection[0]);
 		m_page->showParagraphStyleForCurrentArea(m_selection[0]);
 		m_page->showBordersForCurrentArea(m_selection[0]);
+		m_page->showBasedOnForCurrentArea(m_selection[0]);
 	}
 }
 
@@ -709,5 +714,54 @@ void SMTableStyle::slotParagraphStyle(const QString& psName)
 	{
 		m_selectionIsDirty = true;
 		emit selectionDirty();
+	}
+}
+
+void SMTableStyle::slotBasedOnStyle(const QString& cellStyleName)
+{
+	TableArea area = m_page->currentArea();
+	if (area == TableArea::WholeTable)
+		return;   // Based-on applies to cell areas only, not the table frame.
+
+	for (int i = 0; i < m_selection.count(); ++i)
+	{
+		CellStyle cs = m_selection[i]->conditionalStyle(area);
+		cs.setParent(cellStyleName);
+		m_selection[i]->setConditionalStyle(area, cs);
+	}
+	if (!m_selectionIsDirty)
+	{
+		m_selectionIsDirty = true;
+		emit selectionDirty();
+	}
+}
+
+void SMTableStyle::slotResetToBasedOn()
+{
+	TableArea area = m_page->currentArea();
+	if (area == TableArea::WholeTable)
+		return;
+	for (int i = 0; i < m_selection.count(); ++i)
+	{
+		CellStyle cs = m_selection[i]->conditionalStyle(area);
+		QString keepParent = cs.parent();
+		cs.erase();
+		cs.setParent(keepParent);
+		m_selection[i]->setConditionalStyle(area, cs);
+	}
+	if (!m_selectionIsDirty)
+	{
+		m_selectionIsDirty = true;
+		emit selectionDirty();
+	}
+
+	// Refresh the per-area widgets so they reflect the cleared overrides,
+	// otherwise Apply would write the stale widget values straight back.
+	if (m_selection.count() == 1)
+	{
+		m_page->showFillForCurrentArea(m_selection[0]);
+		m_page->showParagraphStyleForCurrentArea(m_selection[0]);
+		m_page->showBordersForCurrentArea(m_selection[0]);
+		m_page->showBasedOnForCurrentArea(m_selection[0]);
 	}
 }

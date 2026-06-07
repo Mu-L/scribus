@@ -1926,7 +1926,6 @@ class SCRIBUS_API ScribusDoc : public QObject, public UndoObject, public Observa
 		PageItem* findFirstMarkItem(const Mark* mrk) const { PageItem* tmp = nullptr; return findMarkItem(mrk, tmp); }
 		void refreshTableItems();
 		void syncAllTableConditionalStyles();
-		void registerSyntheticCellStyle(const CellStyle& style);
 
 	private:
 		//QMap<PageItem_NoteFrame*, QList<TextNote *> > map of notesframes and its list of notes

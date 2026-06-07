@@ -49,6 +49,7 @@ void SMTableStyleWidget::iconSetChange()
 	fillShadeLabel->setPixmap(iconManager.loadPixmap("shade") );
 	addBorderLineButton->setIcon(iconManager.loadIcon("stroke-add"));
 	removeBorderLineButton->setIcon(iconManager.loadIcon("stroke-remove"));
+	cellStyleClearButton->setIcon(iconManager.loadIcon("reset"));
 }
 
 void SMTableStyleWidget::handleUpdateRequest(int updateFlags)
@@ -58,7 +59,10 @@ void SMTableStyleWidget::handleUpdateRequest(int updateFlags)
 	if (updateFlags & reqColorsUpdate)
 		fillFillColorCombo(m_Doc->PageColors);
 	if (updateFlags & reqTextStylesUpdate)
+	{
 		paragraphStyleComboBox->updateStyleList();
+		basedOnComboBox->updateStyleList();
+	}
 }
 
 void SMTableStyleWidget::setDoc(ScribusDoc* doc)
@@ -72,6 +76,7 @@ void SMTableStyleWidget::setDoc(ScribusDoc* doc)
 
 	fillFillColorCombo(m_Doc->PageColors);
 	paragraphStyleComboBox->setDoc(m_Doc);
+	basedOnComboBox->setDoc(m_Doc);
 	connect(m_Doc->scMW(), SIGNAL(UpdateRequest(int)), this , SLOT(handleUpdateRequest(int)));
 }
 
@@ -87,8 +92,8 @@ void SMTableStyleWidget::show(TableStyle *tableStyle, QList<TableStyle> &tableSt
 	rebuildAreaCombo(tableStyle);
 	showFillForCurrentArea(tableStyle);
 	showParagraphStyleForCurrentArea(tableStyle);
-
 	showBordersForCurrentArea(tableStyle);
+	showBasedOnForCurrentArea(tableStyle);
 
 	int headerRowCount = tableStyle->headerRows();
 	int totalRowCount = tableStyle->totalRows();
@@ -190,6 +195,27 @@ void SMTableStyleWidget::setBorders(const TableBorder& left, const TableBorder& 
 	m_rightBorder = right;
 	m_topBorder = top;
 	m_bottomBorder = bottom;
+
+	// Select the sides that have a border so the line list shows them. Without
+	// this, a side whose selection went stale (e.g. its line was removed, then
+	// restored by a reset) keeps a border value the widget never displays.
+	TableSides sel = TableSide::None;
+	if (!left.isNull())
+		sel |= TableSide::Left;
+	if (!right.isNull())
+		sel |= TableSide::Right;
+	if (!top.isNull())
+		sel |= TableSide::Top;
+	if (!bottom.isNull())
+		sel |= TableSide::Bottom;
+
+	bool b = sideSelector->blockSignals(true);
+	sideSelector->setSelection(sel);
+	sideSelector->blockSignals(b);
+
+	// Programmatic refresh: sync m_lastSelection so the selection-change
+	// handler does not treat this as a user toggle.
+	m_lastSelection = sel;
 
 	on_sideSelector_selectionChanged();
 }
@@ -518,10 +544,14 @@ void SMTableStyleWidget::showFillForCurrentArea(TableStyle *tableStyle)
 	}
 
 	// A conditional area edits its own anonymous CellStyle -- no parent UI.
+	// Resolve through the document cell styles so inherited fill/shade come
+	// from the based-on parent (matching what the table renders), and report
+	// the real inherited state rather than hardcoding "not inherited".
 	CellStyle cs = tableStyle->conditionalStyle(m_currentArea);
-	fillColor->setCurrentText(cs.fillColor(), false);
+	cs.setContext(&m_Doc->cellStyles());
+	fillColor->setCurrentText(cs.fillColor(), cs.isInhFillColor());
 	fillColor->setParentText(QString());
-	fillShade->setValue(qRound(cs.fillShade()), false);
+	fillShade->setValue(qRound(cs.fillShade()), cs.isInhFillShade());
 	fillShade->setParentValue(0);
 }
 
@@ -534,6 +564,7 @@ void SMTableStyleWidget::showBordersForCurrentArea(TableStyle *tableStyle)
 	else
 	{
 		CellStyle cs = tableStyle->conditionalStyle(m_currentArea);
+		cs.setContext(&m_Doc->cellStyles());
 		setBorders(cs.leftBorder(), cs.rightBorder(), cs.topBorder(), cs.bottomBorder());
 	}
 }
@@ -542,12 +573,28 @@ void SMTableStyleWidget::showParagraphStyleForCurrentArea(TableStyle *tableStyle
 {
 	QString psName;
 	if (m_currentArea == TableArea::WholeTable)
+	{
 		psName = tableStyle->paragraphStyleName();
+	}
 	else
-		psName = tableStyle->conditionalStyle(m_currentArea).paragraphStyleName();
+	{
+		// Resolve through the document cell styles so an inherited paragraph
+		// style name comes from the based-on parent, matching the render.
+		CellStyle cs = tableStyle->conditionalStyle(m_currentArea);
+		cs.setContext(&m_Doc->cellStyles());
+		psName = cs.paragraphStyleName();
+	}
 	bool b = paragraphStyleComboBox->blockSignals(true);
 	paragraphStyleComboBox->setStyle(psName);
 	paragraphStyleComboBox->blockSignals(b);
 }
 
-
+void SMTableStyleWidget::showBasedOnForCurrentArea(TableStyle *tableStyle)
+{
+	bool isCellArea = (m_currentArea != TableArea::WholeTable);
+	basedOnComboBox->setEnabled(isCellArea);
+	QString parentName = isCellArea ? tableStyle->conditionalStyle(m_currentArea).parent() : QString();
+	bool b = basedOnComboBox->blockSignals(true);
+	basedOnComboBox->setStyle(parentName);
+	basedOnComboBox->blockSignals(b);
+}

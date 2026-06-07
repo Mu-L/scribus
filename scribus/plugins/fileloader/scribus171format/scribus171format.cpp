@@ -3895,6 +3895,8 @@ void Scribus171Format::readTableStyle(ScribusDoc *doc, ScXmlStreamReader& reader
 void Scribus171Format::readConditionalCellStyle(ScribusDoc *doc, ScXmlStreamReader& reader, const ScXmlStreamAttributes& attrs, CellStyle& newStyle) const
 {
 	newStyle.erase();
+	if (attrs.hasAttribute("Parent"))
+		newStyle.setParent(attrs.valueAsString("Parent"));
 	if (attrs.hasAttribute("FillColor"))
 		newStyle.setFillColor(attrs.valueAsString("FillColor"));
 	if (attrs.hasAttribute("FillShade"))

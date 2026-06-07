@@ -1580,13 +1580,13 @@ void ScribusDoc::redefineTableStyles(const StyleSet<TableStyle>& newStyles, bool
 	}
 	m_docTableStyles.invalidate();
 
-	// Register synthetic conditional cell styles for all tables BEFORE
+	// Register conditional cell styles for all tables BEFORE
 	// refreshing, so updateCells() resolves them with the styles present.
 	auto syncItems = [](const QList<PageItem*>& items)
 	{
 		for (PageItem *item : items)
 			if (item && item->isTable())
-				item->asTable()->syncConditionalStylesToContext();
+				item->asTable()->rebuildAreaStyles();
 	};
 	syncItems(DocItems);
 	syncItems(MasterItems);
@@ -19100,18 +19100,6 @@ void ScribusDoc::refreshTableItems()
 	refresh(MasterItems);
 }
 
-void ScribusDoc::registerSyntheticCellStyle(const CellStyle& style)
-{
-	// Lightweight insert/update of a (synthetic) cell style without the
-	// invalidate-and-refresh cascade that redefineCellStyles triggers. Used
-	// by table conditional-formatting sync, which runs during refresh and
-	// must not re-enter it.
-	int idx = m_docCellStyles.find(style.name());
-	if (idx >= 0)
-		m_docCellStyles[idx] = style;   // update in place
-	else
-		m_docCellStyles.create(style);  // add new
-}
 
 
 void ScribusDoc::syncAllTableConditionalStyles()
@@ -19121,7 +19109,7 @@ void ScribusDoc::syncAllTableConditionalStyles()
 		for (PageItem *item : items)
 		{
 			if (item && item->isTable())
-				item->asTable()->syncConditionalStylesToContext();
+				item->asTable()->rebuildAreaStyles();
 		}
 	};
 	sync(DocItems);

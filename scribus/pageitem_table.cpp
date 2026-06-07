@@ -1926,7 +1926,7 @@ void PageItem_Table::setStyle(const QString& style)
 	}
 	doc()->dontResize = true;
 	m_style.setParent(style);
-	syncConditionalStylesToContext();
+	rebuildAreaStyles();
 	updateCells();
 	doc()->dontResize = false;
 	emit changed();
@@ -1945,7 +1945,7 @@ void PageItem_Table::unsetStyle()
 
 	doc()->dontResize = true;
 	m_style.setParent("");
-	syncConditionalStylesToContext();
+	rebuildAreaStyles();
 	updateCells();
 	doc()->dontResize = false;
 	emit changed();
@@ -1964,6 +1964,30 @@ void PageItem_Table::unsetDirectFormatting()
 	updateCells();
 	doc()->dontResize = false;
 	emit changed();
+}
+
+void PageItem_Table::rebuildAreaStyles()
+{
+	m_areaStyles.clear(false);
+	m_areaStyles.setContext(&m_Doc->cellStyles());
+
+	const CellStyle* defCell = m_Doc->cellStyles().getDefault();
+	const QString defCellName = defCell ? defCell->name() : QString();
+
+	const QList<TableArea> areas = m_style.conditionalAreasResolved();
+	for (TableArea area : areas)
+	{
+		CellStyle cs = m_style.conditionalStyleResolved(area);
+		cs.setName(tableAreaToString(area));
+		// Inherit unset attributes (e.g. the default 1pt border) from the
+		// document's default cell style,
+		// where an empty parent resolved to the doc cell-style default.
+		// A user-chosen "based on" parent (later feature) is preserved.
+		if (cs.parent().isEmpty() && !defCellName.isEmpty())
+			cs.setParent(defCellName);
+		m_areaStyles.create(cs);
+	}
+	m_areaStyles.invalidate();
 }
 
 const TableStyle& PageItem_Table::style() const
@@ -2035,34 +2059,12 @@ TableArea PageItem_Table::areaAt(int row, int column) const
 	return TableArea::BodyCell;
 }
 
-QString PageItem_Table::areaStyleName(TableArea area) const
+QString PageItem_Table::areaStyleNameBare(TableArea area) const
 {
 	if (!m_style.hasConditionalStyleResolved(area))
 		return QString();
-	return conditionalSyntheticName(area);
+	return tableAreaToString(area);
 }
-
-QString PageItem_Table::conditionalSyntheticName(TableArea area) const
-{
-	// Synthetic, non-user-visible name. Keyed on the owning table style's name
-	// so that all tables using the same style share one set of synthetic
-	// conditional cell styles (rather than one set per table instance, which
-	// proliferates). The conditionals live on the named parent style, so for a
-	// direct (unnamed) m_style we key on its parent's name. Only a direct style
-	// with no parent at all falls back to the item pointer.
-	//
-	// NOTE: this synthetic-name bridge reuses the existing name-based parent
-	// resolution. Switching to a by-proxy parent (so a user-assigned cell style
-	// can sit between the cell and the conditional) is a potential later step.
-	QString owner = m_style.name();
-	if (owner.isEmpty())
-		owner = m_style.parent();
-	if (owner.isEmpty())
-		owner = QString::number(reinterpret_cast<quintptr>(this), 16);
-	return QStringLiteral("__cond_") + owner + QStringLiteral("_") + tableAreaToString(area);
-}
-
-
 
 void PageItem_Table::handleStyleChanged()
 {
@@ -2365,7 +2367,7 @@ void PageItem_Table::updateCells(int startRow, int startColumn, int endRow, int 
 	{
 		for (int column = 0; column < m_columns; ++column)
 		{
-			QString an = areaStyleName(areaAt(row, column));
+			QString an = areaStyleNameBare(areaAt(row, column));
 			m_cellRows[row][column].applyAreaStyle(an);
 		}
 	}
@@ -2882,24 +2884,6 @@ void PageItem_Table::restore(UndoState *state, bool isUndo)
 		if (state->transactionCode == 0 || state->transactionCode == 2)
 			this->update();
 	}
-}
-
-void PageItem_Table::syncConditionalStylesToContext()
-{
-	const QList<TableArea> areas = m_style.conditionalAreasResolved();
-	for (TableArea area : areas)
-	{
-		CellStyle cs = m_style.conditionalStyleResolved(area);
-		for (TableArea area : areas)
-		{
-			CellStyle cs = m_style.conditionalStyleResolved(area);
-			cs.setName(conditionalSyntheticName(area));
-			m_Doc->registerSyntheticCellStyle(cs);
-		}
-		cs.setName(conditionalSyntheticName(area));
-		m_Doc->registerSyntheticCellStyle(cs);
-	}
-	m_Doc->invalidateCellStyles();
 }
 
 void PageItem_Table::restoreCellBorders(SimpleState *state, bool isUndo)
