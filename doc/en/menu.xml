@@ -86,8 +86,8 @@
 			<submenuitem text="Rendering Intents" file="cms3.html"/>
 		</submenuitem>
 		<submenuitem text="DTP Toolbox" file="toolbox.html">
-			<submenuitem text="Adobe Reader" file="toolbox1.html"/>
-			<submenuitem text="PDF/PostScript Tools" file="toolbox2.html"/>
+			<submenuitem text="Adobe Reader and Okular" file="toolbox1.html"/>
+			<submenuitem text="PDF Tools" file="toolbox2.html"/>
 			<submenuitem text="Ghostscript" file="toolbox5.html"/>
 			<submenuitem text="GSview" file="toolbox6.html"/>
 			<submenuitem text="GIMP" file="toolbox4.html"/>
