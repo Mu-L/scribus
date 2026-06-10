@@ -427,8 +427,8 @@ void SMTableStyle::setupConnections()
 {
 	if (!m_page)
 		return;
-	connect(m_page->fillColor, SIGNAL(currentTextChanged(QString)), this, SLOT(slotFillColor()));
-	connect(m_page->fillShade, SIGNAL(clicked()), this, SLOT(slotFillShade()));
+	connect(m_page->buttonFillColor->colorButton, SIGNAL(changed()), this, SLOT(slotFillColor()));
+	connect(m_page->buttonFillColor->parentButton, SIGNAL(clicked()), this, SLOT(slotFillColor()));
 	connect(m_page->parentCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(slotParentChanged(QString)));
 	connect(m_page, SIGNAL(bordersChanged(TableSides, TableBorder)), this, SLOT(slotBordersChanged(TableSides, TableBorder)));
 	connect(m_page->headerRowsSpinBox, SIGNAL(valueChanged(int)), this, SLOT(slotHeaderRows()));
@@ -447,8 +447,8 @@ void SMTableStyle::removeConnections()
 {
 	if (!m_page)
 		return;
-	disconnect(m_page->fillColor, SIGNAL(currentTextChanged(QString)), this, SLOT(slotFillColor()));
-	disconnect(m_page->fillShade, SIGNAL(clicked()), this, SLOT(slotFillShade()));
+	disconnect(m_page->buttonFillColor->colorButton, SIGNAL(changed()), this, SLOT(slotFillColor()));
+	disconnect(m_page->buttonFillColor->parentButton, SIGNAL(clicked()), this, SLOT(slotFillColor()));
 	disconnect(m_page->parentCombo, SIGNAL(currentTextChanged(QString)), this, SLOT(slotParentChanged(QString)));
 	disconnect(m_page, SIGNAL(bordersChanged(TableSides, TableBorder)), this, SLOT(slotBordersChanged(TableSides, TableBorder)));
 	disconnect(m_page->headerRowsSpinBox, SIGNAL(valueChanged(int)), this, SLOT(slotHeaderRows()));
@@ -466,49 +466,36 @@ void SMTableStyle::removeConnections()
 void SMTableStyle::slotFillColor()
 {
 	TableArea area = m_page->currentArea();
-	QString col = m_page->fillColor->currentText();
+	QString col = m_page->buttonFillColor->colorButton->colorName();
+	int fs = m_page->buttonFillColor->colorButton->colorData().Shade;
 
 	for (int i = 0; i < m_selection.count(); ++i)
 	{
 		if (area == TableArea::WholeTable)
 		{
-			if (m_page->fillColor->useParentValue())
+			if (m_page->buttonFillColor->useParentValue())
+			{
 				m_selection[i]->resetFillColor();
+				m_selection[i]->resetFillShade();
+			}
 			else
+			{
 				m_selection[i]->setFillColor(col);
+				m_selection[i]->setFillShade(fs);
+			}
 		}
 		else
 		{
 			CellStyle cs = m_selection[i]->conditionalStyle(area);
 			cs.setFillColor(col);
-			m_selection[i]->setConditionalStyle(area, cs);
-		}
-	}
-	if (!m_selectionIsDirty)
-	{
-		m_selectionIsDirty = true;
-		emit selectionDirty();
-	}
-}
-
-void SMTableStyle::slotFillShade()
-{
-	TableArea area = m_page->currentArea();
-	int fs = m_page->fillShade->getValue();
-
-	for (int i = 0; i < m_selection.count(); ++i)
-	{
-		if (area == TableArea::WholeTable)
-		{
-			if (m_page->fillShade->useParentValue())
-				m_selection[i]->resetFillShade();
-			else
-				m_selection[i]->setFillShade(fs);
-		}
-		else
-		{
-			CellStyle cs = m_selection[i]->conditionalStyle(area);
 			cs.setFillShade(fs);
+
+			if (m_page->buttonFillColor->useParentValue())
+			{
+				cs.resetFillColor();
+				cs.resetFillShade();
+			}
+
 			m_selection[i]->setConditionalStyle(area, cs);
 		}
 	}
