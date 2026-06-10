@@ -156,6 +156,7 @@ void PropertiesPalette_Table::handleSelectionChanged()
 		m_item = nullptr;
 
 	syncSideSelectorToCells();
+	on_sideSelector_selectionChanged();
 
 	updateFillControls();
 	updateStyleControls();
