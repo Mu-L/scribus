@@ -5316,17 +5316,17 @@ aktualisht %2 x %3 DPI</translation>
 <context>
     <name>ColorPicker</name>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="604"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="606"/>
         <source>Knockout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="605"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="607"/>
         <source>Overprint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="608"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="610"/>
         <source>Display only used colors</source>
         <translation>Shfaq vetëm ngjyrat e përdorura</translation>
     </message>
@@ -5356,42 +5356,42 @@ aktualisht %2 x %3 DPI</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/colorpicker/colorpicker_color.ui" line="120"/>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="242"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="220"/>
         <source>Color Swatches</source>
         <translation>Mostra Ngjyrash</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="148"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="126"/>
         <source>Opacity: %1 %</source>
         <translation>Patejdukshmëri: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="151"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="129"/>
         <source>&lt;br&gt; Shade: %1 %</source>
         <translation>&lt;br&gt; Hije: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="152"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="130"/>
         <source>&lt;br&gt; Opacity: %1 %</source>
         <translation>&lt;br&gt; Patejdukshmëri: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="168"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="146"/>
         <source>R: %1 G: %2 B: %3</source>
         <translation>R: %1 G: %2 B: %3</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="175"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="153"/>
         <source>C: %1% M: %2% Y: %3% K: %4%</source>
         <translation>C: %1% M: %2% Y: %3% K: %4%</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="182"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="160"/>
         <source>L: %1 a: %2 b: %3</source>
         <translation>L: %1 a: %2 b: %3</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="190"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="168"/>
         <source>Color: %1 (%2)</source>
         <translation>Ngjyrë: %1 (%2)</translation>
     </message>
@@ -24566,52 +24566,52 @@ faqeje njëshe</translation>
 <context>
     <name>PropertiesPalette_Table</name>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="897"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
         <source>Styles</source>
         <translation type="unfinished">Stile</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
         <source>Fill</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
         <source>Borders</source>
         <translation type="unfinished">Anë</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="901"/>
         <source>Cell Padding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="902"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
         <source>C&amp;olor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
         <source>S&amp;hade</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
         <source>&amp;Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
         <source>&amp;Width</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
         <source>&amp;Color</source>
         <translation type="unfinished">Ngj&amp;yrë</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="908"/>
         <source>&amp;Shade</source>
         <translation type="unfinished"></translation>
     </message>
@@ -31296,130 +31296,6 @@ të thirrur.
         <translation>Rumanisht</translation>
     </message>
     <message>
-        <source>Books</source>
-        <translation type="vanished">Libra</translation>
-    </message>
-    <message>
-        <source>ISO A Paper</source>
-        <translation type="vanished">Letër ISO A</translation>
-    </message>
-    <message>
-        <source>ISO B Paper</source>
-        <translation type="vanished">Letër ISO B</translation>
-    </message>
-    <message>
-        <source>ISO C Envelope</source>
-        <translation type="vanished">Zarf ISO C</translation>
-    </message>
-    <message>
-        <source>International Envelopes</source>
-        <translation type="vanished">Zarfe Ndërkombëtarë</translation>
-    </message>
-    <message>
-        <source>Newspapers</source>
-        <translation type="vanished">Gazeta</translation>
-    </message>
-    <message>
-        <source>Others</source>
-        <translation type="vanished">Të tjera</translation>
-    </message>
-    <message>
-        <source>US Envelopes</source>
-        <translation type="vanished">Zarfe ShBA</translation>
-    </message>
-    <message>
-        <source>A Format</source>
-        <translation type="vanished">Format A</translation>
-    </message>
-    <message>
-        <source>B Format</source>
-        <translation type="vanished">Format B</translation>
-    </message>
-    <message>
-        <source>C Format</source>
-        <translation type="vanished">Format C</translation>
-    </message>
-    <message>
-        <source>Comic Book</source>
-        <translation type="vanished">Libër Me Figura</translation>
-    </message>
-    <message>
-        <source>Europe</source>
-        <translation type="vanished">Evropë</translation>
-    </message>
-    <message>
-        <source>ISO 7810 ID-1</source>
-        <translation type="vanished">ISO 7810 ID-1</translation>
-    </message>
-    <message>
-        <source>US/Canada</source>
-        <translation type="vanished">ShBA/Kanada</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="vanished">Kinë</translation>
-    </message>
-    <message>
-        <source>Scandinavia</source>
-        <translation type="vanished">Skandinavi</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="vanished">Japoni</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="vanished">Hungari</translation>
-    </message>
-    <message>
-        <source>Iran</source>
-        <translation type="vanished">Iran</translation>
-    </message>
-    <message>
-        <source>ISO 216</source>
-        <translation type="vanished">ISO 216</translation>
-    </message>
-    <message>
-        <source>New York Times</source>
-        <translation type="vanished">New York Times</translation>
-    </message>
-    <message>
-        <source>Wall Street Journal</source>
-        <translation type="vanished">Wall Street Journal</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (5 mm)</source>
-        <translation type="vanished">Kopertinë Blu-Ray (5 mm)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (12 mm)</source>
-        <translation type="vanished">Kopertinë Blu-Ray (12 mm)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (14 mm)</source>
-        <translation type="vanished">Kopertinë Blu-Ray (14 mm)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (24 mm)</source>
-        <translation type="vanished">Kopertinë Blu-Ray (24 mm)</translation>
-    </message>
-    <message>
-        <source>Cassette Cover (J-Card)</source>
-        <translation type="vanished">Kopertinë Kasete (J-Card)</translation>
-    </message>
-    <message>
-        <source>Cassette Cover (U-Card)</source>
-        <translation type="vanished">Kopertinë Kasete (U-Card)</translation>
-    </message>
-    <message>
-        <source>DVD Cover Normal</source>
-        <translation type="vanished">Kopertinë DVD-sh Normalë</translation>
-    </message>
-    <message>
-        <source>DVD Cover Slim</source>
-        <translation type="vanished">Kopertinë DVD-sh të Hollë</translation>
-    </message>
-    <message>
         <location filename="../../scribus/imagedataloaders/scimgdataloader_tiff.cpp" line="291"/>
         <source>This image uses an unsupported non integer sample format</source>
         <translation type="unfinished"></translation>
@@ -33851,7 +33727,7 @@ Projekti i Çlirimit të Dokumenteve https://www.documentliberation.org</transla
         <translation>Stil i Ri</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstyle.cpp" line="520"/>
+        <location filename="../../scribus/ui/smcellstyle.cpp" line="501"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33859,69 +33735,75 @@ Projekti i Çlirimit të Dokumenteve https://www.documentliberation.org</transla
 <context>
     <name>SMCellStyleWidget</name>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="38"/>
         <source>Colors</source>
-        <translation>Ngjyra</translation>
+        <translation type="vanished">Ngjyra</translation>
+    </message>
+    <message>
+        <source>Fill Color</source>
+        <translation type="vanished">Ngjyrë Mbushjeje</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="68"/>
-        <source>Fill Color</source>
-        <translation>Ngjyrë Mbushjeje</translation>
+        <source>Fill</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="116"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="103"/>
         <source>Borders</source>
         <translation type="unfinished">Anë</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="253"/>
-        <source>Width:</source>
-        <translation type="unfinished">Gjerësi:</translation>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="242"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="73"/>
+        <source>Width</source>
+        <translation type="unfinished">Gjerësi</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="266"/>
-        <source>Color:</source>
-        <translation type="unfinished">Ngjyrë:</translation>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="288"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="72"/>
+        <source>Type</source>
+        <translation type="unfinished">Lloj</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="327"/>
-        <source>Type:</source>
-        <translation type="unfinished">Lloj:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="359"/>
-        <source>Shade:</source>
-        <translation type="unfinished">Hije:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="384"/>
-        <source> %</source>
-        <translation type="unfinished"> %</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="407"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="346"/>
         <source>Cell Padding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="19"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="34"/>
         <source>Based On:</source>
         <translation>Bazuar Në:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="88"/>
         <source>Fill Shade</source>
-        <translation>Hije Mbushjeje</translation>
+        <translation type="vanished">Hije Mbushjeje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="190"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="26"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="30"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="67"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="70"/>
+        <source>Color</source>
+        <translation type="unfinished">Ngjyrë</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="66"/>
+        <source>Border color of table cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="69"/>
+        <source>Fill color of table cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="182"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="238"/>
         <source>Shade</source>
-        <translation>Hijesoje</translation>
+        <translation type="vanished">Hijesoje</translation>
     </message>
 </context>
 <context>
@@ -34727,7 +34609,7 @@ Një vlerë 0 do të thotë ndarje të pakufizuara.</translation>
         <translation>Stil i Ri</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestyle.cpp" line="553"/>
+        <location filename="../../scribus/ui/smtablestyle.cpp" line="540"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -34735,181 +34617,177 @@ Një vlerë 0 do të thotë ndarje të pakufizuara.</translation>
 <context>
     <name>SMTableStyleWidget</name>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="40"/>
-        <source>Editing Area:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="61"/>
-        <source>Cell Style Based On:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="87"/>
         <source>Colors</source>
-        <translation>Ngjyra</translation>
+        <translation type="vanished">Ngjyra</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="111"/>
         <source>Fill Color</source>
-        <translation>Ngjyrë Mbushjeje</translation>
+        <translation type="vanished">Ngjyrë Mbushjeje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="153"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="305"/>
         <source>Borders</source>
         <translation type="unfinished">Anë</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="290"/>
-        <source>Width:</source>
-        <translation type="unfinished">Gjerësi:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="303"/>
-        <source>Color:</source>
-        <translation type="unfinished">Ngjyrë:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="364"/>
-        <source>Type:</source>
-        <translation type="unfinished">Lloj:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="396"/>
-        <source>Shade:</source>
-        <translation type="unfinished">Hije:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="421"/>
-        <source> %</source>
-        <translation type="unfinished"> %</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="565"/>
         <source>Conditional Formatting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="452"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="623"/>
+        <source>Number of Total Rows:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="630"/>
         <source>Number of Header Rows:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="483"/>
-        <source>Number of Totals Rows:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="188"/>
+        <source>Width</source>
+        <translation type="unfinished">Gjerësi</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="512"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="490"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="187"/>
+        <source>Type</source>
+        <translation type="unfinished">Lloj</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="586"/>
         <source>Banded Rows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="519"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="593"/>
         <source>Banded Columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="526"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="502"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="600"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="475"/>
         <source>First Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="533"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="504"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="607"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="477"/>
         <source>Last Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="543"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="223"/>
         <source>Text</source>
-        <translation type="unfinished">Tekst</translation>
+        <translation>Tekst</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="555"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="188"/>
+        <source>Fill</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="277"/>
         <source>Paragraph style of currently selected text or paragraph</source>
         <translation type="unfinished">Stil paragrafi për tekstin ose paragrafin e përzgjedhur aktualisht</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="19"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="34"/>
         <source>Based On:</source>
         <translation>Bazuar Në:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="108"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="114"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="156"/>
         <source>Shade</source>
-        <translation>Hijesoje</translation>
+        <translation type="vanished">Hijesoje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="29"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="33"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="182"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="185"/>
+        <source>Color</source>
+        <translation type="unfinished">Ngjyrë</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="181"/>
+        <source>Border color of table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="184"/>
+        <source>Fill color of table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="458"/>
         <source>Whole Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="486"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="459"/>
         <source>Body Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="488"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="461"/>
         <source>Header Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="490"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="463"/>
         <source>Total Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="493"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="466"/>
         <source>Banded Row (odd)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="494"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="467"/>
         <source>Banded Row (even)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="498"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="471"/>
         <source>Banded Column (odd)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="499"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="472"/>
         <source>Banded Column (even)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="506"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="479"/>
         <source>Top Left Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="508"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="481"/>
         <source>Top Right Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="510"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="483"/>
         <source>Bottom Left Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="512"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
         <source>Bottom Right Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="125"/>
         <source>Fill Shade</source>
-        <translation>Hije Mbushjeje</translation>
+        <translation type="vanished">Hije Mbushjeje</translation>
     </message>
 </context>
 <context>

@@ -5378,17 +5378,17 @@ currently %2 x %3 DPI</source>
 <context>
     <name>ColorPicker</name>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="604"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="606"/>
         <source>Knockout</source>
         <translation>Kiütés</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="605"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="607"/>
         <source>Overprint</source>
         <translation>Felülnyomás</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="608"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="610"/>
         <source>Display only used colors</source>
         <translation>Csak az alkalmazott színek</translation>
     </message>
@@ -5418,42 +5418,42 @@ currently %2 x %3 DPI</source>
     </message>
     <message>
         <location filename="../../scribus/ui/colorpicker/colorpicker_color.ui" line="120"/>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="242"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="220"/>
         <source>Color Swatches</source>
         <translation>Színminták</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="148"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="126"/>
         <source>Opacity: %1 %</source>
         <translation>Átlátszatlanság: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="151"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="129"/>
         <source>&lt;br&gt; Shade: %1 %</source>
         <translation>&lt;br&gt; Árnyalat: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="152"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="130"/>
         <source>&lt;br&gt; Opacity: %1 %</source>
         <translation>&lt;br&gt; Átlátszatlanság: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="168"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="146"/>
         <source>R: %1 G: %2 B: %3</source>
         <translation>R: %1 G: %2 B: %3</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="175"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="153"/>
         <source>C: %1% M: %2% Y: %3% K: %4%</source>
         <translation>C: %1% M: %2% Y: %3% K: %4%</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="182"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="160"/>
         <source>L: %1 a: %2 b: %3</source>
         <translation>L: %1 a: %2 b: %3</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="190"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="168"/>
         <source>Color: %1 (%2)</source>
         <translation>Szín: %1 (%2)</translation>
     </message>
@@ -13359,24 +13359,25 @@ Ha egy sincs kijelölve, az összes alaphelyzetbe lesz állítva.</translation>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="483"/>
         <source>Empty Preset Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Üres előbeállítás név</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="483"/>
         <source>The preset name must not be empty!
 Enter a preset name.</source>
-        <translation type="unfinished"></translation>
+        <translation>Az előbeállítás neve nem lehet üres!
+Írjon be egy előbeállítás nevet.</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="494"/>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="496"/>
         <source>User</source>
-        <translation type="unfinished">Felhasználó</translation>
+        <translation>Felhasználó</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="495"/>
         <source>Copyright by user</source>
-        <translation type="unfinished"></translation>
+        <translation>Szerzői felhasználói jog</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="757"/>
@@ -15961,7 +15962,7 @@ Gyakran csak arra használatos, hogy az oldalak a teljes rajzvásznat elfoglalj�
     <message>
         <location filename="../../scribus/ui/widgets/pagesizelist.cpp" line="264"/>
         <source>Delete Preset</source>
-        <translation type="unfinished"></translation>
+        <translation>Előbeállítás törlése</translation>
     </message>
 </context>
 <context>
@@ -24676,54 +24677,54 @@ Figyelem: a PDF űrlapok nem kerülnek exportálásra.</translation>
 <context>
     <name>PropertiesPalette_Table</name>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="897"/>
-        <source>Styles</source>
-        <translation type="unfinished">Stílusok</translation>
-    </message>
-    <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
-        <source>Fill</source>
-        <translation type="unfinished">Kitöltés</translation>
+        <source>Styles</source>
+        <translation>Stílusok</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
-        <source>Borders</source>
-        <translation type="unfinished">Szegélyek</translation>
+        <source>Fill</source>
+        <translation>Kitöltés</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
-        <source>Cell Padding</source>
-        <translation type="unfinished">Cellatérköz</translation>
+        <source>Borders</source>
+        <translation>Szegélyek</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="902"/>
-        <source>C&amp;olor</source>
-        <translation type="unfinished">&amp;Szín</translation>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="901"/>
+        <source>Cell Padding</source>
+        <translation>Cellatérköz</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
-        <source>S&amp;hade</source>
-        <translation type="unfinished"></translation>
+        <source>C&amp;olor</source>
+        <translation>&amp;Szín</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
-        <source>&amp;Type</source>
-        <translation type="unfinished"></translation>
+        <source>S&amp;hade</source>
+        <translation>&amp;Árnyalat</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
-        <source>&amp;Width</source>
-        <translation type="unfinished">&amp;Szélesség</translation>
+        <source>&amp;Type</source>
+        <translation>&amp;Típus</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
-        <source>&amp;Color</source>
-        <translation type="unfinished">&amp;Szín</translation>
+        <source>&amp;Width</source>
+        <translation>&amp;Szélesség</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
+        <source>&amp;Color</source>
+        <translation>&amp;Szín</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="908"/>
         <source>&amp;Shade</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Árnyalat</translation>
     </message>
 </context>
 <context>
@@ -24750,13 +24751,13 @@ Figyelem: a PDF űrlapok nem kerülnek exportálásra.</translation>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="223"/>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="582"/>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Szín</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="269"/>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="628"/>
         <source>Shade</source>
-        <translation type="unfinished">Árnyalat</translation>
+        <translation>Árnyalat</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="340"/>
@@ -24766,12 +24767,12 @@ Figyelem: a PDF űrlapok nem kerülnek exportálásra.</translation>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="470"/>
         <source>Width</source>
-        <translation type="unfinished">Szélesség</translation>
+        <translation>Szélesség</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="516"/>
         <source>Type</source>
-        <translation type="unfinished">Típus</translation>
+        <translation>Típus</translation>
     </message>
     <message>
         <source>Width:</source>
@@ -31414,178 +31415,6 @@ Ez egy érvénytelen érték: %1.</translation>
         <translation type="vanished">Folio</translation>
     </message>
     <message>
-        <source>Preferred</source>
-        <translation type="vanished">Előnyben részesített</translation>
-    </message>
-    <message>
-        <source>Books</source>
-        <translation type="vanished">Könyvek</translation>
-    </message>
-    <message>
-        <source>Canadian</source>
-        <translation type="vanished">Kanadai</translation>
-    </message>
-    <message>
-        <source>Colombian</source>
-        <translation type="vanished">Kolumbiai</translation>
-    </message>
-    <message>
-        <source>Imperial</source>
-        <translation type="vanished">Birodalmi</translation>
-    </message>
-    <message>
-        <source>ISO A Paper</source>
-        <translation type="vanished">ISO A papír</translation>
-    </message>
-    <message>
-        <source>ISO B Paper</source>
-        <translation type="vanished">ISO B papír</translation>
-    </message>
-    <message>
-        <source>ISO C Envelope</source>
-        <translation type="vanished">ISO C boríték</translation>
-    </message>
-    <message>
-        <source>International Envelopes</source>
-        <translation type="vanished">Nemzetközi borítékok</translation>
-    </message>
-    <message>
-        <source>Newspapers</source>
-        <translation type="vanished">Újságok</translation>
-    </message>
-    <message>
-        <source>Others</source>
-        <translation type="vanished">Egyéb</translation>
-    </message>
-    <message>
-        <source>Transitional</source>
-        <translation type="vanished">Átmeneti</translation>
-    </message>
-    <message>
-        <source>US Paper</source>
-        <translation type="vanished">Amerikai papír</translation>
-    </message>
-    <message>
-        <source>US Press</source>
-        <translation type="vanished">Amerikai nyomda</translation>
-    </message>
-    <message>
-        <source>US Envelopes</source>
-        <translation type="vanished">Amerikai borítékok</translation>
-    </message>
-    <message>
-        <source>Folio</source>
-        <translation type="vanished">Fólió</translation>
-    </message>
-    <message>
-        <source>4to (Quarto)</source>
-        <translation type="vanished">4to (Quarto)</translation>
-    </message>
-    <message>
-        <source>8vo (Imperial Octavo)</source>
-        <translation type="vanished">8vo (Birodalmi octavo)</translation>
-    </message>
-    <message>
-        <source>8vo (Super Octavo)</source>
-        <translation type="vanished">8vo (Szuper octavo)</translation>
-    </message>
-    <message>
-        <source>8vo (Royal Octavo)</source>
-        <translation type="vanished">8vo (Királyi octavo)</translation>
-    </message>
-    <message>
-        <source>8vo (Medium Octavo)</source>
-        <translation type="vanished">8vo (Közepes octavo)</translation>
-    </message>
-    <message>
-        <source>8vo (Octavo)</source>
-        <translation type="vanished">8vo (Octavo)</translation>
-    </message>
-    <message>
-        <source>8vo (Crown Octavo)</source>
-        <translation type="vanished">8vo (Korona octavo)</translation>
-    </message>
-    <message>
-        <source>12mo (Duodecimo)</source>
-        <translation type="vanished">12mo (Duodecimo)</translation>
-    </message>
-    <message>
-        <source>16mo (Sextodecimo)</source>
-        <translation type="vanished">16mo (Sextodecimo)</translation>
-    </message>
-    <message>
-        <source>18mo (Octodecimo)</source>
-        <translation type="vanished">18mo (Octodecimo)</translation>
-    </message>
-    <message>
-        <source>32mo (Tricesimo Secondo)</source>
-        <translation type="vanished">32mo (Tricesimo secondo)</translation>
-    </message>
-    <message>
-        <source>48mo (Quadragesimo Octavo)</source>
-        <translation type="vanished">48mo (Quadragesimo octavo)</translation>
-    </message>
-    <message>
-        <source>64mo (Sexagesimo Quarto)</source>
-        <translation type="vanished">64mo (Sexagesimo quarto)</translation>
-    </message>
-    <message>
-        <source>A Format</source>
-        <translation type="vanished">A-formátum</translation>
-    </message>
-    <message>
-        <source>B Format</source>
-        <translation type="vanished">B-formátum</translation>
-    </message>
-    <message>
-        <source>C Format</source>
-        <translation type="vanished">C-formátum</translation>
-    </message>
-    <message>
-        <source>Comic Book</source>
-        <translation type="vanished">Képregény</translation>
-    </message>
-    <message>
-        <source>Crown Quarto</source>
-        <translation type="vanished">Crown Quarto</translation>
-    </message>
-    <message>
-        <source>Europe</source>
-        <translation type="vanished">Európa</translation>
-    </message>
-    <message>
-        <source>ISO 7810 ID-1</source>
-        <translation type="vanished">ISO 7810 ID-1</translation>
-    </message>
-    <message>
-        <source>US/Canada</source>
-        <translation type="vanished">Amerika/Kanada</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="vanished">Kína</translation>
-    </message>
-    <message>
-        <source>Scandinavia</source>
-        <translation type="vanished">Skandinávia</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="vanished">Japán</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="vanished">Magyarország</translation>
-    </message>
-    <message>
-        <source>Iran</source>
-        <translation type="vanished">Irán</translation>
-    </message>
-    <message>
-        <source>ISO 216</source>
-        <translation type="vanished">ISO 216</translation>
-    </message>
-    <message>
         <source>Executive</source>
         <translation type="vanished">Executive</translation>
     </message>
@@ -31628,130 +31457,6 @@ Ez egy érvénytelen érték: %1.</translation>
     <message>
         <source>STMT</source>
         <translation type="vanished">STMT</translation>
-    </message>
-    <message>
-        <source>AU/NZ Broadsheet</source>
-        <translation type="vanished">Ausztrál/Új zélandi nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>Berliner Broadsheet</source>
-        <translation type="vanished">Berlini nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>Ciner</source>
-        <translation type="vanished">Ciner</translation>
-    </message>
-    <message>
-        <source>New York Times</source>
-        <translation type="vanished">New York Times</translation>
-    </message>
-    <message>
-        <source>Nordisch Broadsheet</source>
-        <translation type="vanished">Skandináv nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>Rhenish Broadsheet</source>
-        <translation type="vanished">Rajnai nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>SA Broadsheet</source>
-        <translation type="vanished">Szaúd-arábiai nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>Swiss Broadsheet</source>
-        <translation type="vanished">Svájci nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>UK Broadsheet</source>
-        <translation type="vanished">Brit nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>US Broadsheet</source>
-        <translation type="vanished">Amerikai nagyalakú újság</translation>
-    </message>
-    <message>
-        <source>Wall Street Journal</source>
-        <translation type="vanished">Wall Street Journal</translation>
-    </message>
-    <message>
-        <source>Berliner Tabloid</source>
-        <translation type="vanished">Berlini kisalakú újság</translation>
-    </message>
-    <message>
-        <source>Canadian Tabloid</source>
-        <translation type="vanished">Kanadai kisalakú újság</translation>
-    </message>
-    <message>
-        <source>Canadian Tall Tabloid</source>
-        <translation type="vanished">Kanadai magas kisalakú újság</translation>
-    </message>
-    <message>
-        <source>Nordisch Tabloid</source>
-        <translation type="vanished">Skandináv kisalakú újság</translation>
-    </message>
-    <message>
-        <source>Norwegian Tabloid</source>
-        <translation type="vanished">Norvég kisalakú újság</translation>
-    </message>
-    <message>
-        <source>Rhenish Tabloid</source>
-        <translation type="vanished">Rajnai kisalakú újság</translation>
-    </message>
-    <message>
-        <source>UK Tabloid</source>
-        <translation type="vanished">Brit kisalakú újság</translation>
-    </message>
-    <message>
-        <source>Compact</source>
-        <translation type="vanished">Kompakt</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (5 mm)</source>
-        <translation type="vanished">Blu-Ray borító (5 mm)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (12 mm)</source>
-        <translation type="vanished">Blu-Ray borító (12 mm)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (14 mm)</source>
-        <translation type="vanished">Blu-Ray borító (14 mm)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (24 mm)</source>
-        <translation type="vanished">Blu-Ray borító (24 mm)</translation>
-    </message>
-    <message>
-        <source>Cassette Cover (J-Card)</source>
-        <translation type="vanished">Kazetta borító (J-kártya)</translation>
-    </message>
-    <message>
-        <source>Cassette Cover (U-Card)</source>
-        <translation type="vanished">Kazetta borító (U-kártya)</translation>
-    </message>
-    <message>
-        <source>Compact Disc (Front)</source>
-        <translation type="vanished">Kompaktlemez (borító)</translation>
-    </message>
-    <message>
-        <source>Compact Disc (Back)</source>
-        <translation type="vanished">Kompaktlemez (hátlap)</translation>
-    </message>
-    <message>
-        <source>Compact Disc (Front Double)</source>
-        <translation type="vanished">Kompaktlemez (dupla borítő)</translation>
-    </message>
-    <message>
-        <source>Vinyl LP</source>
-        <translation type="vanished">Vinyl hanglemez</translation>
-    </message>
-    <message>
-        <source>DVD Cover Normal</source>
-        <translation type="vanished">Normál DVD borító</translation>
-    </message>
-    <message>
-        <source>DVD Cover Slim</source>
-        <translation type="vanished">Vékony DVD borító</translation>
     </message>
     <message>
         <location filename="../../scribus/imagedataloaders/scimgdataloader_tiff.cpp" line="291"/>
@@ -34188,7 +33893,7 @@ Document Liberation Project számára: https://www.documentliberation.org</trans
         <translation>Új stílus</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstyle.cpp" line="520"/>
+        <location filename="../../scribus/ui/smcellstyle.cpp" line="501"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation>Ha ez lenne szülőnek megadva, végtelen ciklus jönne létre.</translation>
     </message>
@@ -34196,69 +33901,95 @@ Document Liberation Project számára: https://www.documentliberation.org</trans
 <context>
     <name>SMCellStyleWidget</name>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="38"/>
         <source>Colors</source>
-        <translation>Színek</translation>
+        <translation type="vanished">Színek</translation>
+    </message>
+    <message>
+        <source>Fill Color</source>
+        <translation type="vanished">Kitöltőszín</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="68"/>
-        <source>Fill Color</source>
-        <translation>Kitöltőszín</translation>
+        <source>Fill</source>
+        <translation type="unfinished">Kitöltés</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="116"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="103"/>
         <source>Borders</source>
         <translation>Szegélyek</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="253"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="242"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="73"/>
+        <source>Width</source>
+        <translation type="unfinished">Szélesség</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="288"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="72"/>
+        <source>Type</source>
+        <translation type="unfinished">Típus</translation>
+    </message>
+    <message>
         <source>Width:</source>
-        <translation>Szélesség:</translation>
+        <translation type="vanished">Szélesség:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="266"/>
         <source>Color:</source>
-        <translation>Szín:</translation>
+        <translation type="vanished">Szín:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="327"/>
         <source>Type:</source>
-        <translation>Típus:</translation>
+        <translation type="vanished">Típus:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="359"/>
         <source>Shade:</source>
-        <translation>Árnyalat:</translation>
+        <translation type="vanished">Árnyalat:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="384"/>
         <source> %</source>
-        <translation> %</translation>
+        <translation type="vanished"> %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="407"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="346"/>
         <source>Cell Padding</source>
         <translation>Cellatérköz</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="19"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="34"/>
         <source>Based On:</source>
         <translation>Ezen alapul:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="88"/>
         <source>Fill Shade</source>
-        <translation>Kitöltés árnyalata</translation>
+        <translation type="vanished">Kitöltés árnyalata</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="190"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="26"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="30"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="67"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="70"/>
+        <source>Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="66"/>
+        <source>Border color of table cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="69"/>
+        <source>Fill color of table cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="182"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation>Az alapértelmezett stílus nem rendelhető hozzá szülő stílushoz</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="238"/>
         <source>Shade</source>
-        <translation>Árnyalat</translation>
+        <translation type="vanished">Árnyalat</translation>
     </message>
 </context>
 <context>
@@ -35064,7 +34795,7 @@ A value of 0 means unlimited hyphenations.</source>
         <translation>Új stílus</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestyle.cpp" line="553"/>
+        <location filename="../../scribus/ui/smtablestyle.cpp" line="540"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation>Ha ez lenne szülőnek megadva, végtelen ciklus jönne létre.</translation>
     </message>
@@ -35072,181 +34803,209 @@ A value of 0 means unlimited hyphenations.</source>
 <context>
     <name>SMTableStyleWidget</name>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="40"/>
         <source>Editing Area:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Szerkesztési terület:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="61"/>
         <source>Cell Style Based On:</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">Cellastílus alapja:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="87"/>
         <source>Colors</source>
-        <translation>Színek</translation>
+        <translation type="vanished">Színek</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="111"/>
         <source>Fill Color</source>
-        <translation>Kitöltőszín</translation>
+        <translation type="vanished">Kitöltőszín</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="153"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="305"/>
         <source>Borders</source>
         <translation>Szegélyek</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="290"/>
         <source>Width:</source>
-        <translation>Szélesség:</translation>
+        <translation type="vanished">Szélesség:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="303"/>
         <source>Color:</source>
-        <translation>Szín:</translation>
+        <translation type="vanished">Szín:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="364"/>
         <source>Type:</source>
-        <translation>Típus:</translation>
+        <translation type="vanished">Típus:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="396"/>
         <source>Shade:</source>
-        <translation>Árnyalat:</translation>
+        <translation type="vanished">Árnyalat:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="421"/>
         <source> %</source>
-        <translation> %</translation>
+        <translation type="vanished"> %</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="565"/>
+        <source>Conditional Formatting</source>
+        <translation>Feltételes formázás</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="623"/>
+        <source>Number of Total Rows:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="630"/>
+        <source>Number of Header Rows:</source>
+        <translation>Fejlécsorok száma:</translation>
+    </message>
+    <message>
+        <source>Number of Totals Rows:</source>
+        <translation type="vanished">Sorok száma összesen:</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
-        <source>Conditional Formatting</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="188"/>
+        <source>Width</source>
+        <translation type="unfinished">Szélesség</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="452"/>
-        <source>Number of Header Rows:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="490"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="187"/>
+        <source>Type</source>
+        <translation type="unfinished">Típus</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="483"/>
-        <source>Number of Totals Rows:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="512"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="586"/>
         <source>Banded Rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Csíkozott sorok</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="519"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="593"/>
         <source>Banded Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Csíkozott oszlopok</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="526"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="502"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="600"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="475"/>
         <source>First Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Első oszlop</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="533"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="504"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="607"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="477"/>
         <source>Last Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Utolsó oszlop</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="543"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="223"/>
         <source>Text</source>
-        <translation type="unfinished">Szöveg</translation>
+        <translation>Szöveg</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="555"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="188"/>
+        <source>Fill</source>
+        <translation type="unfinished">Kitöltés</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="277"/>
         <source>Paragraph style of currently selected text or paragraph</source>
-        <translation type="unfinished">A kiválasztott szöveg vagy bekezdés bekezdésstílusa</translation>
+        <translation>A kiválasztott szöveg vagy bekezdés bekezdésstílusa</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="19"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="34"/>
         <source>Based On:</source>
         <translation>Ezen alapul:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="108"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="114"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation>Az alapértelmezett stílus nem rendelhető hozzá szülő stílushoz</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="156"/>
         <source>Shade</source>
-        <translation>Árnyalat</translation>
+        <translation type="vanished">Árnyalat</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="29"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="33"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="182"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="185"/>
+        <source>Color</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="181"/>
+        <source>Border color of table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="184"/>
+        <source>Fill color of table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="458"/>
+        <source>Whole Table</source>
+        <translation>Teljes táblázat</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="459"/>
+        <source>Body Cell</source>
+        <translation>Törzscella</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="461"/>
+        <source>Header Row</source>
+        <translation>Fejlécsor</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="463"/>
+        <source>Total Row</source>
+        <translation>Összes sor</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="466"/>
+        <source>Banded Row (odd)</source>
+        <translation>Csíkozott sor (páratlan)</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="467"/>
+        <source>Banded Row (even)</source>
+        <translation>Csíkozott sor (páros)</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="471"/>
+        <source>Banded Column (odd)</source>
+        <translation>Csíkozott oszlop (páratlan)</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="472"/>
+        <source>Banded Column (even)</source>
+        <translation>Csíkozott oszlop (páros)</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="479"/>
+        <source>Top Left Cell</source>
+        <translation>Bal felső cella</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="481"/>
+        <source>Top Right Cell</source>
+        <translation>Jobb felső cella</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="483"/>
+        <source>Bottom Left Cell</source>
+        <translation>Bal alsó cella</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
-        <source>Whole Table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="486"/>
-        <source>Body Cell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="488"/>
-        <source>Header Row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="490"/>
-        <source>Total Row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="493"/>
-        <source>Banded Row (odd)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="494"/>
-        <source>Banded Row (even)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="498"/>
-        <source>Banded Column (odd)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="499"/>
-        <source>Banded Column (even)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="506"/>
-        <source>Top Left Cell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="508"/>
-        <source>Top Right Cell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="510"/>
-        <source>Bottom Left Cell</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="512"/>
         <source>Bottom Right Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Jobb alsó cella</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="125"/>
         <source>Fill Shade</source>
-        <translation>Kitöltés árnyalata</translation>
+        <translation type="vanished">Kitöltés árnyalata</translation>
     </message>
 </context>
 <context>
@@ -37237,7 +36996,7 @@ Függőleges térköz: %4</translation>
     <message>
         <location filename="../../scribus/scribus.cpp" line="420"/>
         <source>Initializing Page Presets</source>
-        <translation type="unfinished"></translation>
+        <translation>Oldalelőbeállítások inicializálása</translation>
     </message>
     <message>
         <location filename="../../scribus/scribus.cpp" line="1030"/>
@@ -42174,12 +41933,12 @@ X: %4, Y: %5</translation>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="653"/>
         <source>Distribute table columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Táblázatoszlopok elosztása</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="654"/>
         <source>Distribute table rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Táblázatsorok elosztása</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="655"/>

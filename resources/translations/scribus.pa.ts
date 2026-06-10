@@ -5334,17 +5334,17 @@ currently %2 x %3 DPI</source>
 <context>
     <name>ColorPicker</name>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="604"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="606"/>
         <source>Knockout</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="605"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="607"/>
         <source>Overprint</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="608"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker.cpp" line="610"/>
         <source>Display only used colors</source>
         <translation>ਸਿਰਫ਼ ਵਰਤੇ ਗਏ ਰੰਗ ਵਖਾਓ</translation>
     </message>
@@ -5374,42 +5374,42 @@ currently %2 x %3 DPI</source>
     </message>
     <message>
         <location filename="../../scribus/ui/colorpicker/colorpicker_color.ui" line="120"/>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="242"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="220"/>
         <source>Color Swatches</source>
         <translation>ਰੰਗ ਨਮੂਨੇ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="148"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="126"/>
         <source>Opacity: %1 %</source>
         <translation>ਅਪਾਰਦਰਸ਼ਤਾ: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="151"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="129"/>
         <source>&lt;br&gt; Shade: %1 %</source>
         <translation>&lt;br&gt; ਰੰਗਤ: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="152"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="130"/>
         <source>&lt;br&gt; Opacity: %1 %</source>
         <translation>&lt;br&gt; ਅਪਾਰਦਰਸ਼ਤਾ: %1 %</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="168"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="146"/>
         <source>R: %1 G: %2 B: %3</source>
         <translation>ਲਾਲ: %1 ਰਹਾ: %2 ਨੀਲਾ: %3</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="175"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="153"/>
         <source>C: %1% M: %2% Y: %3% K: %4%</source>
         <translation>ਸਿਆਨੀ: %1% ਮਜੈਂਟਾ: %2% ਪੀਲ਼ਾ: %3% ਕਾਲ਼ਾ: %4%</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="182"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="160"/>
         <source>L: %1 a: %2 b: %3</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="190"/>
+        <location filename="../../scribus/ui/colorpicker/colorpicker_color.cpp" line="168"/>
         <source>Color: %1 (%2)</source>
         <translation>ਰੰਗ: %1 (%2)</translation>
     </message>
@@ -24507,52 +24507,52 @@ a range of pages or a single page number</source>
 <context>
     <name>PropertiesPalette_Table</name>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="897"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
         <source>Styles</source>
         <translation type="unfinished">ਅੰਦਾਜ਼</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
         <source>Fill</source>
         <translation type="unfinished">ਭਰਤੀ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
         <source>Borders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="901"/>
         <source>Cell Padding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="902"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
         <source>C&amp;olor</source>
         <translation type="unfinished">ਰੰਗ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
         <source>S&amp;hade</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
         <source>&amp;Type</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
         <source>&amp;Width</source>
         <translation type="unfinished">ਚੌੜਾਈ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
         <source>&amp;Color</source>
         <translation type="unfinished">ਰੰਗ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="908"/>
         <source>&amp;Shade</source>
         <translation type="unfinished"></translation>
     </message>
@@ -31200,152 +31200,12 @@ is not exhaustive due to exceptions from called functions.
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Preferred</source>
-        <translation type="vanished">ਤਰਜੀਹੀ</translation>
-    </message>
-    <message>
-        <source>Books</source>
-        <translation type="vanished">ਕਿਤਾਬਾਂ</translation>
-    </message>
-    <message>
-        <source>Canadian</source>
-        <translation type="vanished">ਕਨੇਡੀਅਨ</translation>
-    </message>
-    <message>
-        <source>Colombian</source>
-        <translation type="vanished">ਕੋਲੰਬੀਅਨ</translation>
-    </message>
-    <message>
-        <source>International Envelopes</source>
-        <translation type="vanished">ਅੰਤਰਰਾਸ਼ਟਰੀ ਲਿਫ਼ਾਫ਼ੇ</translation>
-    </message>
-    <message>
-        <source>Newspapers</source>
-        <translation type="vanished">ਅਖ਼ਬਾਰ</translation>
-    </message>
-    <message>
-        <source>Others</source>
-        <translation type="vanished">ਹੋਰ</translation>
-    </message>
-    <message>
-        <source>US Paper</source>
-        <translation type="vanished">ਅਮਰੀਕੀ ਕਾਗ਼ਜ਼</translation>
-    </message>
-    <message>
-        <source>US Press</source>
-        <translation type="vanished">ਅਮਰੀਕੀ ਛਾਪਾਖ਼ਾਨਾ</translation>
-    </message>
-    <message>
-        <source>US Envelopes</source>
-        <translation type="vanished">ਅਮਰੀਕੀ ਲਿਫ਼ਾਫ਼ੇ</translation>
-    </message>
-    <message>
-        <source>A Format</source>
-        <translation type="vanished">A ਫ਼ਾਰਮੈਟ</translation>
-    </message>
-    <message>
-        <source>B Format</source>
-        <translation type="vanished">B ਫ਼ਾਰਮੈਟ</translation>
-    </message>
-    <message>
-        <source>C Format</source>
-        <translation type="vanished">C ਫ਼ਾਰਮੈਟ</translation>
-    </message>
-    <message>
-        <source>Comic Book</source>
-        <translation type="vanished">ਕੌਮਿਕ ਬੁਕ</translation>
-    </message>
-    <message>
-        <source>Europe</source>
-        <translation type="vanished">ਯੂਰਪ</translation>
-    </message>
-    <message>
-        <source>US/Canada</source>
-        <translation type="vanished">ਅਮਰੀਕਾ/ਕਨੇਡਾ</translation>
-    </message>
-    <message>
-        <source>China</source>
-        <translation type="vanished">ਚੀਨ</translation>
-    </message>
-    <message>
-        <source>Scandinavia</source>
-        <translation type="vanished">ਸਕੈਂਡੇਨੇਵੀਆ</translation>
-    </message>
-    <message>
-        <source>Japan</source>
-        <translation type="vanished">ਜਪਾਨ</translation>
-    </message>
-    <message>
-        <source>Hungary</source>
-        <translation type="vanished">ਹੰਗਰੀ</translation>
-    </message>
-    <message>
-        <source>Iran</source>
-        <translation type="vanished">ਇਰਾਨ</translation>
-    </message>
-    <message>
         <source>Medium</source>
         <translation type="vanished">ਦਰਮਿਆਨਾ</translation>
     </message>
     <message>
         <source>Royal</source>
         <translation type="vanished">ਸ਼ਾਹੀ</translation>
-    </message>
-    <message>
-        <source>New York Times</source>
-        <translation type="vanished">ਨਿਊ ਯਾਰਕ ਟਾਈਮਜ਼</translation>
-    </message>
-    <message>
-        <source>Wall Street Journal</source>
-        <translation type="vanished">ਵਾਲ ਸਟ੍ਰੀਟ ਜਰਨਲ</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (5 mm)</source>
-        <translation type="vanished">ਬਲੂ-ਰੇ ਕਵਰ (5 ਮਿਲੀਮੀਟਰ)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (12 mm)</source>
-        <translation type="vanished">ਬਲੂ-ਰੇ ਕਵਰ (12 ਮਿਲੀਮੀਟਰ)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (14 mm)</source>
-        <translation type="vanished">ਬਲੂ-ਰੇ ਕਵਰ (14 ਮਿਲੀਮੀਟਰ)</translation>
-    </message>
-    <message>
-        <source>Blu-Ray Cover (24 mm)</source>
-        <translation type="vanished">ਬਲੂ-ਰੇ ਕਵਰ (24 ਮਿਲੀਮੀਟਰ)</translation>
-    </message>
-    <message>
-        <source>Cassette Cover (J-Card)</source>
-        <translation type="vanished">ਕੈਸਟ ਕਵਰ (ਜੇ-ਕਾਰਡ)</translation>
-    </message>
-    <message>
-        <source>Cassette Cover (U-Card)</source>
-        <translation type="vanished">ਕੈਸਟ ਕਵਰ (ਯੂ-ਕਾਰਡ)</translation>
-    </message>
-    <message>
-        <source>Compact Disc (Front)</source>
-        <translation type="vanished">ਸੀਡੀ (ਸਾਹਮਣਾ)</translation>
-    </message>
-    <message>
-        <source>Compact Disc (Back)</source>
-        <translation type="vanished">ਸੀਡੀ (ਪਿਛਲਾ)</translation>
-    </message>
-    <message>
-        <source>Compact Disc (Front Double)</source>
-        <translation type="vanished">ਸੀਡੀ (ਸਾਹਮਣਾ ਦੂਹਰਾ)</translation>
-    </message>
-    <message>
-        <source>Vinyl LP</source>
-        <translation type="vanished">ਵਾਇਨਲ ਐੱਲ.ਪੀ.</translation>
-    </message>
-    <message>
-        <source>DVD Cover Normal</source>
-        <translation type="vanished">ਡੀਵੀਡੀ ਕਵਰ ਆਮ</translation>
-    </message>
-    <message>
-        <source>DVD Cover Slim</source>
-        <translation type="vanished">ਡੀਵੀਡੀ ਕਵਰ ਪਤਲਾ</translation>
     </message>
     <message>
         <location filename="../../scribus/imagedataloaders/scimgdataloader_tiff.cpp" line="291"/>
@@ -33776,7 +33636,7 @@ Document Liberation Project https://www.documentliberation.org</source>
         <translation>ਨਵਾਂ ਅੰਦਾਜ਼</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstyle.cpp" line="520"/>
+        <location filename="../../scribus/ui/smcellstyle.cpp" line="501"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -33784,69 +33644,71 @@ Document Liberation Project https://www.documentliberation.org</source>
 <context>
     <name>SMCellStyleWidget</name>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="38"/>
         <source>Colors</source>
-        <translation>ਰੰਗ</translation>
+        <translation type="vanished">ਰੰਗ</translation>
+    </message>
+    <message>
+        <source>Fill Color</source>
+        <translation type="vanished">ਭਰਤੀ ਦਾ ਰੰਗ</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="68"/>
-        <source>Fill Color</source>
-        <translation>ਭਰਤੀ ਦਾ ਰੰਗ</translation>
+        <source>Fill</source>
+        <translation type="unfinished">ਭਰਤੀ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="116"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="103"/>
         <source>Borders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="253"/>
-        <source>Width:</source>
-        <translation type="unfinished">ਚੌੜਾਈ:</translation>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="242"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="73"/>
+        <source>Width</source>
+        <translation type="unfinished">ਚੌੜਾਈ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="266"/>
-        <source>Color:</source>
-        <translation type="unfinished">ਰੰਗ:</translation>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="288"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="72"/>
+        <source>Type</source>
+        <translation type="unfinished">ਕਿਸਮ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="327"/>
-        <source>Type:</source>
-        <translation type="unfinished">ਕਿਸਮ:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="359"/>
-        <source>Shade:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="384"/>
-        <source> %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="407"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="346"/>
         <source>Cell Padding</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="19"/>
+        <location filename="../../scribus/ui/smcellstylewidget.ui" line="34"/>
         <source>Based On:</source>
         <translation>ਕਿਸ ’ਤੇ ਅਧਾਰਤ:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.ui" line="88"/>
-        <source>Fill Shade</source>
-        <translation type="unfinished">ਭਰਤੀ ਰੰਗਤ</translation>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="26"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="30"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="67"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="70"/>
+        <source>Color</source>
+        <translation type="unfinished">ਰੰਗ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="190"/>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="66"/>
+        <source>Border color of table cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="69"/>
+        <source>Fill color of table cell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="182"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation>ਡਿਫ਼ਾਲਟ ਅੰਦਾਜ਼ ਦਾ ਕੋਈ ਬਾਪ ਅੰਦਾਜ਼ ਨਹੀਂ ਹੋ ਸਕਦਾ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smcellstylewidget.cpp" line="238"/>
         <source>Shade</source>
-        <translation>ਛਾਂ</translation>
+        <translation type="vanished">ਛਾਂ</translation>
     </message>
 </context>
 <context>
@@ -34651,7 +34513,7 @@ A value of 0 means unlimited hyphenations.</source>
         <translation>ਨਵਾਂ ਅੰਦਾਜ਼</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestyle.cpp" line="553"/>
+        <location filename="../../scribus/ui/smtablestyle.cpp" line="540"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -34659,181 +34521,173 @@ A value of 0 means unlimited hyphenations.</source>
 <context>
     <name>SMTableStyleWidget</name>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="40"/>
-        <source>Editing Area:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="61"/>
-        <source>Cell Style Based On:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="87"/>
         <source>Colors</source>
-        <translation>ਰੰਗ</translation>
+        <translation type="vanished">ਰੰਗ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="111"/>
         <source>Fill Color</source>
-        <translation>ਭਰਤੀ ਦਾ ਰੰਗ</translation>
+        <translation type="vanished">ਭਰਤੀ ਦਾ ਰੰਗ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="153"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="305"/>
         <source>Borders</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="290"/>
-        <source>Width:</source>
-        <translation type="unfinished">ਚੌੜਾਈ:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="303"/>
-        <source>Color:</source>
-        <translation type="unfinished">ਰੰਗ:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="364"/>
-        <source>Type:</source>
-        <translation type="unfinished">ਕਿਸਮ:</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="396"/>
-        <source>Shade:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="421"/>
-        <source> %</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="565"/>
         <source>Conditional Formatting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="452"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="623"/>
+        <source>Number of Total Rows:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="630"/>
         <source>Number of Header Rows:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="483"/>
-        <source>Number of Totals Rows:</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="188"/>
+        <source>Width</source>
+        <translation type="unfinished">ਚੌੜਾਈ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="512"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="490"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="187"/>
+        <source>Type</source>
+        <translation type="unfinished">ਕਿਸਮ</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="586"/>
         <source>Banded Rows</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="519"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="593"/>
         <source>Banded Columns</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="526"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="502"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="600"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="475"/>
         <source>First Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="533"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="504"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="607"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="477"/>
         <source>Last Column</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="543"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="223"/>
         <source>Text</source>
         <translation type="unfinished">ਲਿਖਤ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="555"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="188"/>
+        <source>Fill</source>
+        <translation type="unfinished">ਭਰਤੀ</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="277"/>
         <source>Paragraph style of currently selected text or paragraph</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="19"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="34"/>
         <source>Based On:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="108"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="114"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation type="unfinished">ਡਿਫ਼ਾਲਟ ਅੰਦਾਜ਼ ਦਾ ਕੋਈ ਬਾਪ ਅੰਦਾਜ਼ ਨਹੀਂ ਹੋ ਸਕਦਾ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="156"/>
         <source>Shade</source>
-        <translation>ਛਾਂ</translation>
+        <translation type="vanished">ਛਾਂ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="29"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="33"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="182"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="185"/>
+        <source>Color</source>
+        <translation type="unfinished">ਰੰਗ</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="181"/>
+        <source>Border color of table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="184"/>
+        <source>Fill color of table</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="458"/>
         <source>Whole Table</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="486"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="459"/>
         <source>Body Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="488"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="461"/>
         <source>Header Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="490"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="463"/>
         <source>Total Row</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="493"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="466"/>
         <source>Banded Row (odd)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="494"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="467"/>
         <source>Banded Row (even)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="498"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="471"/>
         <source>Banded Column (odd)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="499"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="472"/>
         <source>Banded Column (even)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="506"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="479"/>
         <source>Top Left Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="508"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="481"/>
         <source>Top Right Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="510"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="483"/>
         <source>Bottom Left Cell</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="512"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
         <source>Bottom Right Cell</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="125"/>
-        <source>Fill Shade</source>
-        <translation type="unfinished">ਭਰਤੀ ਰੰਗਤ</translation>
     </message>
 </context>
 <context>
