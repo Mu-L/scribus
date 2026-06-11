@@ -277,6 +277,7 @@ void CanvasMode_EditTable::mousePressEvent(QMouseEvent* event)
 		switch (handle.type())
 		{
 			case TableHandle::RowSelect:
+				m_dragSelectionMode = CellSelect::Rows;
 				m_table->clearSelection();
 				// Deselect text in active frame.
 				activeFrame = m_table->activeCell().textFrame();
@@ -295,6 +296,7 @@ void CanvasMode_EditTable::mousePressEvent(QMouseEvent* event)
 				m_view->startGesture(m_rowResizeGesture);
 				break;
 			case TableHandle::ColumnSelect:
+				m_dragSelectionMode = CellSelect::Columns;
 				m_table->clearSelection();
 				activeFrame = m_table->activeCell().textFrame();
 				activeFrame->itemText.deselectAll();
@@ -316,6 +318,7 @@ void CanvasMode_EditTable::mousePressEvent(QMouseEvent* event)
 				m_view->startGesture(m_tableResizeGesture);
 				break;
 			case TableHandle::CellSelect:
+				m_dragSelectionMode = CellSelect::Cells;
 				// Move to the pressed cell and position the text cursor.
 				resetSelectionAnchor();
 				m_table->clearSelection();
@@ -570,7 +573,7 @@ void CanvasMode_EditTable::handleMouseDrag(QMouseEvent* event)
 		{
 			// Active cell changed mid-drag: start cell range selection.
 			m_lastCursorPos = -1;
-			m_cellSelectGesture->setup(m_table, activeCell);
+			m_cellSelectGesture->setup(m_table, activeCell, m_dragSelectionMode);
 			m_view->startGesture(m_cellSelectGesture);
 			rangeSelecting = true;
 		}
@@ -581,7 +584,7 @@ void CanvasMode_EditTable::handleMouseDrag(QMouseEvent* event)
 		activeFrame->itemText.deselectAll();
 		activeFrame->HasSel = false;
 
-		m_cellSelectGesture->setup(m_table, activeCell);
+		m_cellSelectGesture->setup(m_table, activeCell, m_dragSelectionMode);
 		m_view->startGesture(m_cellSelectGesture);
 		rangeSelecting = true;
 	}
