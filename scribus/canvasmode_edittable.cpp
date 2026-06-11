@@ -230,6 +230,9 @@ void CanvasMode_EditTable::mouseMoveEvent(QMouseEvent* event)
 			case TableHandle::TableResize:
 				cursor = Qt::SizeFDiagCursor;
 				break;
+			case TableHandle::SelectAll:
+				cursor = (handle.index() == 1) ? Qt::SizeBDiagCursor : Qt::SizeFDiagCursor;
+				break;
 			case TableHandle::CellSelect:
 				cursor = Qt::IBeamCursor;
 				break;
@@ -323,6 +326,18 @@ void CanvasMode_EditTable::mousePressEvent(QMouseEvent* event)
 				m_view->horizRuler->setItem(m_table->activeCell().textFrame());
 				m_view->horizRuler->update();
 				makeLongTextCursorBlink();
+				updateCanvas(true);
+				break;
+			case TableHandle::SelectAll:
+				m_table->clearSelection();
+				// Deselect text in active frame.
+				activeFrame = m_table->activeCell().textFrame();
+				activeFrame->itemText.deselectAll();
+				activeFrame->HasSel = false;
+				// Select every cell in the table.
+				m_table->selectCells(0, 0, m_table->rows() - 1, m_table->columns() - 1);
+				m_view->slotSetCurs(globalPos.x(), globalPos.y());
+				m_lastCursorPos = -1;
 				updateCanvas(true);
 				break;
 			case TableHandle::None:
@@ -459,6 +474,18 @@ void CanvasMode_EditTable::drawTableHandleHints(QPainter* p)
 		double rowY = (r < m_table->rows()) ? m_table->rowPosition(r) : m_table->rowPosition(r - 1) + m_table->rowHeight(r - 1);
 		p->drawLine(QPointF(offset.x() + tableW, offset.y() + rowY), QPointF(offset.x() + tableW + tickLength, offset.y() + rowY));
 	}
+
+	// Select-all corner marker. LTR: top-left corner; RTL: top-right corner.
+	// Matches the corner hit-tested in PageItem_Table::hitTest for SelectAll.
+	const bool rtl = false; // TODO: table RTL flag when RTL document/layout is added.
+	const double cornerSize = qMax(threshold * 2.0, 10.0 / m_canvas->scale());
+	const double cornerX = rtl ? (offset.x() + tableW - cornerSize) : offset.x();
+	const double cornerY = offset.y();
+	QRectF cornerRect(cornerX, cornerY, cornerSize, cornerSize);
+	QColor cornerFill(50, 150, 220, 90);
+	p->fillRect(cornerRect, cornerFill);
+	p->setPen(QPen(markerColor, tickWidth, Qt::SolidLine, Qt::FlatCap));
+	p->drawRect(cornerRect);
 
 	p->restore();
 }

@@ -16897,7 +16897,73 @@ void ScribusDoc::itemSelection_AdjustTableToFrame()
 	changedPagePreview();
 }
 
+void ScribusDoc::itemSelection_SelectTableCell()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	TableCell cell = table->activeCell();
+	if (appMode != modeEditTable && m_View)
+		m_View->requestMode(modeEditTable);
+	table->clearSelection();
+	table->selectCell(cell.row(), cell.column());
+	table->update();
+}
 
+void ScribusDoc::itemSelection_SelectTableAllCells()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	if (appMode != modeEditTable && m_View)
+		m_View->requestMode(modeEditTable);
+	table->clearSelection();
+	table->selectCells(0, 0, table->rows() - 1, table->columns() - 1);
+	table->update();
+}
+
+void ScribusDoc::itemSelection_SelectTableRow()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	int row = table->activeCell().row();
+	if (appMode != modeEditTable && m_View)
+		m_View->requestMode(modeEditTable);
+	table->clearSelection();
+	table->selectRow(row);
+	table->update();
+}
+
+void ScribusDoc::itemSelection_SelectTableColumn()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	int col = table->activeCell().column();
+	if (appMode != modeEditTable && m_View)
+		m_View->requestMode(modeEditTable);
+	table->clearSelection();
+	table->selectColumn(col);
+	table->update();
+}
+
+void ScribusDoc::itemSelection_SelectWholeTable()
+{
+	PageItem* item = m_Selection->itemAt(0);
+	if (!item || !item->isTable())
+		return;
+	PageItem_Table* table = item->asTable();
+	// Exit cell-edit mode so the table item itself is the selection.
+	if (appMode == modeEditTable && m_View)
+		m_View->requestMode(modeNormal);
+	table->clearSelection();
+	table->update();
+}
 
 void ScribusDoc::itemSelection_SetColorProfile(const QString & profileName, Selection * customSelection)
 {

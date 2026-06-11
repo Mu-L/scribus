@@ -1294,6 +1294,14 @@ void ScribusMainWindow::initMenuBar()
 
 	// Table menu.
 	scrMenuMgr->createMenu("ItemTable", ActionManager::defaultMenuNameEntryTranslated("Table"));
+	scrMenuMgr->createMenu("TableSelect", tr("Select"), "ItemTable");
+	scrMenuMgr->addMenuItemString("TableSelect", "ItemTable");
+	scrMenuMgr->addMenuItemString("tableSelectCell", "TableSelect");
+	scrMenuMgr->addMenuItemString("tableSelectAllCells", "TableSelect");
+	scrMenuMgr->addMenuItemString("tableSelectRow", "TableSelect");
+	scrMenuMgr->addMenuItemString("tableSelectColumn", "TableSelect");
+	scrMenuMgr->addMenuItemString("tableSelectTable", "TableSelect");
+	scrMenuMgr->addMenuItemString("SEPARATOR", "ItemTable");
 	scrMenuMgr->addMenuItemString("tableInsertRows", "ItemTable");
 	scrMenuMgr->addMenuItemString("tableInsertColumns", "ItemTable");
 	scrMenuMgr->addMenuItemString("tableDeleteRows", "ItemTable");

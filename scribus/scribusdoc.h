@@ -1807,6 +1807,11 @@ class SCRIBUS_API ScribusDoc : public QObject, public UndoObject, public Observa
 		 * If there are no tables in the current selection, then this slot does nothing.
 		 */
 		void itemSelection_AdjustTableToFrame();
+		void itemSelection_SelectTableCell();
+		void itemSelection_SelectTableAllCells();
+		void itemSelection_SelectTableRow();
+		void itemSelection_SelectTableColumn();
+		void itemSelection_SelectWholeTable();
 
 		void undoRedoBegin();
 		void undoRedoDone();

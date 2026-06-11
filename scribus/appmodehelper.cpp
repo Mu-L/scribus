@@ -1383,6 +1383,11 @@ void AppModeHelper::updateTableMenuActions(const ScribusDoc* doc)
 		(*a_scrActions)["tableAdjustFrameToTable"]->setEnabled(false);
 		(*a_scrActions)["tableAdjustTableToFrame"]->setEnabled(false);
 		(*a_scrActions)["tableAdjustRowHeights"]->setEnabled(false);
+		(*a_scrActions)["tableSelectCell"]->setEnabled(false);
+		(*a_scrActions)["tableSelectAllCells"]->setEnabled(false);
+		(*a_scrActions)["tableSelectRow"]->setEnabled(false);
+		(*a_scrActions)["tableSelectColumn"]->setEnabled(false);
+		(*a_scrActions)["tableSelectTable"]->setEnabled(false);
 		return;
 	}
 
@@ -1409,6 +1414,11 @@ void AppModeHelper::updateTableMenuActions(const ScribusDoc* doc)
 	(*a_scrActions)["tableAdjustFrameToTable"]->setEnabled(true);
 	(*a_scrActions)["tableAdjustTableToFrame"]->setEnabled(true);
 	(*a_scrActions)["tableAdjustRowHeights"]->setEnabled(true);
+	(*a_scrActions)["tableSelectCell"]->setEnabled(true);
+	(*a_scrActions)["tableSelectAllCells"]->setEnabled(true);
+	(*a_scrActions)["tableSelectRow"]->setEnabled(true);
+	(*a_scrActions)["tableSelectColumn"]->setEnabled(true);
+	(*a_scrActions)["tableSelectTable"]->setEnabled(true);
 }
 
 void AppModeHelper::changeLayer(ScribusDoc *doc, bool clipScrapHaveData)
