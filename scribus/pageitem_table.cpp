@@ -2088,10 +2088,10 @@ void PageItem_Table::applicableActions(QStringList& actionList)
 	const int selectedColumns = tableEdit ? this->selectedColumns().size() : 0;
 	const int selectedCells = tableEdit ? this->selectedCells().size() : 0;
 
+	actionList << "tableInsertRows";
+	actionList << "tableInsertColumns";
 	if (!tableEdit || selectedCells<1)
 	{
-		actionList << "tableInsertRows";
-		actionList << "tableInsertColumns";
 		actionList << "fileImportText";
 		actionList << "fileImportAppendText";
 		actionList << "toolsEditWithStoryEditor";
