@@ -127,8 +127,7 @@ void CheckDocument::languageChange()
 
 	warnMap.clear();
 	warnMap.insert(PV_ANNOTATION,				qMakePair(tr("Object is a PDF Annotation or Field"),					tr("Indicates that editorial changes have been made to a PDF are still present or your PDF contains unprintable annotation items. They may cause issues in professional printing. Also helpful reminder if you are wanting to publish a final draft without editorial relics.")));
-	warnMap.insert(PV_APPLIED_MASTER_DIFF_SIDE,	qMakePair(tr("Applied master page has different page destination (left, middle, right side)"),
-																														tr("Have you applied the correct Master Page?")));
+	warnMap.insert(PV_APPLIED_MASTER_DIFF_SIDE,	qMakePair(tr("Applied master page has different page destination (left, middle, right side)"), tr("Have you applied the correct Master Page?")));
 	warnMap.insert(PV_EMPTY_IMAGE_FRAME,		qMakePair(tr("Empty Image Frame"),										tr("If you have created an image frame, there is the presumption that you planned to put an image in it")));
 	warnMap.insert(PV_EMPTY_TEXT_FRAME,			qMakePair(tr("Empty Text Frame"),										tr("If you have created a text frame, there is the presumption that you planned to put text in it")));
 	warnMap.insert(PV_FONT_NOT_EMBEDDED,		qMakePair(tr("Imported document contains non-embedded fonts"),			tr("When some imported document uses non-embedded fonts, then their rendering will be wrong, unless by chance you have them installed on their system, but that cannot be guaranteed in case you want to share the resulting document")));
@@ -283,10 +282,8 @@ void CheckDocument::clearErrorList()
 
 void CheckDocument::buildItem(QTreeWidgetItem * item, PreflightError errorType, PageItem * pageItem)
 {
-	Q_ASSERT_X(item != nullptr, "CheckDocument::buildItem",
-				"No reference to QTreeWidgetItem item");
-	Q_ASSERT_X(pageItem != nullptr, "CheckDocument::buildItem",
-				"No reference to PageItem pageItem");
+	Q_ASSERT_X(item != nullptr, "CheckDocument::buildItem", "No reference to QTreeWidgetItem item");
+	Q_ASSERT_X(pageItem != nullptr, "CheckDocument::buildItem", "No reference to PageItem pageItem");
 
 	switch (errorType)
 	{

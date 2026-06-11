@@ -5824,7 +5824,7 @@ void ScribusMainWindow::toggleNodeEdit()
 
 void ScribusMainWindow::enablePalettes(bool b)
 {
-	if (doc->appMode == modeEdit) //Keep Palettes enabled when editing text
+	if (doc->appMode == modeEdit || doc->appMode == modeEditTable) //Keep Palettes enabled when editing text
 		return;
 	layerPalette->setEnabled(b);
 	outlinePalette->setEnabled(b);
