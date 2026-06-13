@@ -901,6 +901,8 @@ class SCRIBUS_API ScribusDoc : public QObject, public UndoObject, public Observa
 		*/
 		int itemAdd(const PageItem::ItemType itemType, const PageItem::ItemFrameType frameType, double x, double y, double b, double h, double w, const QString& fill, const QString& outline, PageItem::ItemKind itemKind = PageItem::StandardItem);
 
+		/// Returns the guide/margin-bounded area on the current page containing point (x, y), in canvas coordinates.
+		QRectF pageAreaRect(double x, double y) const;
 		/** Add an item to the page based on the x/y position. Item will be fitted to the closest guides/margins */
 		int itemAddArea(const PageItem::ItemType itemType, const PageItem::ItemFrameType frameType, double x, double y, double w, const QString& fill, const QString& outline, PageItem::ItemKind itemKind = PageItem::StandardItem);
 

@@ -5496,15 +5496,20 @@ int ScribusDoc::itemAdd(const PageItem::ItemType itemType, const PageItem::ItemF
 	return Items->count()-1;
 }
 
-
-int ScribusDoc::itemAddArea(const PageItem::ItemType itemType, const PageItem::ItemFrameType frameType, double x, double y, double w, const QString& fill, const QString& outline, PageItem::ItemKind itemKind)
+QRectF ScribusDoc::pageAreaRect(double x, double y) const
 {
 	double xo = m_currentPage->xOffset();
 	double yo = m_currentPage->yOffset();
 	QPair<double, double> tl = m_currentPage->guides.topLeft(x - xo, y - yo);
 	QPair<double, double> tr = m_currentPage->guides.topRight(x - xo, y - yo);
 	QPair<double, double> bl = m_currentPage->guides.bottomLeft(x - xo, y - yo);
-	return itemAdd(itemType, frameType, tl.first + xo, tl.second + yo, tr.first - tl.first, bl.second - tl.second, w, fill, outline, itemKind);
+	return QRectF(tl.first + xo, tl.second + yo, tr.first - tl.first, bl.second - tl.second);
+}
+
+int ScribusDoc::itemAddArea(const PageItem::ItemType itemType, const PageItem::ItemFrameType frameType, double x, double y, double w, const QString& fill, const QString& outline, PageItem::ItemKind itemKind)
+{
+	QRectF r = pageAreaRect(x, y);
+	return itemAdd(itemType, frameType, r.x(), r.y(), r.width(), r.height(), w, fill, outline, itemKind);
 }
 
 
