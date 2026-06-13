@@ -674,22 +674,22 @@
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1677"/>
         <source>Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Cell</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1678"/>
         <source>All Cells</source>
-        <translation type="unfinished"></translation>
+        <translation>All Cells</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1679"/>
         <source>Row</source>
-        <translation type="unfinished"></translation>
+        <translation>Row</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1680"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Column</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1685"/>
@@ -13391,24 +13391,25 @@ If no handle is selected all handles will be reset.</source>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="483"/>
         <source>Empty Preset Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Empty Preset Name</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="483"/>
         <source>The preset name must not be empty!
 Enter a preset name.</source>
-        <translation type="unfinished"></translation>
+        <translation>The preset name must not be empty!
+Enter a preset name.</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="494"/>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="496"/>
         <source>User</source>
-        <translation type="unfinished">User</translation>
+        <translation>User</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="495"/>
         <source>Copyright by user</source>
-        <translation type="unfinished"></translation>
+        <translation>Copyright by user</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/newdocdialog.cpp" line="757"/>
@@ -15992,7 +15993,7 @@ Please disable experimental PDF and PS embedding and try again.</translation>
     <message>
         <location filename="../../scribus/ui/widgets/pagesizelist.cpp" line="264"/>
         <source>Delete Preset</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete Preset</translation>
     </message>
 </context>
 <context>
@@ -24711,52 +24712,52 @@ a range of pages or a single page number</translation>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
         <source>Styles</source>
-        <translation type="unfinished">Styles</translation>
+        <translation>Styles</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
         <source>Fill</source>
-        <translation type="unfinished">Fill</translation>
+        <translation>Fill</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
         <source>Borders</source>
-        <translation type="unfinished">Borders</translation>
+        <translation>Borders</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="901"/>
         <source>Cell Padding</source>
-        <translation type="unfinished"></translation>
+        <translation>Cell Padding</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
         <source>C&amp;olor</source>
-        <translation type="unfinished">C&amp;olour</translation>
+        <translation>C&amp;olour</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
         <source>S&amp;hade</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;hade</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
         <source>&amp;Type</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Type</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
         <source>&amp;Width</source>
-        <translation type="unfinished">&amp;Width</translation>
+        <translation>&amp;Width</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
         <source>&amp;Color</source>
-        <translation type="unfinished">&amp;Colour</translation>
+        <translation>&amp;Colour</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_table.cpp" line="908"/>
         <source>&amp;Shade</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Shade</translation>
     </message>
 </context>
 <context>
@@ -24783,13 +24784,13 @@ a range of pages or a single page number</translation>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="223"/>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="582"/>
         <source>Color</source>
-        <translation type="unfinished">Colour</translation>
+        <translation>Colour</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="269"/>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="628"/>
         <source>Shade</source>
-        <translation type="unfinished">Shade</translation>
+        <translation>Shade</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="340"/>
@@ -24799,12 +24800,12 @@ a range of pages or a single page number</translation>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="470"/>
         <source>Width</source>
-        <translation type="unfinished">Width</translation>
+        <translation>Width</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="516"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <source>Width:</source>
@@ -24813,7 +24814,7 @@ a range of pages or a single page number</translation>
     <message>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="699"/>
         <source>Cell Padding</source>
-        <translation type="unfinished"></translation>
+        <translation>Cell Padding</translation>
     </message>
     <message>
         <source>Color:</source>
@@ -33938,29 +33939,29 @@ Document Liberation Project https://www.documentliberation.org</translation>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="68"/>
         <source>Fill</source>
-        <translation type="unfinished">Fill</translation>
+        <translation>Fill</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="103"/>
         <source>Borders</source>
-        <translation type="unfinished">Borders</translation>
+        <translation>Borders</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="242"/>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="73"/>
         <source>Width</source>
-        <translation type="unfinished">Width</translation>
+        <translation>Width</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="288"/>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="72"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="346"/>
         <source>Cell Padding</source>
-        <translation type="unfinished"></translation>
+        <translation>Cell Padding</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="34"/>
@@ -33977,17 +33978,17 @@ Document Liberation Project https://www.documentliberation.org</translation>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="67"/>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="70"/>
         <source>Color</source>
-        <translation type="unfinished">Colour</translation>
+        <translation>Colour</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="66"/>
         <source>Border color of table cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Border colour of table cell</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="69"/>
         <source>Fill color of table cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Fill colour of table cell</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="182"/>
@@ -34820,56 +34821,56 @@ A value of 0 means unlimited hyphenations.</translation>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="305"/>
         <source>Borders</source>
-        <translation type="unfinished">Borders</translation>
+        <translation>Borders</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="565"/>
         <source>Conditional Formatting</source>
-        <translation type="unfinished"></translation>
+        <translation>Conditional Formatting</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="623"/>
         <source>Number of Total Rows:</source>
-        <translation type="unfinished"></translation>
+        <translation>Number of Total Rows:</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="630"/>
         <source>Number of Header Rows:</source>
-        <translation type="unfinished"></translation>
+        <translation>Number of Header Rows:</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="188"/>
         <source>Width</source>
-        <translation type="unfinished">Width</translation>
+        <translation>Width</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="490"/>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="187"/>
         <source>Type</source>
-        <translation type="unfinished">Type</translation>
+        <translation>Type</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="586"/>
         <source>Banded Rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Banded Rows</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="593"/>
         <source>Banded Columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Banded Columns</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="600"/>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="475"/>
         <source>First Column</source>
-        <translation type="unfinished"></translation>
+        <translation>First Column</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="607"/>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="477"/>
         <source>Last Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Last Column</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="223"/>
@@ -34879,12 +34880,12 @@ A value of 0 means unlimited hyphenations.</translation>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="188"/>
         <source>Fill</source>
-        <translation type="unfinished">Fill</translation>
+        <translation>Fill</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="277"/>
         <source>Paragraph style of currently selected text or paragraph</source>
-        <translation type="unfinished">Paragraph style of currently selected text or paragraph</translation>
+        <translation>Paragraph style of currently selected text or paragraph</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.ui" line="34"/>
@@ -34906,77 +34907,77 @@ A value of 0 means unlimited hyphenations.</translation>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="182"/>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="185"/>
         <source>Color</source>
-        <translation type="unfinished">Colour</translation>
+        <translation>Colour</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="181"/>
         <source>Border color of table</source>
-        <translation type="unfinished"></translation>
+        <translation>Border colour of table</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="184"/>
         <source>Fill color of table</source>
-        <translation type="unfinished"></translation>
+        <translation>Fill colour of table</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="458"/>
         <source>Whole Table</source>
-        <translation type="unfinished"></translation>
+        <translation>Whole Table</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="459"/>
         <source>Body Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Body Cell</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="461"/>
         <source>Header Row</source>
-        <translation type="unfinished"></translation>
+        <translation>Header Row</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="463"/>
         <source>Total Row</source>
-        <translation type="unfinished"></translation>
+        <translation>Total Row</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="466"/>
         <source>Banded Row (odd)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banded Row (odd)</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="467"/>
         <source>Banded Row (even)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banded Row (even)</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="471"/>
         <source>Banded Column (odd)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banded Column (odd)</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="472"/>
         <source>Banded Column (even)</source>
-        <translation type="unfinished"></translation>
+        <translation>Banded Column (even)</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="479"/>
         <source>Top Left Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Top Left Cell</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="481"/>
         <source>Top Right Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Top Right Cell</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="483"/>
         <source>Bottom Left Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Bottom Left Cell</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
         <source>Bottom Right Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Bottom Right Cell</translation>
     </message>
     <message>
         <source>Fill Shade</source>
@@ -36971,7 +36972,7 @@ Vertical gap: %4</translation>
     <message>
         <location filename="../../scribus/scribus.cpp" line="420"/>
         <source>Initializing Page Presets</source>
-        <translation type="unfinished"></translation>
+        <translation>Initialising Page Presets</translation>
     </message>
     <message>
         <location filename="../../scribus/scribus.cpp" line="1030"/>
@@ -36981,7 +36982,7 @@ Vertical gap: %4</translation>
     <message>
         <location filename="../../scribus/scribus.cpp" line="1297"/>
         <source>Select</source>
-        <translation type="unfinished">Select</translation>
+        <translation>Select</translation>
     </message>
     <message>
         <location filename="../../scribus/scribus.cpp" line="2116"/>
@@ -41914,12 +41915,12 @@ X: %4, Y: %5</translation>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="653"/>
         <source>Distribute table columns</source>
-        <translation type="unfinished"></translation>
+        <translation>Distribute table columns</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="654"/>
         <source>Distribute table rows</source>
-        <translation type="unfinished"></translation>
+        <translation>Distribute table rows</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="655"/>
@@ -42014,22 +42015,22 @@ X: %4, Y: %5</translation>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="673"/>
         <source>Insert table row</source>
-        <translation type="unfinished"></translation>
+        <translation>Insert table row</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="674"/>
         <source>Delete table row</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete table row</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="675"/>
         <source>Insert table column</source>
-        <translation type="unfinished"></translation>
+        <translation>Insert table column</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="676"/>
         <source>Delete table column</source>
-        <translation type="unfinished"></translation>
+        <translation>Delete table column</translation>
     </message>
     <message>
         <location filename="../../scribus/undomanager.cpp" line="679"/>
