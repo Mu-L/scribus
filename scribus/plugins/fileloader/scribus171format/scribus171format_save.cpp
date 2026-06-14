@@ -2716,6 +2716,8 @@ void Scribus171Format::SetItemProps(ScXmlStreamWriter& docu, PageItem* item, con
 		docu.writeAttribute("FlippedHorizontal", 1);
 	if (item->imageFlippedV())
 		docu.writeAttribute("FlippedVertical", 1);
+	if (item->isRTL())
+		docu.writeAttribute("RTL", QString::number(1));
 	if (!(item->isGroup() || item->isSymbol()))
 	{
 		docu.writeAttribute("LineWidth", item->lineWidth());

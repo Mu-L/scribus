@@ -6469,6 +6469,8 @@ PageItem* Scribus171Format::pasteItem(ScribusDoc *doc, const ScXmlStreamAttribut
 		currItem->setImageFlippedV( attrs.valueAsInt("FLIPPEDV", 0));
 	else
 		currItem->setImageFlippedV( attrs.valueAsInt("FlippedVertical", 0));
+	if (attrs.hasAttribute("RTL"))
+		currItem->setRTL(attrs.valueAsInt("RTL", 0));
 	if (attrs.hasAttribute("RADRECT"))
 		currItem->setCornerRadius( attrs.valueAsDouble("RADRECT", 0.0));
 	else

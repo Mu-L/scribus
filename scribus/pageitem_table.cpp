@@ -1422,12 +1422,11 @@ TableHandle PageItem_Table::hitTest(const QPointF& point, double threshold) cons
 	// (junction of the row-select and column-select strips). When RTL document/table
 	// layout is detected, switch this to the top-right corner based on the
 	// table's reading direction.
-	const bool rtl = false; // TODO: replace with the document or table's RTL flag when available.
-	const bool inSelectAllCorner = rtl
+	const bool inSelectAllCorner = isRTL()
 			? (x >= tableWidth - threshold && x <= tableWidth && y >= 0.0 && y <= threshold)
 			: (x >= 0.0 && x <= threshold && y >= 0.0 && y <= threshold);
 	if (inSelectAllCorner)
-		return TableHandle(TableHandle::SelectAll, rtl ? 1 : 0);
+		return TableHandle(TableHandle::SelectAll, isRTL() ? 1 : 0);
 
 	// Test if hit is in the row-select strip (inside left edge of grid).
 	if (x >= 0.0 && x <= threshold)
