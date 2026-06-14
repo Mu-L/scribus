@@ -560,13 +560,6 @@ void PageItem_Table::insertRows(int index, int numRows)
 	double rowHeight = m_rowHeights.at(qMax(index - 1, 0));
 	double rowPosition = index == 0 ? 0.0 : m_rowPositions.at(index - 1) + rowHeight;
 
-	// Inherit borders from the adjacent existing row (the row above the
-	// insertion point, or row 0 if inserting at the top). Table styles don't
-	// yet define borders; when they do, this should defer to the style's
-	// border definitions.
-	// const int templateRow = (index > 0) ? index - 1 : 0;
-	const bool haveTemplate = (rows() > 0);
-
 	UndoManager::instance()->setUndoEnabled(false);
 	for (int row = index; row < index + numRows; ++row)
 	{
@@ -997,7 +990,7 @@ double PageItem_Table::naturalRowHeight(int row, bool* hasContent)
 	return qMax(maxHeight, minHeight);
 }
 
-void PageItem_Table::adjustRowHeight(int row)
+bool PageItem_Table::adjustRowHeight(int row, bool growOnly)
 {
 	bool hasContent = false;
 	double natural = naturalRowHeight(row, &hasContent);
@@ -1005,12 +998,19 @@ void PageItem_Table::adjustRowHeight(int row)
 	// Don't shrink rows that have no content -- the user's manual sizing
 	// should be preserved when there's nothing to fit.
 	if (!hasContent)
-		return;
+		return false;
 
 	if (qFuzzyCompare(natural, rowHeight(row)))
-		return;
+		return false;
+
+	// Grow-only: never shrink a row below its current height (e.g. when the
+	// user has deliberately made it taller than its content). Only enlarge to
+	// fit overflowing text.
+	if (growOnly && natural < rowHeight(row))
+		return false;
 
 	resizeRow(row, natural, MoveFollowing);
+	return true;
 }
 
 void PageItem_Table::adjustAllRowHeights()
@@ -1018,6 +1018,17 @@ void PageItem_Table::adjustAllRowHeights()
 	const int rowCount = rows();
 	for (int i = 0; i < rowCount; ++i)
 		adjustRowHeight(i);
+}
+
+bool PageItem_Table::rowNeedsGrowthForCell(int row, int column) const
+{
+	TableCell cell = cellAt(row, column);
+	if (!cell.isValid())
+		return false;
+	double cellOverhead = cell.topPadding() + cell.bottomPadding()
+		+ cell.maxTopBorderWidth() / 2.0 + cell.maxBottomBorderWidth() / 2.0;
+	double cellNeeded = cell.textFrame()->naturalContentHeight() + cellOverhead;
+	return cellNeeded > rowHeight(row);
 }
 
 double PageItem_Table::columnWidth(int column) const

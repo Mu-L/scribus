@@ -92,6 +92,8 @@ void CanvasMode_EditTable::keyPressEvent(QKeyEvent* event)
 {
 	event->accept();
 
+	bool textChanged = false;
+
 	// Escape: exit table edit mode.
 	if (event->key() == Qt::Key_Escape)
 	{
@@ -182,6 +184,7 @@ void CanvasMode_EditTable::keyPressEvent(QKeyEvent* event)
 			{
 				bool repeat;
 				m_table->activeCell().textFrame()->handleModeEditKey(event, repeat);
+				textChanged = true;
 			}
 		}
 	}
@@ -190,6 +193,22 @@ void CanvasMode_EditTable::keyPressEvent(QKeyEvent* event)
 	{
 		bool repeat;
 		m_table->activeCell().textFrame()->handleModeEditKey(event, repeat);
+		textChanged = true;
+	}
+
+	// Re-fit the active row to its content after a text-changing keystroke, so
+	// the row height -- and every cell's text frame and cursor in that row --
+	// tracks the text as it is typed. Skipped entirely for navigation keys, and
+	// the full row scan is avoided unless the edited cell now needs more height
+	// than the row provides (grow-only), to keep ordinary typing cheap.
+	if (textChanged && m_table->activeCell().isValid())
+	{
+		TableCell active = m_table->activeCell();
+		if (m_table->rowNeedsGrowthForCell(active.row(), active.column()))
+		{
+			if (m_table->adjustRowHeight(active.row(), true))
+				m_table->adjustFrameToTable();
+		}
 	}
 
 	makeLongTextCursorBlink();

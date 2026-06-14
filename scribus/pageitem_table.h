@@ -280,11 +280,16 @@ public:
 
 	/// Resizes the row to its natural content height, leaving the row
 	/// untouched if no cells contribute to the calculation. See
-	/// naturalRowHeight().
-	void adjustRowHeight(int row);
+	/// naturalRowHeight(). Returns true if the row height changed.
+	bool adjustRowHeight(int row, bool growOnly = false);
 
 	/// Calls adjustRowHeight() on every row.
 	void adjustAllRowHeights();
+
+	/// Returns true if the given row is shorter than the natural height its
+	/// own cell at @a probeColumn now requires (a cheap, single-cell check
+	/// used to decide whether a full row re-fit is needed after a keystroke).
+	bool rowNeedsGrowthForCell(int row, int column) const;
 
 	/**
 	 * Inserts @a numColumns columns before the column at @a index.
