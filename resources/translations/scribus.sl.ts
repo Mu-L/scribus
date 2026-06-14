@@ -674,22 +674,22 @@
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1677"/>
         <source>Cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Polje</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1678"/>
         <source>All Cells</source>
-        <translation type="unfinished"></translation>
+        <translation>Vsa polja</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1679"/>
         <source>Row</source>
-        <translation type="unfinished"></translation>
+        <translation>Vrstica</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1680"/>
         <source>Column</source>
-        <translation type="unfinished"></translation>
+        <translation>Stolpec</translation>
     </message>
     <message>
         <location filename="../../scribus/actionmanager.cpp" line="1685"/>
@@ -24712,52 +24712,52 @@ več strani ali samo številka posamezne strani</translation>
 <context>
     <name>PropertiesPalette_Table</name>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="898"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="912"/>
         <source>Styles</source>
         <translation>Slogi</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="899"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="913"/>
         <source>Fill</source>
         <translation>Polnilo</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="900"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="914"/>
         <source>Borders</source>
         <translation>Obrobe</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="901"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="915"/>
         <source>Cell Padding</source>
         <translation>Podlaganje v polju</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="903"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="917"/>
         <source>C&amp;olor</source>
         <translation>&amp;Barva</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="904"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="918"/>
         <source>S&amp;hade</source>
         <translation>&amp;Senca</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="905"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="919"/>
         <source>&amp;Type</source>
         <translation>&amp;Vrsta</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="906"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="920"/>
         <source>&amp;Width</source>
         <translation>&amp;Širina</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="907"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="921"/>
         <source>&amp;Color</source>
         <translation>&amp;Barva</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="908"/>
+        <location filename="../../scribus/ui/propertiespalette_table.cpp" line="922"/>
         <source>&amp;Shade</source>
         <translation>&amp;Senca</translation>
     </message>
@@ -24808,6 +24808,26 @@ več strani ali samo številka posamezne strani</translation>
         <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="516"/>
         <source>Type</source>
         <translation>Vrsta</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="748"/>
+        <source>Table Options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="775"/>
+        <source>Table Direction:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="783"/>
+        <source>Left-to-right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/propertiespalette_tablebase.ui" line="788"/>
+        <source>Right-to-left</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Width:</source>
@@ -33517,7 +33537,7 @@ Projekt osvobajanja dokumentov (Document Liberation Project) https://www.documen
 <context>
     <name>RowResize</name>
     <message>
-        <location filename="../../scribus/canvasgesture_rowresize.cpp" line="100"/>
+        <location filename="../../scribus/canvasgesture_rowresize.cpp" line="103"/>
         <source>Height</source>
         <translation>Višina</translation>
     </message>
@@ -33944,7 +33964,7 @@ Projekt osvobajanja dokumentov (Document Liberation Project) https://www.documen
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="68"/>
         <source>Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Polnilo</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="103"/>
@@ -33955,13 +33975,13 @@ Projekt osvobajanja dokumentov (Document Liberation Project) https://www.documen
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="242"/>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="73"/>
         <source>Width</source>
-        <translation type="unfinished">Širina</translation>
+        <translation>Širina</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="288"/>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="72"/>
         <source>Type</source>
-        <translation type="unfinished">Vrsta</translation>
+        <translation>Vrsta</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.ui" line="346"/>
@@ -33983,17 +34003,17 @@ Projekt osvobajanja dokumentov (Document Liberation Project) https://www.documen
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="67"/>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="70"/>
         <source>Color</source>
-        <translation type="unfinished">Barva</translation>
+        <translation>Barva</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="66"/>
         <source>Border color of table cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva obrobe polja v razpredelnici</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="69"/>
         <source>Fill color of table cell</source>
-        <translation type="unfinished"></translation>
+        <translation>Barva polnila polja v razpredelnici</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/smcellstylewidget.cpp" line="182"/>
@@ -34808,7 +34828,7 @@ Vrednost 0 pomeni neomejeno deljenje besed.</translation>
         <translation>Nov slog</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestyle.cpp" line="540"/>
+        <location filename="../../scribus/ui/smtablestyle.cpp" line="542"/>
         <source>Setting that style as parent would create an infinite loop.</source>
         <translation>Nastavljanje na ta slog, sicer bi nadrejenik ustvaril neskončno zanko.</translation>
     </message>
@@ -34824,81 +34844,96 @@ Vrednost 0 pomeni neomejeno deljenje besed.</translation>
         <translation type="vanished">Barva polnila</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="305"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="431"/>
         <source>Borders</source>
         <translation>Obrobe</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="565"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="93"/>
         <source>Conditional Formatting</source>
         <translation>Pogojeno oblikovanje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="623"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="151"/>
         <source>Number of Total Rows:</source>
-        <translation type="unfinished"></translation>
+        <translation>Skupno število vrstic:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="630"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="158"/>
         <source>Number of Header Rows:</source>
         <translation>Število naslovnih vrstic:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="444"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="188"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="570"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="190"/>
         <source>Width</source>
-        <translation type="unfinished">Širina</translation>
+        <translation>Širina</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="490"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="187"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="616"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="189"/>
         <source>Type</source>
-        <translation type="unfinished">Vrsta</translation>
+        <translation>Vrsta</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="586"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="114"/>
         <source>Banded Rows</source>
         <translation>Progaste vrstice</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="593"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="53"/>
+        <source>Table Direction:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="61"/>
+        <source>Left-to-right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="66"/>
+        <source>Right-to-left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="121"/>
         <source>Banded Columns</source>
         <translation>Progasti stolpci</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="600"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="475"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="128"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="484"/>
         <source>First Column</source>
         <translation>Prvi stolpec</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="607"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="477"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="135"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="486"/>
         <source>Last Column</source>
         <translation>Zadnji stolpec</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="223"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="349"/>
         <source>Text</source>
         <translation>Besedilo</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="188"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="314"/>
         <source>Fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Polnilo</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="277"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="403"/>
         <source>Paragraph style of currently selected text or paragraph</source>
         <translation>Slog odstavka trenutno izbranega besedila ali odstavka</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.ui" line="34"/>
+        <location filename="../../scribus/ui/smtablestylewidget.ui" line="19"/>
         <source>Based On:</source>
         <translation>Temelji na:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="114"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="116"/>
         <source>A default style cannot be assigned a parent style</source>
         <translation>Privzetega sloga ni mogoče dodeliti nadrejenikovemu slogu</translation>
     </message>
@@ -34909,79 +34944,79 @@ Vrednost 0 pomeni neomejeno deljenje besed.</translation>
     <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="29"/>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="33"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="182"/>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="185"/>
-        <source>Color</source>
-        <translation type="unfinished">Barva</translation>
-    </message>
-    <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="181"/>
-        <source>Border color of table</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../scribus/ui/smtablestylewidget.cpp" line="184"/>
-        <source>Fill color of table</source>
-        <translation type="unfinished"></translation>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="187"/>
+        <source>Color</source>
+        <translation>Barva</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="458"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="183"/>
+        <source>Border color of table</source>
+        <translation>Barva obrobe razpredelnice</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="186"/>
+        <source>Fill color of table</source>
+        <translation>Barva polnila razpredelnice</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="467"/>
         <source>Whole Table</source>
         <translation>Celotna razpredelnica</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="459"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="468"/>
         <source>Body Cell</source>
         <translation>Osnovno polje
 </translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="461"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="470"/>
         <source>Header Row</source>
         <translation>Naslovna vrstica</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="463"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="472"/>
         <source>Total Row</source>
         <translation>Celotna vrstica</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="466"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="475"/>
         <source>Banded Row (odd)</source>
         <translation>Progasta vrstica (soda)</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="467"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="476"/>
         <source>Banded Row (even)</source>
         <translation>Progasta vrstica (liha)</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="471"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="480"/>
         <source>Banded Column (odd)</source>
         <translation>Progasti stolpec (sodi)</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="472"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="481"/>
         <source>Banded Column (even)</source>
         <translation>Progasti stolpec (lih)</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="479"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="488"/>
         <source>Top Left Cell</source>
         <translation>Levo zgornje polje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="481"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="490"/>
         <source>Top Right Cell</source>
         <translation>Desno zgornje polje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="483"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="492"/>
         <source>Bottom Left Cell</source>
         <translation>Levo spodnje polje</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="485"/>
+        <location filename="../../scribus/ui/smtablestylewidget.cpp" line="494"/>
         <source>Bottom Right Cell</source>
         <translation>Desno spodnje polje</translation>
     </message>
@@ -36751,7 +36786,7 @@ If you save it in this version, it will no longer be readable by older Scribus v
         <translation>Omogoča, da Scribus prebira datoteke v zapisu Scribus 1.7.1 in novejših.</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/fileloader/scribus171format/scribus171format.cpp" line="9073"/>
+        <location filename="../../scribus/plugins/fileloader/scribus171format/scribus171format.cpp" line="9077"/>
         <source>Copy #%1 of </source>
         <translation>Kopija št. %1 od </translation>
     </message>
@@ -36988,7 +37023,7 @@ Navpični razmik: %4</translation>
     <message>
         <location filename="../../scribus/scribus.cpp" line="1297"/>
         <source>Select</source>
-        <translation type="unfinished">Izberite</translation>
+        <translation>Izberite</translation>
     </message>
     <message>
         <location filename="../../scribus/scribus.cpp" line="2116"/>
@@ -38238,7 +38273,7 @@ Uporabite Predpregled, da jih odpravite</translation>
     <message>
         <location filename="../../scribus/ui/searchbase.ui" line="69"/>
         <source>&amp;Ignore Case, Diacritics and Kashida</source>
-        <translation type="unfinished">Prezr&amp;i velike/male črke, ločevala in kašido</translation>
+        <translation>Prezr&amp;i velike/male črke, ločevala in kašido</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/searchbase.ui" line="80"/>
