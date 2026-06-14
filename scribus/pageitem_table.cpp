@@ -726,7 +726,7 @@ void PageItem_Table::insertColumns(int index, int numColumns)
 	// Table styles don't yet define borders; when they do, this should defer
 	// to the style's border definitions.
 	// const int templateCol = (index > 0) ? index - 1 : 0;
-	const bool haveTemplate = (columns() > 0);
+	// const bool haveTemplate = (columns() > 0);
 
 	UndoManager::instance()->setUndoEnabled(false);
 	for (int col = index; col < index + numColumns; ++col)

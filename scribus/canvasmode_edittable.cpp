@@ -640,7 +640,8 @@ void CanvasMode_EditTable::drawTextCursor(QPainter* p)
 		// Paint text cursor.
 		p->save();
 		p->setTransform(m_table->getTransform(), true);
-		commonDrawTextCursor(p, m_table->activeCell().textFrame(), m_table->gridOffset());
+		PageItem_TextFrame* cellFrame = m_table->activeCell().textFrame();
+		commonDrawTextCursor(p, cellFrame, m_table->gridOffset(), cellFrame->height());
 		p->restore();
 	}
 }
