@@ -437,6 +437,7 @@ void SMTableStyle::setupConnections()
 	connect(m_page->bandedColumnsCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotBandedColumns()));
 	connect(m_page->firstColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotFirstColumn()));
 	connect(m_page->lastColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotLastColumn()));
+	connect(m_page->tableDirectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTableDirection()));
 	connect(m_page, SIGNAL(conditionalAreaChanged(TableArea)), this, SLOT(slotAreaChanged(TableArea)));
 	connect(m_page->paragraphStyleComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotParagraphStyle(QString)));
 	connect(m_page->basedOnComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotBasedOnStyle(QString)));
@@ -457,6 +458,7 @@ void SMTableStyle::removeConnections()
 	disconnect(m_page->bandedColumnsCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotBandedColumns()));
 	disconnect(m_page->firstColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotFirstColumn()));
 	disconnect(m_page->lastColumnCheckBox, SIGNAL(toggled(bool)), this, SLOT(slotLastColumn()));
+	disconnect(m_page->tableDirectionComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(slotTableDirection()));
 	disconnect(m_page, SIGNAL(conditionalAreaChanged(TableArea)), this, SLOT(slotAreaChanged(TableArea)));
 	disconnect(m_page->paragraphStyleComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotParagraphStyle(QString)));
 	disconnect(m_page->basedOnComboBox, SIGNAL(newStyle(QString)), this, SLOT(slotBasedOnStyle(QString)));
@@ -750,5 +752,17 @@ void SMTableStyle::slotResetToBasedOn()
 		m_page->showParagraphStyleForCurrentArea(m_selection[0]);
 		m_page->showBordersForCurrentArea(m_selection[0]);
 		m_page->showBasedOnForCurrentArea(m_selection[0]);
+	}
+}
+
+void SMTableStyle::slotTableDirection()
+{
+	bool rtl = (m_page->tableDirectionComboBox->currentIndex() == 1);
+	for (int i = 0; i < m_selection.count(); ++i)
+		m_selection[i]->setTableRTL(rtl);
+	if (!m_selectionIsDirty)
+	{
+		m_selectionIsDirty = true;
+		emit selectionDirty();
 	}
 }

@@ -105,6 +105,7 @@ private slots:
 	void slotParagraphStyle(const QString& psName);
 	void slotBasedOnStyle(const QString& cellStyleName);
 	void slotResetToBasedOn();
+	void slotTableDirection();
 };
 
 #endif // SMTABLESTYLES_H

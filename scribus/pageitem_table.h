@@ -665,6 +665,10 @@ public:
 	/** @brief Perform undo/redo action */
 	void restore(UndoState *state, bool isUndo) override;
 
+	/// Returns the effective RTL state: the applied table style's RTL setting
+	/// if the style explicitly defines it, otherwise the item's own RTL flag.
+	bool effectiveRTL() const;
+
 signals:
 	/// This signal is emitted whenever the table changes.
 	void changed();

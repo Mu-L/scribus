@@ -109,6 +109,8 @@ void SMTableStyleWidget::show(TableStyle *tableStyle, QList<TableStyle> &tableSt
 	setCheck(bandedColumnsCheckBox, tableStyle->bandedColumns());
 	setCheck(firstColumnCheckBox, tableStyle->firstColumn());
 	setCheck(lastColumnCheckBox, tableStyle->lastColumn());
+	setCheck(lastColumnCheckBox, tableStyle->lastColumn());
+	setCombo(tableDirectionComboBox, tableStyle->tableRTL() ? 1 : 0);
 
 	parentCombo->clear();
 	parentCombo->addItem( tableStyle->isDefaultStyle()? tr("A default style cannot be assigned a parent style") : "");
@@ -448,6 +450,13 @@ void SMTableStyleWidget::setSpin(QSpinBox* sb, int v, bool enabled)
 	sb->setValue(v);
 	sb->setEnabled(enabled);
 	sb->blockSignals(b);
+}
+
+void SMTableStyleWidget::setCombo(QComboBox* cb, int index)
+{
+	bool blocked = cb->blockSignals(true);
+	cb->setCurrentIndex(index);
+	cb->blockSignals(blocked);
 }
 
 void SMTableStyleWidget::rebuildAreaCombo(TableStyle* tableStyle)

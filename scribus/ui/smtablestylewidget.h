@@ -106,6 +106,7 @@ class SMTableStyleWidget : public QWidget, public Ui::SMTableStyleWidget
 		QColor getColor(const QString& colorName, int shade) const;
 		void setCheck(QCheckBox* cb, bool v);
 		void setSpin(QSpinBox* sb, int v, bool enabled = true);
+		void setCombo(QComboBox* cb, int index);
 
 	private slots:
 		void handleUpdateRequest(int);

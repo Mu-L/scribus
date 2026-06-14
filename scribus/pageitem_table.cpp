@@ -1422,11 +1422,12 @@ TableHandle PageItem_Table::hitTest(const QPointF& point, double threshold) cons
 	// (junction of the row-select and column-select strips). When RTL document/table
 	// layout is detected, switch this to the top-right corner based on the
 	// table's reading direction.
-	const bool inSelectAllCorner = isRTL()
-			? (x >= tableWidth - threshold && x <= tableWidth && y >= 0.0 && y <= threshold)
-			: (x >= 0.0 && x <= threshold && y >= 0.0 && y <= threshold);
+	const bool isRTL = effectiveRTL();
+	const bool inSelectAllCorner = isRTL
+			? (x >= tableWidth - threshold && x <= tableWidth && y >= 0.0 && y <= threshold) /* RTL: top-right */
+			: (x >= 0.0 && x <= threshold && y >= 0.0 && y <= threshold); /* LTR: top-left */
 	if (inSelectAllCorner)
-		return TableHandle(TableHandle::SelectAll, isRTL() ? 1 : 0);
+		return TableHandle(TableHandle::SelectAll, isRTL ? 1 : 0);
 
 	// Test if hit is in the row-select strip (inside left edge of grid).
 	if (x >= 0.0 && x <= threshold)
@@ -2911,6 +2912,20 @@ void PageItem_Table::restore(UndoState *state, bool isUndo)
 		if (state->transactionCode == 0 || state->transactionCode == 2)
 			this->update();
 	}
+}
+
+bool PageItem_Table::effectiveRTL() const
+{
+	// A table style's RTL setting overrides the item's own flag, but only when
+	// the style (or an ancestor) explicitly defines it; otherwise the item's
+	// flag is used.
+	if (m_Doc && m_Doc->tableStyles().contains(styleName()))
+	{
+		const TableStyle& ts = m_Doc->tableStyles().get(styleName());
+		if (ts.isDefTableRTL())
+			return ts.tableRTL();
+	}
+	return isRTL();
 }
 
 void PageItem_Table::restoreCellBorders(SimpleState *state, bool isUndo)

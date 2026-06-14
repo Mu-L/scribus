@@ -3846,6 +3846,8 @@ void Scribus171Format::readTableStyle(ScribusDoc *doc, ScXmlStreamReader& reader
 		newStyle.setFirstColumn(attrs.valueAsInt("FirstColumn", 0) != 0);
 	if (attrs.hasAttribute("LastColumn"))
 		newStyle.setLastColumn(attrs.valueAsInt("LastColumn", 0) != 0);
+	if (attrs.hasAttribute("RTL"))
+		newStyle.setTableRTL(attrs.valueAsInt("RTL", 0) != 0);
 
 	QString tagName(reader.nameAsString());
 	while (!reader.atEnd() && !reader.hasError())

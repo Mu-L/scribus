@@ -1082,6 +1082,8 @@ void Scribus171Format::putTableStyle(ScXmlStreamWriter &docu, const TableStyle &
 		docu.writeAttribute("FirstColumn", QString::number(1));
 	if (style.lastColumn())
 		docu.writeAttribute("LastColumn", QString::number(1));
+	if (style.tableRTL())
+		docu.writeAttribute("RTL", QString::number(1));
 
 	if (!style.isInhLeftBorder())
 	{
