@@ -328,6 +328,7 @@ PyMethodDef scribus_methods[] = {
 	{ "deselectAll", (PyCFunction) scribus_deselectall, METH_NOARGS, tr(scribus_deselectall__doc__)},
 	{ "docChanged", scribus_docchanged, METH_VARARGS, tr(scribus_docchanged__doc__)},
 	{ "editMasterPage", scribus_editmasterpage, METH_VARARGS, tr(scribus_editmasterpage__doc__)},
+	{ "exportDocumentCheck", (PyCFunction) scribus_exportdocumentcheck, METH_VARARGS|METH_KEYWORDS, tr(scribus_exportdocumentcheck__doc__)},
 	{ "fileDialog", (PyCFunction) scribus_filedialog, METH_VARARGS|METH_KEYWORDS, tr(scribus_filedialog__doc__)},
 	{ "fileQuit", scribus_filequit, METH_VARARGS, tr(scribus_filequit__doc__)},
 	{ "flipObject", scribus_flipobject, METH_VARARGS, tr(scribus_flipobject__doc__)},
