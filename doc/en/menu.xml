@@ -100,7 +100,7 @@
 			<submenuitem text="LProf" file="toolbox14.html"/>
 			<submenuitem text="Fontmatrix" file="toolbox16.html"/>
 			<submenuitem text="SwatchBooker" file="toolbox17.html"/>
-			<submenuitem text="LibreOffice/OpenOffice.org" file="toolbox18.html"/>
+			<submenuitem text="LibreOffice" file="toolbox18.html"/>
 			<submenuitem text="Commandline Tools" file="toolbox19.html"/>
 		</submenuitem>
 		<area text="Help!!" file="help.html" >
