@@ -343,6 +343,7 @@ bool Scribus171Format::saveFile(const QString & fileName, const FileFormat & /* 
 	docu.writeAttribute("FirstPageNumber", m_Doc->FirstPnum);
 	docu.writeAttribute("PagePositioning", m_Doc->pagePositioning());
 	docu.writeAttribute("BindingDirection", m_Doc->bindingDirection());
+	docu.writeAttribute("IsRTL", m_Doc->isRTL());
 	if (m_Doc->usesAutomaticTextFrames())
 		docu.writeAttribute("AutomaticTextFrames", 1);
 	docu.writeAttribute("AutomaticTextFrameColumnCount", m_Doc->PageSp);

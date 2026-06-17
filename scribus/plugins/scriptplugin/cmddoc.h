@@ -430,6 +430,21 @@ The errors are strings, mostly names from the PreflightError enum in scribusstru
 "));
 PyObject* scribus_exportdocumentcheck(PyObject* self, PyObject* args, PyObject* kw);
 
+
+PyDoc_STRVAR(scribus_getrtl__doc__,
+QT_TR_NOOP("getRTL() -> bool\n\
+\n\
+Returns whether the current document is right-to-left.\n\
+"));
+PyObject *scribus_getrtl(PyObject * /*self*/);
+
+PyDoc_STRVAR(scribus_setrtl__doc__,
+QT_TR_NOOP("setRTL(rtl)\n\
+\n\
+Sets whether the current document is right-to-left. \"rtl\" is a boolean.\n\
+"));
+PyObject *scribus_setrtl(PyObject * /*self*/, PyObject* args);
+
 #endif
 
 

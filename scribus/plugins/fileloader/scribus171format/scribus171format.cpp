@@ -2537,7 +2537,7 @@ void Scribus171Format::readDocAttributes(ScribusDoc* doc, const ScXmlStreamAttri
 		m_Doc->FirstPnum = attrs.valueAsInt("FIRSTNUM", 1);
 		m_Doc->setPagePositioning(attrs.valueAsInt("BOOK", 0));
 		m_Doc->setBindingDirection(attrs.valueAsInt("BINDINGDIRECTION", 0));
-
+		m_Doc->setRTL(attrs.valueAsBool("IsRTL", false));
 		m_Doc->setUsesAutomaticTextFrames( attrs.valueAsInt("AUTOTEXT") );
 		m_Doc->PageSp = attrs.valueAsInt("AUTOSPALTEN");
 		m_Doc->PageSpa = attrs.valueAsDouble("ABSTSPALTEN");
@@ -2604,7 +2604,7 @@ void Scribus171Format::readDocAttributes(ScribusDoc* doc, const ScXmlStreamAttri
 		m_Doc->FirstPnum = attrs.valueAsInt("FirstPageNumber", 1);
 		m_Doc->setPagePositioning(attrs.valueAsInt("PagePositioning", 0));
 		m_Doc->setBindingDirection(attrs.valueAsInt("BindingDirection", 0));
-
+		m_Doc->setRTL(attrs.valueAsBool("IsRTL", false));
 		m_Doc->setUsesAutomaticTextFrames( attrs.valueAsInt("AutomaticTextFrames") );
 		m_Doc->PageSp = attrs.valueAsInt("AutomaticTextFrameColumnCount");
 		m_Doc->PageSpa = attrs.valueAsDouble("AutomaticTextFrameColumnGap");

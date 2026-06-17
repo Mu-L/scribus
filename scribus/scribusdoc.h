@@ -222,6 +222,8 @@ class SCRIBUS_API ScribusDoc : public QObject, public UndoObject, public Observa
 		void setPageOrientation(int o) { m_docPrefsData.docSetupPrefs.pageOrientation = o; }
 		int bindingDirection() const { return m_docPrefsData.docSetupPrefs.bindingDirection; }
 		void setBindingDirection(int d) { m_docPrefsData.docSetupPrefs.bindingDirection = d; m_docPrefsData.pdfPrefs.Binding = d;}
+		bool isRTL() const { return m_docPrefsData.docSetupPrefs.isRTL; }
+		void setRTL(bool rtl) { m_docPrefsData.docSetupPrefs.isRTL = rtl; }
 		int pagePositioning() const { return m_docPrefsData.docSetupPrefs.pagePositioning; }
 		void setPagePositioning(int p) { m_docPrefsData.docSetupPrefs.pagePositioning = p; }
 

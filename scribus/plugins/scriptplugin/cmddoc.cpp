@@ -750,3 +750,23 @@ void cmddocdocwarnings()
 	  << scribus_setmargins__doc__
 	  << scribus_setunit__doc__;
 }
+
+PyObject *scribus_getrtl(PyObject* /* self */)
+{
+	if (!checkHaveDocument())
+		return nullptr;
+	return PyBool_FromLong(static_cast<long>(ScCore->primaryMainWindow()->doc->isRTL()));
+}
+
+PyObject *scribus_setrtl(PyObject* /* self */, PyObject* args)
+{
+	int rtl = 0;
+	if (!PyArg_ParseTuple(args, "p", &rtl))
+		return nullptr;
+	if (!checkHaveDocument())
+		return nullptr;
+	ScribusDoc* currentDoc = ScCore->primaryMainWindow()->doc;
+	currentDoc->setRTL(rtl != 0);
+	currentDoc->setModified(true);
+	Py_RETURN_NONE;
+}

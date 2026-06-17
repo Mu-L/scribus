@@ -169,6 +169,7 @@ struct DocumentSetupPrefs
 	QString AutoSaveDir;
 	bool saveCompressed;
 	int bindingDirection; //! 0 = LTR, 1 = RTL
+	bool isRTL; //! \brief Document is right-to-left
 };
 
 //Guides

@@ -5663,6 +5663,13 @@ void ScribusDoc::itemAddDetails(const PageItem::ItemType itemType, const PageIte
 {
 	ParagraphStyle defaultParagraphStyle;
 	Q_ASSERT(newItem->realItemType() == itemType);
+
+	// New items inherit the document's default text direction.
+	// Skip during load: items restore their own RTL state from the file,
+	// and the RTL attribute is only written/read when set.
+	if (!isLoading())
+		newItem->setRTL(isRTL());
+
 	switch (itemType)
 	{
 		case PageItem::ImageFrame:
