@@ -4961,22 +4961,32 @@ The Insert key inserts a Glyph into the Selection below and the Delete key remov
         <translation>شیء یک PDF جای‌گذاری‌شده است</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="432"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="440"/>
         <source>Document</source>
         <translation>سند</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="434"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="442"/>
         <source>No Problems found</source>
         <translation>مشکلی یافت نشد</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="675"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="514"/>
+        <source>Styles</source>
+        <translation type="unfinished">استایل ها</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="535"/>
+        <source>Style &quot;%1&quot;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="717"/>
         <source>Page </source>
         <translation>صفحه</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="735"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="777"/>
         <source>Free Objects</source>
         <translation>اشیای آزاد</translation>
     </message>
@@ -5002,7 +5012,7 @@ The Insert key inserts a Glyph into the Selection below and the Delete key remov
     </message>
     <message>
         <location filename="../../scribus/ui/checkDocument.cpp" line="121"/>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="739"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="781"/>
         <source>&amp;Ignore Errors</source>
         <translation> نادیده گرفتن خطاها</translation>
     </message>
@@ -5027,7 +5037,17 @@ The Insert key inserts a Glyph into the Selection below and the Delete key remov
         <translation> تصویر از کُدگذاری پیشرونده استفاده می‌کند که برای وب‌سایت‌ها مفید است، اما هنگام ارسال PDF به چاپگرهای حرفه‌ای به‌خوبی پردازش نمی‌شود.</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="435"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="150"/>
+        <source>Style has a missing parent style</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="150"/>
+        <source>A paragraph or character style is based on a parent style that no longer exists in the document. Text using this style may not render as intended. Edit the style and choose an existing parent, or recreate the missing style.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="443"/>
         <source>OK</source>
         <translation>تأیید</translation>
     </message>
@@ -5042,7 +5062,7 @@ The Insert key inserts a Glyph into the Selection below and the Delete key remov
         <translation>از حالت ترکیب استفاده شده است</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="490"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="498"/>
         <source>Layer &quot;%1&quot;</source>
         <translation> لایهٔ «%1»</translation>
     </message>
@@ -5062,12 +5082,12 @@ The Insert key inserts a Glyph into the Selection below and the Delete key remov
         <translation>قاب تصویر خالی</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="454"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="462"/>
         <source>Layers</source>
         <translation>لایه‌ها</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="504"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="546"/>
         <source>Master Pages</source>
         <translation>صفحات الگو</translation>
     </message>
@@ -5096,14 +5116,15 @@ currently %2 x %3 DPI</source>
         <translation>اندازه عکس از قالبش کوچکتر است</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="447"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="455"/>
         <source>After Marks update document was changed</source>
         <translation>بعد از بروزرسانی مارک‌ها سند تغییر کرده است</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="495"/>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="578"/>
-        <location filename="../../scribus/ui/checkDocument.cpp" line="667"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="503"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="537"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="620"/>
+        <location filename="../../scribus/ui/checkDocument.cpp" line="709"/>
         <source>Issues: %1</source>
         <translation> موارد: %1</translation>
     </message>
@@ -18238,73 +18259,73 @@ Document Liberation Project https://www.documentliberation.org</source>
 <context>
     <name>PrefsManager</name>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2488"/>
-        <location filename="../../scribus/prefsmanager.cpp" line="2497"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2491"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2500"/>
         <source>Postscript</source>
         <translation>Postscript</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="911"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="912"/>
         <source>Migrate Old Scribus Settings?</source>
         <translation>تنظیمات قدیمی اسکرایبوس منتقل شوند؟</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="912"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="913"/>
         <source>Scribus has detected existing Scribus 1.6.0 preferences files.
 Do you want to migrate them to the new Scribus version?</source>
         <translation>اسکرایبوس فایل‌های ترجیحات نسخهٔ 1.3.5 را شناسایی کرده است.
 آیا می‌خواهید آن‌ها را به نسخهٔ جدید اسکرایبوس منتقل کنید؟ {1.6.0 ?}</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2487"/>
-        <location filename="../../scribus/prefsmanager.cpp" line="2497"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2490"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2500"/>
         <source>PostScript</source>
         <translation>PostScript</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="1978"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="1980"/>
         <source>Could not open preferences file &quot;%1&quot; for writing: %2</source>
         <translation> فایل ترجیحات «%1» برای نوشتن باز نشد: %2</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="1988"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="1990"/>
         <source>Writing to preferences file &quot;%1&quot; failed: QIODevice status code %2</source>
         <translation> نوشتن در فایل ترجیحات «%1» ناموفق بود: کد وضعیت QIODevice ‎%2‎</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2001"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2003"/>
         <source>Failed to open prefs file &quot;%1&quot;: %2</source>
         <translation> باز کردن فایل ترجیحات «%1» ناموفق بود: %2</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2012"/>
-        <location filename="../../scribus/prefsmanager.cpp" line="2022"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2014"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2024"/>
         <source>Failed to read prefs XML from &quot;%1&quot;: %2 at line %3, col %4</source>
         <translation> خواندن XML ترجیحات از «%1» ناموفق بود: %2 در خط %3، ستون %4</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2987"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2990"/>
         <source>Error Writing Preferences</source>
         <translation>خطا در نوشتن ترجیحات</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2989"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2992"/>
         <source>Scribus was not able to save its preferences:&lt;br&gt;%1&lt;br&gt;Please check file and directory permissions and available disk space.</source>
         <comment>scribus app error</comment>
         <translation>اسکرایبوس نتوانست ترجیحات خود را ذخیره کند:&lt;br&gt;%1&lt;br&gt;Please check file and directory permissions and لطفاً مجوزهای فایل و پوشه و فضای دیسک موجود را بررسی کنید.</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="3004"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="3007"/>
         <source>Error Loading Preferences</source>
         <translation>خطا در بارگذاری ترجیحات</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="3006"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="3009"/>
         <source>Scribus was not able to load its preferences:&lt;br&gt;%1&lt;br&gt;Default settings will be loaded.</source>
         <translation>اسکرایبوس نتوانست ترجیحات خود را بارگذاری کند:&lt;br&gt;%1&lt;br&gt;تنظیمات پیشفرض بارگذاری خواهند شد.</translation>
     </message>
     <message>
-        <location filename="../../scribus/prefsmanager.cpp" line="2606"/>
+        <location filename="../../scribus/prefsmanager.cpp" line="2609"/>
         <source>No valid renderframe config found. Using defaults!</source>
         <translation> هیچ پیکربندی معتبرِ فریم رندر پیدا نشد. از مقادیر پیشفرض استفاده می‌شود!</translation>
     </message>
@@ -19082,13 +19103,13 @@ Do you want to migrate them to the new Scribus version?</source>
     </message>
     <message>
         <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="198"/>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="449"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="470"/>
         <source>Apply changes to all pages</source>
         <translation>اعمال تغییرات به همهٔ صفحات</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="205"/>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="456"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="477"/>
         <source>Apply changes to all master pages</source>
         <translation>اعمال تغییرات به همهٔ صفحات الگو</translation>
     </message>
@@ -19123,82 +19144,97 @@ Do you want to migrate them to the new Scribus version?</source>
         <translation type="unfinished">از راست به چپ</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="548"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="341"/>
+        <source>Left-to-right</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="346"/>
+        <source>Right-to-left</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="354"/>
+        <source>Text Direction:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="569"/>
         <source>Saving &amp;&amp; Undo</source>
         <translation>ذخیره‌سازی و بازگردانی</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="554"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="575"/>
         <source>Save in Compressed Format</source>
         <translation>ذخیره در فرمت فشرده</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="561"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="582"/>
         <source>Try to save an &quot;Emergency File&quot; in case of a crash</source>
         <translation>در صورت کرش، تلاش برای ذخیرهٔ «فایل اضطراری»</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="589"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="610"/>
         <source>Autosave</source>
         <translation>ذخیرهٔ خودکار</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="603"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="624"/>
         <source>Enable automatic saving of documents</source>
         <translation>ذخیرهٔ خودکار اسناد را فعال کن</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="614"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="635"/>
         <source>Interval:</source>
         <translation>مدت</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="621"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="642"/>
         <source> min</source>
         <translation> min</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="631"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="652"/>
         <source>Number of files to keep:</source>
         <translation>تعداد فایلها برای نگهداری:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="664"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="685"/>
         <source>Save into the same directory as the document</source>
         <translation>ذخیره در پوشهٔ حامل داکیومنت</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="674"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="695"/>
         <source>Save into:</source>
         <translation>ذخیره درون:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="684"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="705"/>
         <source>Change...</source>
         <translation>تغییر...</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="696"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="717"/>
         <source>Keep backup files after closing the document</source>
         <translation>پس از بستن سند فایل‌های پشتیبان را نگهدار</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="703"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="724"/>
         <source>Show autosave countdown clock on the canvas</source>
         <translation>نمایش شمارشگر ذخیرهٔ خودکار روی بوم</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="731"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="752"/>
         <source>Undo / Redo</source>
         <translation>بازگردانی / انجامِ دوباره</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="745"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="766"/>
         <source>Enable Undo/Redo System</source>
         <translation>فعال کردن سیستم بازگردانی/انجامِ دوباره</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="754"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="775"/>
         <source>Action History Length:</source>
         <translation>طول تاریخچهٔ اکشن‌ها:</translation>
     </message>
@@ -19228,17 +19264,17 @@ Do you want to migrate them to the new Scribus version?</source>
         <translation>صفحه اول هست:</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="356"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="377"/>
         <source>Margins &amp;&amp; Bleeds</source>
         <translation>حدود حاشیه‌ها و بلیدها</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="403"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="424"/>
         <source>Margins</source>
         <translation>حدود حاشیه‌ها</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="484"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetupbase.ui" line="505"/>
         <source>Bleeds</source>
         <translation>بلیدها</translation>
     </message>
@@ -19293,7 +19329,7 @@ Do you want to migrate them to the new Scribus version?</source>
         <translation>این تعداد فایل را در طول ویرایش نگه دارید. پس از بستن سند فایل‌های پشتیبان حذف می‌شوند.</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/preferences/prefs_documentsetup.cpp" line="394"/>
+        <location filename="../../scribus/ui/preferences/prefs_documentsetup.cpp" line="397"/>
         <source>Choose a Directory</source>
         <translation>انتخاب یک دایرکتوری</translation>
     </message>
@@ -29918,7 +29954,7 @@ External Links
         <translation>ایندکس انتخاب خارج از محدوده است.</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="332"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="338"/>
         <source>Unit out of range. Use one of the scribus.UNIT_* constants.</source>
         <comment>python error</comment>
         <translation>واحد خارج از دامنه است. از یکی از ثابت‌های ‎scribus.UNIT_*‎ استفاده کنید.</translation>
@@ -30631,7 +30667,7 @@ External Links
         <translation>قالب سند:</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="277"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="283"/>
         <source>Failed to save document.</source>
         <comment>python error</comment>
         <translation>ذخیرهٔ سند ناموفق بود.</translation>
@@ -30917,7 +30953,7 @@ External Links
         <translation>دربارهٔ اسکریپت</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/scriptplugin.cpp" line="1035"/>
+        <location filename="../../scribus/plugins/scriptplugin/scriptplugin.cpp" line="1038"/>
         <source>Scribus Python interface module
 
 This module is the Python interface for Scribus. It provides functions
@@ -31244,7 +31280,7 @@ is not exhaustive due to exceptions from called functions.
         <translation>فایلی با نام ‎&apos;%1&apos;‎ از قبل وجود دارد.&lt;br/&gt;آیا می‌خواهید آن را با فایل در حال ذخیره جایگزین کنید؟</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="44"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="50"/>
         <source>firstPageOrder is bigger than allowed.</source>
         <comment>python error</comment>
         <translation>firstPageOrder‎ از مقدار مجاز بزرگتر است.</translation>
@@ -32507,7 +32543,7 @@ Therefore the image may be not correct</source>
         <translation>&lt;p&gt;در حال تلاش برای ایمپورت تعداد صفحاتی بیشتر از صفحات موجود در سند فعلی هستید (از صفحهٔ فعال شمرده می‌شود).&lt;/p&gt;یکی از گزینه‌های زیر را انتخاب کنید:&lt;ul&gt;&lt;li&gt;&lt;b&gt;ایجاد &lt;/b&gt; صفحات گمشده&lt;/li&gt;&lt;li&gt;&lt;b&gt;ایمپورت&lt;/b&gt; صفحات تا آخرین صفحه&lt;/li&gt;&lt;li&gt;&lt;b&gt;لغو&lt;/b&gt;&lt;/li&gt;&lt;/ul&gt;</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="19063"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="19071"/>
         <source>Unacceptable settings for note style</source>
         <translation>تنظیمات غیرقابل‌قبول برای استایل یادداشت</translation>
     </message>
@@ -32605,34 +32641,40 @@ Therefore the image may be not correct</source>
         <translation>واردکنندهٔ Pagemaker</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="231"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="237"/>
         <source>Failed to open document: %1</source>
         <comment>python error</comment>
         <translation>باز کردن سند ‎%1‎ ناموفق بود.</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="524"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="530"/>
         <source>Page number out of range: &apos;%1&apos;.</source>
         <comment>python error</comment>
         <translation>شمارهٔ صفحه خارج از محدوده است: ‎&apos;%1&apos;‎.</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="543"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="549"/>
         <source>Master page does not exist: &apos;%1&apos;</source>
         <comment>python error</comment>
         <translation>صفحهٔ مادر وجود ندارد: ‎&apos;%1&apos;‎.</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="548"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="554"/>
         <source>Page number out of range: %1.</source>
         <comment>python error</comment>
         <translation>شمارهٔ صفحه خارج از محدوده است: ‎%1‎.</translation>
     </message>
     <message>
-        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="554"/>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="560"/>
         <source>Failed to apply masterpage &apos;%1&apos; on page: %2</source>
         <comment>python error</comment>
         <translation>اعمال صفحهٔ مادر ‎&apos;%1&apos;‎ روی صفحهٔ ‎%2‎ ناموفق بود.</translation>
+    </message>
+    <message>
+        <location filename="../../scribus/plugins/scriptplugin/cmddoc.cpp" line="721"/>
+        <source>Failed to open the file &apos;%1&apos; for writing</source>
+        <comment>python error</comment>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../scribus/langmgr.cpp" line="176"/>
@@ -36832,7 +36874,7 @@ If you save it in this version, it will no longer be readable by older Scribus v
         <location filename="../../scribus/scribusdoc.cpp" line="202"/>
         <location filename="../../scribus/scribusdoc.cpp" line="208"/>
         <location filename="../../scribus/scribusdoc.cpp" line="238"/>
-        <location filename="../../scribus/scribusdoc.cpp" line="17507"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="17515"/>
         <source>Document</source>
         <translation>داکیومنت</translation>
     </message>
@@ -36842,27 +36884,27 @@ If you save it in this version, it will no longer be readable by older Scribus v
         <translation>پس‌زمینه</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="11939"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="11946"/>
         <source>Cannot Delete In-Use Item</source>
         <translation>نمیتوان آیتم در حال استفاده را حذف کرد</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="11939"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="11946"/>
         <source>The item %1 is currently being edited by Story Editor. The delete operation will be cancelled</source>
         <translation>آیتم %1 در حال حاضر توسط ویرایشگر متن فریم ویرایش می‌شود. عملیات حذف لغو خواهد شد.</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="12752"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="12759"/>
         <source>Some objects are locked.</source>
         <translation>برخی از اشیاء قفل شده‌اند.</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="12748"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="12755"/>
         <source>&amp;Unlock All</source>
         <translation>باز کردن قفل همه</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="12749"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="12756"/>
         <source>&amp;Skip locked objects</source>
         <translation>نادیده گرفتن اشیاء قفل‌شده</translation>
     </message>
@@ -36873,22 +36915,22 @@ If you save it in this version, it will no longer be readable by older Scribus v
     </message>
     <message>
         <location filename="../../scribus/scribusdoc.cpp" line="957"/>
-        <location filename="../../scribus/scribusdoc.cpp" line="17187"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="17194"/>
         <source>Adjusting Colors</source>
         <translation>در حال تنظیم رنگ‌ها</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="9690"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="9697"/>
         <source>remove direct paragraph formatting</source>
         <translation>حذف فرمت مستقیم پاراگراف</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="10163"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="10170"/>
         <source>remove direct char formatting</source>
         <translation>حذف فرمت مستقیم کاراکتر</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="14282"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="14289"/>
         <source>Number of copies: %1
 Horizontal shift: %2
 Vertical shift: %3
@@ -36899,7 +36941,7 @@ Rotation: %4</source>
 %3 ← چرخش: %4</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="14315"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="14322"/>
         <source>Number of rows: %1
 Number of columns: %2
 Horizontal gap: %3
@@ -36910,9 +36952,9 @@ Vertical gap: %4</source>
 فاصلهٔ عمودی: %4</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="15764"/>
-        <location filename="../../scribus/scribusdoc.cpp" line="15819"/>
-        <location filename="../../scribus/scribusdoc.cpp" line="15981"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="15771"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="15826"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="15988"/>
         <source>Group%1</source>
         <translation>گروه%1</translation>
     </message>
@@ -36923,28 +36965,28 @@ Vertical gap: %4</source>
         <translation>ایمپورت شد</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="14444"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="14451"/>
         <source>Copied %1 item(s) on %2 page(s)</source>
         <translation>%1 مورد در %2 صفحه کپی شد</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="17523"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="17531"/>
         <source>File %1 autosaved</source>
         <translation>فایل %1 بطور خودکار ذخیره شد</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="18692"/>
-        <location filename="../../scribus/scribusdoc.cpp" line="18729"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="18700"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="18737"/>
         <source>No Style</source>
         <translation>بدون استایل</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="19057"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="19065"/>
         <source>%1 note style has document as range and provide same numbering style as set %2</source>
         <translation>استایل یادداشت %1 بازه را بعنوان سند دارد و همان سبک شماره‌گذاری %2 را فراهم می‌کند</translation>
     </message>
     <message>
-        <location filename="../../scribus/scribusdoc.cpp" line="11835"/>
+        <location filename="../../scribus/scribusdoc.cpp" line="11842"/>
         <source>Do you really want to clear the content of all selected frames?</source>
         <translation>آیا واقعاً می‌خواهید محتوای تمام فریم‌های انتخاب‌شده را پاک کنید؟</translation>
     </message>
@@ -39584,9 +39626,9 @@ Consider using the Preflight Verifier to correct them</source>
         <translation>رشتهٔ الزامی برای PDF/X، در غیر اینصورت فایل PDF با استاندارد PDF/X همخوان نخواهد بود. پیشنهاد می‌کنیم از عنوان سند استفاده کنید.</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="449"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="1182"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="1190"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="452"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="1185"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="1193"/>
         <source>Page</source>
         <translation>صفحه</translation>
     </message>
@@ -39640,50 +39682,50 @@ Consider using the Preflight Verifier to correct them</source>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="632"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="605"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="800"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="608"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="803"/>
         <source>No Effect</source>
         <translation>بدون افکت</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="637"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="606"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="801"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="609"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="804"/>
         <source>Blinds</source>
         <translation>پرده‌ای شدن</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="642"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="607"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="802"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="610"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="805"/>
         <source>Box</source>
         <translation>جعبه‌ای</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="647"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="608"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="803"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="611"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="806"/>
         <source>Dissolve</source>
         <translation>حل‌شدن</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="652"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="609"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="804"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="612"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="807"/>
         <source>Glitter</source>
         <translation>درخشش</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="657"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="610"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="805"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="613"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="808"/>
         <source>Split</source>
         <translation>تقسیم شدن</translation>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="662"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="611"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="806"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="614"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="809"/>
         <source>Wipe</source>
         <translation>پاک شدن</translation>
     </message>
@@ -40189,7 +40231,7 @@ Consider using the Preflight Verifier to correct them</source>
     </message>
     <message>
         <location filename="../../scribus/ui/tabpdfoptions.ui" line="912"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="467"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="470"/>
         <source>No Script</source>
         <translation>بدون اسکریپت</translation>
     </message>
@@ -40310,12 +40352,12 @@ when PDF document is opened:</source>
         <translation>سطوح کیفیت برای روش‌های فشرده‌سازیِ با افت کیفیت: مینیمم (٪۲۵)، کم (٪۵۰)، مدیوم (٪۷۵)، بالا (٪۸۵)، ماکسیمم (٪۹۵). توجه داشته باشید که سطح کیفیت اندازهٔ نهایی تصویر را مستقیماً تعیین نمی‌کند - هم اندازه و هم میزان افت کیفیت، در یک سطح کیفیت ثابت، از تصویری به تصویر دیگر متفاوت است. حتی با انتخاب ماکسیمم هم در JPEG همیشه مقداری افت کیفیت وجود دارد.</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="637"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="640"/>
         <source>Inside:</source>
         <translation>درون</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="638"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="641"/>
         <source>Outside:</source>
         <translation>بیرونی</translation>
     </message>
@@ -40451,26 +40493,26 @@ when PDF document is opened:</source>
         <translation>فایل‌های PDF داخل فریم‌های تصاویر را بصورت PDFِ جاسازی‌شده صادر می‌کند. این کار هنوز رنگ‌فضاها را پوشش نمی‌دهد، بنابراین قبل از تنظیم این گزینه روی &apos;true&apos; باید دقیقاً بدانید چه می‌کنید.</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="614"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="809"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="617"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="812"/>
         <source>Push</source>
         <translation>فشار</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="615"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="810"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="618"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="813"/>
         <source>Cover</source>
         <translation>پوشاندن</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="616"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="811"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="619"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="814"/>
         <source>Uncover</source>
         <translation>نپوشاندن</translation>
     </message>
     <message>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="617"/>
-        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="812"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="620"/>
+        <location filename="../../scribus/ui/tabpdfoptions.cpp" line="815"/>
         <source>Fade</source>
         <translation>محو شدن</translation>
     </message>
