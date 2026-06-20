@@ -612,6 +612,7 @@ PyObject* scribus_exportdocumentcheck(PyObject* /* self */, PyObject* args, PyOb
 		{PreflightError::AppliedMasterDifferentSide, "AppliedMasterDifferentSide"},
 		{PreflightError::EmptyTextFrame, "EmptyTextFrame"},
 		{PreflightError::ImageHasProgressiveEncoding, "ImageHasProgressiveEncoding"},
+		{PreflightError::MissingStyle, "MissingStyle"},
 	};
 	// Custom Errors
 	// "DocumentModifiedAfterMarksUpdate"
@@ -698,6 +699,16 @@ PyObject* scribus_exportdocumentcheck(PyObject* /* self */, PyObject* args, PyOb
 		jsonPages[QString::number(pageNumber + 1)] = pageItems;
 	}
 	json["pages"] = jsonPages;
+
+	QJsonObject jsonStyles;
+	for (auto [styleName, styleErrors] : currentDoc->docStyleErrors.asKeyValueRange())
+	{
+		QJsonArray styleErrorList;
+		for (auto [errorCode, value] : styleErrors.asKeyValueRange())
+			styleErrorList.push_back(errorsList.value(errorCode));
+		jsonStyles[styleName] = styleErrorList;
+	}
+	json["styles"] = jsonStyles;
 
 	json["freeItems"] = jsonFreeItems;
 

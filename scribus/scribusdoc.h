@@ -1531,6 +1531,7 @@ class SCRIBUS_API ScribusDoc : public QObject, public UndoObject, public Observa
 		QMap<int, errorCodes> docLayerErrors;
 		QMap<PageItem*, errorCodes> docItemErrors;
 		QMap<PageItem*, errorCodes> masterItemErrors;
+		QMap<QString, errorCodes> docStyleErrors;   // keyed by style name
 		FPointArray symReturn;
 		FPointArray symNewLine;
 		FPointArray symTab;

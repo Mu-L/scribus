@@ -17449,7 +17449,8 @@ bool ScribusDoc::hasPreflightErrors() const
 			(pageErrors.count() != 0) ||
 			(docItemErrors.count() != 0) ||
 			(masterItemErrors.count() != 0) ||
-			(docLayerErrors.count() != 0)
+			(docLayerErrors.count() != 0) ||
+			(docStyleErrors.count() != 0)
 			);
 }
 
