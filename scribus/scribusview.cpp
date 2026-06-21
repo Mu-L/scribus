@@ -578,7 +578,6 @@ void ScribusView::contentsDragMoveEvent(QDragMoveEvent *e)
 			QPoint pos = m_canvas->canvasToLocal(dragPosDoc);
 			horizRuler->draw(pos.x());
 			vertRuler->draw(pos.y());
-			//			return;
 		}
 	}
 }
@@ -1534,31 +1533,8 @@ bool ScribusView::slotSetCurs(int x, int y)
 		if (textFrame->invalid)
 			textFrame->layout();
 		int textPosition = textFrame->textPositionFromPoint(canvasPoint);
-		/*
-		QPointF textFramePoint = mm.map(QPointF(0, 0));
-		double px = canvasPoint.x() - textFramePoint.x();
-		double py = canvasPoint.y() - textFramePoint.y();
-		FPoint point(px, py);
-		if (mm.isInvertible() && textFrame->itemText.isNotEmpty())
-		{
-			qreal tx = 0, ty = 0;
-			mm.inverted().map(canvasPoint.x(), canvasPoint.y(), &tx, &ty);
-			point.setXY(tx, ty);
-		}
-		if (textFrame->imageFlippedH())
-			point.setX(textFrame->width() - point.x());
-		if (textFrame->imageFlippedV())
-			point.setY(textFrame->height() - point.y());
-		if (textFrame->itemText.length() == 0)
-			textFrame->itemText.setCursorPosition(0);
-		else
-		{
-			int result = textFrame->textLayout.pointToPosition(point.toQPointF());
-			if (result >= 0)
-				textFrame->itemText.setCursorPosition(result);
-		}
-		*/
-		textFrame->itemText.setCursorPosition(textPosition);
+		if (textPosition >= 0)
+			textFrame->itemText.setCursorPosition(textPosition);
 		if (textFrame->itemText.isNotEmpty())
 		{
 			int pos = qMax(0, qMin(textFrame->itemText.cursorPosition(), textFrame->itemText.length()));
