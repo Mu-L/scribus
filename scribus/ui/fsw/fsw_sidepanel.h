@@ -35,7 +35,7 @@ class FSW_SidePanel : public QWidget
 		QLabel* m_logo { nullptr };
 		QLabel* m_brandName { nullptr };
 		QLabel* m_brandSub { nullptr };
-		QVBoxLayout  m_stepsLayout { nullptr };
+		QVBoxLayout* m_stepsLayout { nullptr };
 		QList<QLabel*> m_steps;
 		int m_current { 0 };
 };
