@@ -16977,6 +16977,37 @@ void ScribusDoc::itemSelection_SelectWholeTable()
 	table->update();
 }
 
+void ScribusDoc::itemSelection_SelectChain()
+{
+	// Find any selected text frame that is part of a chain.
+	PageItem* item = nullptr;
+	for (int i = 0; i < m_Selection->count(); ++i)
+	{
+		PageItem* it = m_Selection->itemAt(i);
+		if (it && it->isTextFrame() && it->isInChain())
+		{
+			item = it;
+			break;
+		}
+	}
+	if (!item)
+		return;
+
+	m_Selection->delaySignalsOn();
+	m_Selection->clear();
+	PageItem* linkedFrame = item->firstInChain();
+	while (linkedFrame)
+	{
+		m_Selection->addItem(linkedFrame);
+		linkedFrame = linkedFrame->nextInChain();
+	}
+	m_Selection->delaySignalsOff();
+
+	if (m_View)
+		m_View->DrawNew();
+	emit selectionChanged();
+}
+
 void ScribusDoc::itemSelection_SetColorProfile(const QString & profileName, Selection * customSelection)
 {
 	Selection* itemSelection = (customSelection != nullptr) ? customSelection : m_Selection;

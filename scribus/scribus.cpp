@@ -1096,6 +1096,8 @@ void ScribusMainWindow::initMenuBar()
 	scrMenuMgr->addMenuItemString("toolsLinkTextFrame", "TextLinking");
 	scrMenuMgr->addMenuItemString("toolsUnlinkTextFrame", "TextLinking");
 	scrMenuMgr->addMenuItemString("toolsUnlinkTextFrameAndCutText", "TextLinking");
+	scrMenuMgr->addMenuItemString("SEPARATOR", "TextLinking");
+	scrMenuMgr->addMenuItemString("itemSelectChain", "TextLinking");
 	scrMenuMgr->createMenu("TextTransformation", tr("Text Transformation"), "Item");
 	scrMenuMgr->addMenuItemString("TextTransformation", "Item");
 	scrMenuMgr->addMenuItemString("itemTextTransformLowercase", "TextTransformation");

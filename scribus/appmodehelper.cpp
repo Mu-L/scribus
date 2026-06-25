@@ -479,6 +479,20 @@ void AppModeHelper::enableActionsForSelection(ScribusMainWindow* scmw, ScribusDo
 		enableTextActions(false);
 	(*a_scrActions)["insertSampleText"]->setEnabled(false);
 
+	// itemSelectChain: enabled when any selected item is a chained text frame
+	// (works for single or multi selection).
+	bool anyChained = false;
+	for (int i = 0; i < doc->m_Selection->count(); ++i)
+	{
+		PageItem* it = doc->m_Selection->itemAt(i);
+		if (it && it->isTextFrame() && it->isInChain())
+		{
+			anyChained = true;
+			break;
+		}
+	}
+	(*a_scrActions)["itemSelectChain"]->setEnabled(anyChained);
+
 	switch (SelectedType)
 	{
 		case -1: // None
@@ -640,6 +654,7 @@ void AppModeHelper::enableActionsForSelection(ScribusMainWindow* scmw, ScribusDo
 				(*a_scrActions)["toolsLinkTextFrame"]->setEnabled(true);
 				(*a_scrActions)["toolsUnlinkTextFrame"]->setEnabled(true);
 				(*a_scrActions)["toolsUnlinkTextFrameAndCutText"]->setEnabled(true);
+
 				// FIXME: once there's one itemtext per story, always enable editcontents
 				if ((currItem->prevInChain() != nullptr) && (currItem->itemText.length() == 0))
 					(*a_scrActions)["toolsEditContents"]->setEnabled(false);

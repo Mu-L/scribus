@@ -1817,6 +1817,7 @@ class SCRIBUS_API ScribusDoc : public QObject, public UndoObject, public Observa
 		void itemSelection_SelectTableRow();
 		void itemSelection_SelectTableColumn();
 		void itemSelection_SelectWholeTable();
+		void itemSelection_SelectChain();
 
 		void undoRedoBegin();
 		void undoRedoDone();

@@ -566,6 +566,8 @@ void ContextMenu::createMenuItems_Selection()
 	}
 	if (!currItem->locked() && (m_doc->appMode != modeEdit)  && (m_doc->appMode != modeEditTable) && (!(currItem->isSingleSel)))
 		menuEdit->addAction(m_ScMW->scrActions["itemDelete"]);
+	if (currItem->isTextFrame() && currItem->isInChain())
+		addAction(m_ScMW->scrActions["itemSelectChain"]);
 
 //<<#14678
 	if ((ScMimeData::clipboardHasScribusElem() || ScMimeData::clipboardHasScribusFragment()) &&
