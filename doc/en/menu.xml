@@ -92,6 +92,7 @@
 			<submenuitem text="GSview" file="toolbox6.html"/>
 			<submenuitem text="GIMP" file="toolbox4.html"/>
 			<submenuitem text="Krita" file="toolbox15.html"/>
+			<submenuitem text="G'MIC" file="toolbox21.html"/>
 			<submenuitem text="XnView" file="toolbox13.html"/>
 			<submenuitem text="ImageMagick" file="toolbox8.html"/>
 			<submenuitem text="Inkscape" file="toolbox9.html"/>
