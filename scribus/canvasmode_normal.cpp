@@ -308,6 +308,19 @@ void CanvasMode_Normal::mouseMoveEvent(QMouseEvent *m)
 //	m_mouseCurrentPoint = mousePointDoc;
 	bool movingOrResizing = (m_canvas->m_viewMode.operItemMoving || m_canvas->m_viewMode.operItemResizing);
 	bool mouseIsOnPage    = (m_doc->OnPage(mousePointDoc.x(), mousePointDoc.y()) != -1);
+	// itemUnderCursor() is an O(items) hit test; cache it so a single mouse move does
+	// not run it twice (guide-gesture test and hover HUD) for the same cursor point.
+	PageItem* cachedHoveredItem = nullptr;
+	bool cachedHoveredItemValid = false;
+	auto hoveredUnderCursor = [&]() -> PageItem*
+	{
+		if (!cachedHoveredItemValid)
+		{
+			cachedHoveredItem = m_canvas->itemUnderCursor(m->globalPosition(), nullptr, m->modifiers());
+			cachedHoveredItemValid = true;
+		}
+		return cachedHoveredItem;
+	};
 	if ((m_doc->guidesPrefs().guidesShown) && (!m_doc->GuideLock) && (!movingOrResizing) && (mouseIsOnPage))
 	{
 		// #9002: Resize points undraggable when object is aligned to a guide
@@ -326,7 +339,7 @@ void CanvasMode_Normal::mouseMoveEvent(QMouseEvent *m)
 		}
 		else
 		{
-			PageItem* hoveredItem = m_canvas->itemUnderCursor(m->globalPosition(), nullptr, m->modifiers());
+			PageItem* hoveredItem = hoveredUnderCursor();
 			if (hoveredItem)
 				frameResizeHandle = m_canvas->frameHitTest(QPointF(mousePointDoc.x(), mousePointDoc.y()), hoveredItem);
 		}
@@ -375,8 +388,7 @@ void CanvasMode_Normal::mouseMoveEvent(QMouseEvent *m)
 	//<<#10116 Show overflow counter HUD
 	if (!movingOrResizing && mouseIsOnPage)
 	{
-		PageItem* hoveredItem = nullptr;
-		hoveredItem = m_canvas->itemUnderCursor(m->globalPosition(), hoveredItem, m->modifiers());
+		PageItem* hoveredItem = hoveredUnderCursor();
 		if (hoveredItem)
 		{
 			if (m_doc->drawAsPreview)
