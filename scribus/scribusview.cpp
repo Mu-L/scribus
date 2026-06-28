@@ -1904,8 +1904,6 @@ void ScribusView::setRulerPos(int x, int y)
 		horizRuler->shift(x / m_canvas->scale());
 		vertRuler->shift(y / m_canvas->scale());
 	}
-	//	horizRuler->offs += qRound(Doc->minCanvasCoordinate.x() - 1 - Doc->rulerXoffset);
-	//	vertRuler->offs += qRound(Doc->minCanvasCoordinate.y() - 1 - Doc->rulerYoffset);
 	horizRuler->shiftRel(0*m_doc->minCanvasCoordinate.x() - m_doc->rulerXoffset);
 	vertRuler->shiftRel(0*m_doc->minCanvasCoordinate.y() - m_doc->rulerYoffset);
 	horizRuler->update();
@@ -1913,21 +1911,26 @@ void ScribusView::setRulerPos(int x, int y)
 	QString newStatusBarText(" ");
 	if ((verticalScrollBar()->isSliderDown()) || (horizontalScrollBar()->isSliderDown()))
 	{
-		QList<qsizetype> pag;
-		pag.clear();
+		QRect drawRect(x, y, visibleWidth(), visibleHeight());
+		const double scale = m_canvas->scale();
+		qsizetype firstPage = -1;
+		qsizetype lastPage  = -1;
 		qsizetype docPageCount = m_doc->Pages->count();
 		for (qsizetype i = 0; i < docPageCount; ++i)
 		{
-			auto xs = static_cast<int>(m_doc->Pages->at(i)->xOffset() * m_canvas->scale());
-			auto ys = static_cast<int>(m_doc->Pages->at(i)->yOffset() * m_canvas->scale());
-			auto ws = static_cast<int>(m_doc->Pages->at(i)->width() * m_canvas->scale());
-			auto hs = static_cast<int>(m_doc->Pages->at(i)->height() * m_canvas->scale());
-			QRect drawRect(x, y, visibleWidth(), visibleHeight());
-			if (drawRect.intersects(QRect(xs, ys, ws, hs)))
-				pag.append(i + 1);
+			const ScPage* page = m_doc->Pages->at(i);
+			QRect pageRect(static_cast<int>(page->xOffset() * scale),
+						   static_cast<int>(page->yOffset() * scale),
+						   static_cast<int>(page->width()   * scale),
+						   static_cast<int>(page->height()  * scale));
+			if (!drawRect.intersects(pageRect))
+				continue;
+			if (firstPage == -1)
+				firstPage = i + 1;
+			lastPage = i + 1;
 		}
-		if (!pag.isEmpty())
-			newStatusBarText = (tr("Page %1 to %2").arg(pag.first()).arg(pag.last()));
+		if (firstPage != -1)
+			newStatusBarText = (tr("Page %1 to %2").arg(firstPage).arg(lastPage));
 	}
 	m_ScMW->setStatusBarInfoText(newStatusBarText);
 }
