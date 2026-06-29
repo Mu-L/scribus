@@ -32,6 +32,8 @@ Prefs_Display::Prefs_Display(QWidget* parent, ScribusDoc* doc) : Prefs_Pane(pare
 	buttonRestoreDPI->setIcon(IconManager::instance().loadIcon("pref-display"));
 
 	connect(pageFillColorButton, SIGNAL(clicked()), this, SLOT(changePaperColor()));
+	connect(showRulersRelativeToPageCheckBox, &QCheckBox::toggled, this, [this](bool on) { if (on) showRulersRelativeToEachPageCheckBox->setChecked(false); });
+	connect(showRulersRelativeToEachPageCheckBox, &QCheckBox::toggled, this, [this](bool on) { if (on) showRulersRelativeToPageCheckBox->setChecked(false); });
 
 	if (m_doc == nullptr && !ScCore->primaryMainWindow()->HaveDoc)
 	{
@@ -112,7 +114,8 @@ void Prefs_Display::restoreDefaults(struct ApplicationPrefs *prefsData)
 	showImagesCheckBox->setChecked(prefsData->guidesPrefs.showPic);
 	showControlCharsCheckBox->setChecked(prefsData->guidesPrefs.showControls);
 	showRulersCheckBox->setChecked(prefsData->guidesPrefs.rulersShown);
-	showRulersRelativeToPageCheckBox->setChecked(prefsData->guidesPrefs.rulerMode);
+	showRulersRelativeToPageCheckBox->setChecked(prefsData->guidesPrefs.rulerMode == 1);
+	showRulersRelativeToEachPageCheckBox->setChecked(prefsData->guidesPrefs.rulerMode == 2);
 	showTextChainsCheckBox->setChecked(prefsData->guidesPrefs.linkShown);
 	showFramesCheckBox->setChecked(prefsData->guidesPrefs.framesShown);
 	showTableCellFramesCheckBox->setChecked(prefsData->guidesPrefs.tableCellFramesShown);
@@ -406,7 +409,12 @@ void Prefs_Display::saveGuiToPrefs(struct ApplicationPrefs *prefsData) const
 	prefsData->guidesPrefs.showPic = showImagesCheckBox->isChecked();
 	prefsData->guidesPrefs.showControls = showControlCharsCheckBox->isChecked();
 	prefsData->guidesPrefs.rulersShown = showRulersCheckBox->isChecked();
-	prefsData->guidesPrefs.rulerMode = showRulersRelativeToPageCheckBox->isChecked();
+	if (showRulersRelativeToEachPageCheckBox->isChecked())
+		prefsData->guidesPrefs.rulerMode = 2;
+	else if (showRulersRelativeToPageCheckBox->isChecked())
+		prefsData->guidesPrefs.rulerMode = 1;
+	else
+		prefsData->guidesPrefs.rulerMode = 0;
 	prefsData->guidesPrefs.linkShown = showTextChainsCheckBox->isChecked();
 	prefsData->guidesPrefs.framesShown = showFramesCheckBox->isChecked();
 	prefsData->guidesPrefs.tableCellFramesShown = showTableCellFramesCheckBox->isChecked();

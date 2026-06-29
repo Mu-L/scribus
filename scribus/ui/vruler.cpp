@@ -36,6 +36,7 @@ for which a new license (GPL+exception) is in place.
 #include <cmath>
 
 #include "canvasgesture_rulermove.h"
+#include "scpage.h"
 #include "scribusdoc.h"
 #include "scribusview.h"
 #include "units.h"
@@ -92,12 +93,11 @@ void Vruler::paintEvent(QPaintEvent *e)
 {
 	if (m_doc->isLoading())
 		return;
-	QString tx;
 	double sc = m_view->scale();
-	
+
 	const QPalette& palette = this->palette();
 	const QColor& textColor = palette.color(QPalette::Text);
-	
+
 	QFont ff = font();
 	ff.setPointSize(6);
 	setFont(ff);
@@ -111,67 +111,11 @@ void Vruler::paintEvent(QPaintEvent *e)
 	p.fillRect(rect(), palette.color(QPalette::Base));
 
 	double cc = height() / sc;
-	double firstMark = ceil(m_offset / m_iter) * m_iter - m_offset;
-	while (firstMark < cc)
-	{
-		p.drawLine(scaleS, qRound(firstMark * sc), bottomline, qRound(firstMark * sc));
-		firstMark += m_iter;
-	}
-	firstMark = ceil(m_offset / m_iter2) * m_iter2 - m_offset;
-	int markC = static_cast<int>(ceil(m_offset / m_iter2));
-	while (firstMark < cc)
-	{
-		int textY = qRound(firstMark * sc) + 10;
-		int scaleOffset = scaleL;
-		switch (m_doc->unitIndex())
-		{
-			case SC_MM:
-				tx = QString::number(markC * m_iter2 / (m_iter2 / 100) / m_cor);
-				break;
-			case SC_IN:
-				{
-					double xl = (markC * m_iter2 / m_iter2) / m_cor;
-					tx = QString::number(static_cast<int>(xl));
-					double frac = fabs(xl - static_cast<int>(xl));
-					if ((static_cast<int>(xl) == 0) && (frac > 0.1))
-						tx.clear();
-					if ((frac > 0.24) && (frac < 0.26))
-						tx += QChar(0xBC);
-					if ((frac > 0.49) && (frac < 0.51))
-						tx += QChar(0xBD);
-					if ((frac > 0.74) && (frac < 0.76))
-						tx += QChar(0xBE);
-				}
-				break;
-			case SC_P:
-			case SC_C:
-				tx = QString::number(markC * m_iter2 / (m_iter2 / 5) / m_cor);
-				break;
-			case SC_CM:
-				tx = QString::number(markC * m_iter2 / m_iter2 / m_cor);
-				break;
-			default:
-				tx = QString::number(markC * m_iter2);
-				break;
-		}
-		p.drawLine(scaleOffset, qRound(firstMark * sc), bottomline, qRound(firstMark * sc));
-		drawNumber(tx, textY, &p);
-		firstMark += m_iter2;
-		markC++;
-	}
+	if (perPageMode())
+		drawTicksPerPage(&p, cc, sc);
+	else
+		drawTicksContinuous(&p, cc, sc);
 
-	if (m_doc->unitIndex() != SC_C || m_doc->unitIndex() != SC_P)
-	{
-		double tickStep = m_iter2 / 2.0;
-		firstMark = ceil(m_offset / tickStep) * tickStep - m_offset;
-		int markM = static_cast<int>(ceil(m_offset / tickStep));
-		while (firstMark < cc)
-		{
-			p.drawLine(scaleM, qRound(firstMark * sc), bottomline, qRound(firstMark * sc));
-			firstMark += tickStep;
-			markM++;
-		}
-	}
 	p.restore();
 	if (m_drawMark)
 	{
@@ -191,6 +135,147 @@ void Vruler::paintEvent(QPaintEvent *e)
 		p.setRenderHints(QPainter::Antialiasing, false);
 	}
 	p.end();
+}
+
+// Build the number shown at major tick index markC (0,1,2,... from the origin).
+// Lifted unchanged out of the old paintEvent so the continuous and per-page paths
+// produce identical labels.
+QString Vruler::tickLabel(int markC) const
+{
+	switch (m_doc->unitIndex())
+	{
+		case SC_MM:
+			return QString::number(markC * m_iter2 / (m_iter2 / 100) / m_cor);
+		case SC_IN:
+			{
+				double xl = (markC * m_iter2 / m_iter2) / m_cor;
+				QString tx = QString::number(static_cast<int>(xl));
+				double frac = fabs(xl - static_cast<int>(xl));
+				if ((static_cast<int>(xl) == 0) && (frac > 0.1))
+					tx.clear();
+				if ((frac > 0.24) && (frac < 0.26))
+					tx += QChar(0xBC);
+				if ((frac > 0.49) && (frac < 0.51))
+					tx += QChar(0xBD);
+				if ((frac > 0.74) && (frac < 0.76))
+					tx += QChar(0xBE);
+				return tx;
+			}
+		case SC_P:
+		case SC_C:
+			return QString::number(markC * m_iter2 / (m_iter2 / 5) / m_cor);
+		case SC_CM:
+			return QString::number(markC * m_iter2 / m_iter2 / m_cor);
+		default:
+			return QString::number(markC * m_iter2);
+	}
+}
+
+// Existing behaviour: one continuous scale top to bottom. m_offset already carries
+// the chosen origin (absolute, or current-page when guidesPrefs().rulerMode is set).
+void Vruler::drawTicksContinuous(QPainter* p, double cc, double sc)
+{
+	double firstMark = ceil(m_offset / m_iter) * m_iter - m_offset;
+	while (firstMark < cc)
+	{
+		p->drawLine(scaleS, qRound(firstMark * sc), bottomline, qRound(firstMark * sc));
+		firstMark += m_iter;
+	}
+	firstMark = ceil(m_offset / m_iter2) * m_iter2 - m_offset;
+	int markC = static_cast<int>(ceil(m_offset / m_iter2));
+	while (firstMark < cc)
+	{
+		int textY = qRound(firstMark * sc) + 10;
+		p->drawLine(scaleL, qRound(firstMark * sc), bottomline, qRound(firstMark * sc));
+		drawNumber(tickLabel(markC), textY, p);
+		firstMark += m_iter2;
+		markC++;
+	}
+
+	if (m_doc->unitIndex() != SC_C || m_doc->unitIndex() != SC_P)
+	{
+		double tickStep = m_iter2 / 2.0;
+		firstMark = ceil(m_offset / tickStep) * tickStep - m_offset;
+		while (firstMark < cc)
+		{
+			p->drawLine(scaleM, qRound(firstMark * sc), bottomline, qRound(firstMark * sc));
+			firstMark += tickStep;
+		}
+	}
+}
+
+// New behaviour: the scale restarts at 0 at the top of every page. We walk the pages
+// currently shown (m_doc->Pages is DocPages in normal mode, MasterPages in master-page
+// mode - the same list currentPage() comes from) and draw each page page-relative;
+// the gaps between pages stay blank.
+//
+// Coordinate note: a tick sits at ruler coordinate C == cTop + r, drawn at the same
+// (C - m_offset) * sc position the continuous path uses. cTop is this page's top in that
+// coordinate, == page->yOffset() - base. base absorbs whatever origin setRulerPos folded
+// into m_offset: rulerYoffset always, plus the current page top when rulerMode is on. That
+// makes positions correct under either ruler mode and the page numbers ignore any dragged
+// custom origin (the rulerYoffset term cancels in r = C - cTop).
+void Vruler::drawTicksPerPage(QPainter* p, double cc, double sc)
+{
+	if (!m_doc->Pages || m_doc->Pages->isEmpty())
+	{
+		drawTicksContinuous(p, cc, sc);   // nothing to anchor to
+		return;
+	}
+
+	double base = m_doc->rulerYoffset;
+	if (m_doc->guidesPrefs().rulerMode && m_doc->currentPage())
+		base += m_doc->currentPage()->yOffset();
+
+	const double bandTop = m_offset;          // ruler coordinate at the top edge
+	const double bandBot = m_offset + cc;     // ruler coordinate at the bottom edge
+	const double halfStep = m_iter2 / 2.0;
+	const bool drawHalf = (m_doc->unitIndex() != SC_C || m_doc->unitIndex() != SC_P);
+
+	for (int i = 0; i < m_doc->Pages->count(); ++i)
+	{
+		ScPage* page = m_doc->Pages->at(i);
+		double cTop = page->yOffset() - base;          // ruler coordinate at this page's top
+		double cBot = cTop + page->height();           //                        ... and bottom
+		double visTop = qMax(cTop, bandTop);           // clip the page to the visible band
+		double visBot = qMin(cBot, bandBot);
+		if (visTop >= visBot)
+			continue;                                  // page not vertically in view
+
+		double rStart = visTop - cTop;                 // visible page-relative range
+		double rEnd   = visBot - cTop;
+
+		// minor ticks
+		for (double r = ceil(rStart / m_iter) * m_iter; r <= rEnd + 1e-6; r += m_iter)
+		{
+			int y = qRound((cTop + r - m_offset) * sc);
+			p->drawLine(scaleS, y, bottomline, y);
+		}
+		// major ticks + numbers, count restarting at 0 at this page's top
+		int markC = static_cast<int>(ceil(rStart / m_iter2));
+		for (double r = markC * m_iter2; r <= rEnd + 1e-6; r += m_iter2, ++markC)
+		{
+			int y = qRound((cTop + r - m_offset) * sc);
+			p->drawLine(scaleL, y, bottomline, y);
+			drawNumber(tickLabel(markC), y + 10, p);
+		}
+		// half ticks
+		if (drawHalf)
+		{
+			for (double r = ceil(rStart / halfStep) * halfStep; r <= rEnd + 1e-6; r += halfStep)
+			{
+				int y = qRound((cTop + r - m_offset) * sc);
+				p->drawLine(scaleM, y, bottomline, y);
+			}
+		}
+	}
+}
+
+// Single chokepoint for the per-page scale. Reads the persisted toggle so the ruler
+// follows the View menu item / guides pref.
+bool Vruler::perPageMode() const
+{
+	return m_doc->guidesPrefs().rulerMode == 2;
 }
 
 void Vruler::drawNumber(const QString& num, int starty, QPainter *p) const

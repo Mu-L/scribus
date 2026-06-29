@@ -68,6 +68,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QCheckBox" name="showRulersRelativeToEachPageCheckBox">
+         <property name="text">
+          <string>Show Rulers Relative to Each Page</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="showFramesCheckBox">
          <property name="text">
           <string>Show Frames</string>

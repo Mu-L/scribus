@@ -208,7 +208,7 @@ struct GuidesPrefs
 	bool showPic;
 	bool showControls;
 	bool showBleed;
-	bool rulerMode;
+	int rulerMode {0}; //! 0 absolute, 1 relative to current page, 2 relative to each page
 
 
 

@@ -2773,7 +2773,7 @@ void Scribus171Format::readGuideSettings(ScribusDoc* doc, const ScXmlStreamAttri
 		doc->guidesPrefs().showPic = attrs.valueAsBool("SHOWPICT", true);
 		doc->guidesPrefs().linkShown = attrs.valueAsBool("SHOWLINK", false);
 		doc->guidesPrefs().showControls = attrs.valueAsBool("SHOWControl", false);
-		doc->guidesPrefs().rulerMode = attrs.valueAsBool("rulerMode", true);
+		doc->guidesPrefs().rulerMode = attrs.valueAsInt("rulerMode", 1);
 		doc->guidesPrefs().rulersShown = attrs.valueAsBool("showrulers", true);
 		doc->guidesPrefs().showBleed = attrs.valueAsBool("showBleed", true);
 		m_Doc->drawAsPreview		 = false /*attrs.valueAsBool("previewMode", false)*/;
@@ -2830,7 +2830,7 @@ void Scribus171Format::readGuideSettings(ScribusDoc* doc, const ScXmlStreamAttri
 		doc->guidesPrefs().showPic = attrs.valueAsBool("ShowImages", true);
 		doc->guidesPrefs().linkShown = attrs.valueAsBool("ShowLinks", false);
 		doc->guidesPrefs().showControls = attrs.valueAsBool("ShowControls", false);
-		doc->guidesPrefs().rulerMode = attrs.valueAsBool("RulerMode", true);
+		doc->guidesPrefs().rulerMode = attrs.valueAsInt("RulerMode", 1);
 		doc->guidesPrefs().rulersShown = attrs.valueAsBool("ShowRulers", true);
 		doc->guidesPrefs().showBleed = attrs.valueAsBool("ShowBleed", true);
 		m_Doc->drawAsPreview		 = false /*attrs.valueAsBool("previewMode", false)*/;

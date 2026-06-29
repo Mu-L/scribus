@@ -29,6 +29,7 @@ for which a new license (GPL+exception) is in place.
 
 class QMouseEvent;
 class QPaintEvent;
+class QPainter;
 
 class PageItem;
 class PrefsManager;
@@ -65,6 +66,11 @@ private:
 	void mouseMoveEvent(QMouseEvent *m) override;
 
 	void drawNumber(const QString& num, int starty, QPainter *p) const;
+
+	QString tickLabel(int markC) const;
+	void drawTicksContinuous(QPainter* p, double cc, double sc);
+	void drawTicksPerPage(QPainter* p, double cc, double sc);
+	bool perPageMode() const;
 
 	RulerGesture* rulerGesture {nullptr};
 	ScribusDoc* m_doc {nullptr};

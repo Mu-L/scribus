@@ -746,6 +746,8 @@ void ActionManager::initViewMenuActions()
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 	name = "viewRulerMode";
 	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
+	name = "viewRulerPerPage";
+	scrActions->insert(name, new ScrAction("", defaultKey(name), mainWindow));
 	name = "viewSnapToGrid";
 	scrActions->insert(name, new ScrAction("snap-grid", "snap-grid", "", defaultKey(name), mainWindow));
 	name = "viewSnapToGuides";
@@ -785,6 +787,7 @@ void ActionManager::initViewMenuActions()
 	(*scrActions)["viewShowTextControls"]->setToggleAction(true);
 	(*scrActions)["viewShowRulers"]->setToggleAction(true);
 	(*scrActions)["viewRulerMode"]->setToggleAction(true);
+	(*scrActions)["viewRulerPerPage"]->setToggleAction(true);
 	(*scrActions)["viewSnapToGrid"]->setToggleAction(true);
 	(*scrActions)["viewSnapToGuides"]->setToggleAction(true);
 	(*scrActions)["viewSnapToItems"]->setToggleAction(true);
@@ -804,6 +807,7 @@ void ActionManager::initViewMenuActions()
 	(*scrActions)["viewShowColumnBorders"]->setChecked(false);
 	(*scrActions)["viewShowRulers"]->setChecked(true);
 	(*scrActions)["viewRulerMode"]->setChecked(true);
+	(*scrActions)["viewRulerPerPage"]->setChecked(false);
 	(*scrActions)["showMouseCoordinates"]->setChecked(true);
 
 	connect( (*scrActions)["viewFitInWindow"], SIGNAL(triggeredData(double)), mainWindow, SLOT(slotZoom(double)) );
@@ -827,6 +831,7 @@ void ActionManager::initViewMenuActions()
 	connect( (*scrActions)["viewShowTextControls"], SIGNAL(triggered()), mainWindow, SLOT(toggleTextControls()) );
 	connect( (*scrActions)["viewShowRulers"], SIGNAL(triggered()), mainWindow, SLOT(toggleRulers()) );
 	connect( (*scrActions)["viewRulerMode"], SIGNAL(triggered()), mainWindow, SLOT(toggleRulerMode()) );
+	connect( (*scrActions)["viewRulerPerPage"], SIGNAL(triggered()), mainWindow, SLOT(toggleRulerPerPage()) );
 	connect( (*scrActions)["viewSnapToGrid"], SIGNAL(triggered()), mainWindow, SLOT(toggleSnapGrid()) );
 	connect( (*scrActions)["viewSnapToGuides"], SIGNAL(triggered()), mainWindow, SLOT(toggleSnapGuides()) );
 	connect( (*scrActions)["viewSnapToItems"], SIGNAL(triggered()), mainWindow, SLOT(toggleSnapElements()) );
@@ -1767,6 +1772,7 @@ void ActionManager::languageChange()
 	(*scrActions)["viewShowTextControls"]->setTexts( tr("Show Control Characters"));
 	(*scrActions)["viewShowRulers"]->setTexts( tr("Show Rulers"));
 	(*scrActions)["viewRulerMode"]->setTexts( tr("Rulers Relative to Page"));
+	(*scrActions)["viewRulerPerPage"]->setTexts( tr("Rulers Relative to Each Page"));
 	(*scrActions)["viewSnapToGrid"]->setTexts( tr("Sn&ap to Grid"));
 	(*scrActions)["viewSnapToGuides"]->setTexts( tr("Sna&p to Guides"));
 	(*scrActions)["viewSnapToItems"]->setTexts( tr("Snap to Items"));
@@ -2442,6 +2448,7 @@ void ActionManager::createDefaultMenus()
 		<< "viewShowTextControls"
 		<< "viewShowRulers"
 		<< "viewRulerMode"
+		<< "viewRulerPerPage"
 		<< "showMouseCoordinates";
 	++itmenu;
 	itmenu->second

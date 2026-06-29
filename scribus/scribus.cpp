@@ -1269,6 +1269,7 @@ void ScribusMainWindow::initMenuBar()
 	scrMenuMgr->addMenuItemString("ViewMeasuring", "View");
 	scrMenuMgr->addMenuItemString("viewShowRulers", "ViewMeasuring");
 	scrMenuMgr->addMenuItemString("viewRulerMode", "ViewMeasuring");
+	scrMenuMgr->addMenuItemString("viewRulerPerPage", "ViewMeasuring");
 	scrMenuMgr->addMenuItemString("showMouseCoordinates", "ViewMeasuring");
 	scrMenuMgr->createMenu("ViewTextFrames", tr("Text Frames"), "View");
 	scrMenuMgr->addMenuItemString("ViewTextFrames", "View");
@@ -2539,7 +2540,8 @@ void ScribusMainWindow::newActWin(QMdiSubWindow *w)
 	scrActions["viewShowTextChain"]->setChecked(doc->guidesPrefs().linkShown);
 	scrActions["viewShowTextControls"]->setChecked(doc->guidesPrefs().showControls);
 	scrActions["viewShowRulers"]->setChecked(doc->guidesPrefs().rulersShown);
-	scrActions["viewRulerMode"]->setChecked(doc->guidesPrefs().rulerMode);
+	scrActions["viewRulerMode"]->setChecked(doc->guidesPrefs().rulerMode == 1);
+	scrActions["viewRulerPerPage"]->setChecked(doc->guidesPrefs().rulerMode == 2);
 	scrActions["extrasGenerateTableOfContents"]->setEnabled(doc->hasTOCSetup() || doc->hasIndexSetup());
 	scrActions["extrasUpdateDocument"]->setEnabled(true);
 	if (!doc->masterPageMode())
@@ -5592,7 +5594,6 @@ void ScribusMainWindow::ToggleAllGuides()
 		doc->guidesPrefs().baselineGridShown = m_guidesStatus[GS_BASELINE];
 		doc->guidesPrefs().linkShown = m_guidesStatus[GS_LINKS];
 		doc->guidesPrefs().showControls = m_guidesStatus[GS_CONTROLS];
-		doc->guidesPrefs().rulerMode = m_guidesStatus[GS_RULERMODE];
 		doc->guidesPrefs().rulersShown = m_guidesStatus[GS_RULERS];
 		doc->guidesPrefs().colBordersShown = m_guidesStatus[GS_COLUMNBORDERS];
 		doc->guidesPrefs().layerMarkersShown = m_guidesStatus[GS_LAYERMARKERS] ;
@@ -5607,7 +5608,7 @@ void ScribusMainWindow::ToggleAllGuides()
 		toggleBase();
 		toggleTextLinks();
 		toggleTextControls();
-		toggleRulerMode();
+		setRulerMode(m_guidesStatusRulerMode);
 		toggleRulers();
 		toggleBleeds();
 	}
@@ -5621,7 +5622,7 @@ void ScribusMainWindow::ToggleAllGuides()
 		m_guidesStatus[GS_BASELINE] = !doc->guidesPrefs().baselineGridShown;
 		m_guidesStatus[GS_LINKS] = !doc->guidesPrefs().linkShown;
 		m_guidesStatus[GS_CONTROLS] = !doc->guidesPrefs().showControls;
-		m_guidesStatus[GS_RULERMODE] = !doc->guidesPrefs().rulerMode;
+		m_guidesStatusRulerMode = doc->guidesPrefs().rulerMode;
 		m_guidesStatus[GS_RULERS] = !doc->guidesPrefs().rulersShown;
 		m_guidesStatus[GS_COLUMNBORDERS] = !doc->guidesPrefs().colBordersShown;
 		m_guidesStatus[GS_LAYERMARKERS] = !doc->guidesPrefs().layerMarkersShown;
@@ -5633,7 +5634,7 @@ void ScribusMainWindow::ToggleAllGuides()
 		doc->guidesPrefs().baselineGridShown = false;
 		doc->guidesPrefs().linkShown = false;
 		doc->guidesPrefs().showControls = false;
-		doc->guidesPrefs().rulerMode = false;
+		doc->guidesPrefs().rulerMode = 0;
 		doc->guidesPrefs().rulersShown = false;
 		doc->guidesPrefs().colBordersShown = false;
 		doc->guidesPrefs().layerMarkersShown = false;
@@ -5652,7 +5653,8 @@ void ScribusMainWindow::ToggleAllGuides()
 	scrActions["viewShowTextChain"]->setChecked(doc->guidesPrefs().linkShown);
 	scrActions["viewShowTextControls"]->setChecked(doc->guidesPrefs().showControls);
 	scrActions["viewShowRulers"]->setChecked(doc->guidesPrefs().rulersShown);
-	scrActions["viewRulerMode"]->setChecked(doc->guidesPrefs().rulerMode);
+	scrActions["viewRulerMode"]->setChecked(doc->guidesPrefs().rulerMode == 1);
+	scrActions["viewRulerPerPage"]->setChecked(doc->guidesPrefs().rulerMode == 2);
 	view->DrawNew();
 }
 
@@ -5764,31 +5766,52 @@ void ScribusMainWindow::toggleRulers()
 	view->setRulersShown(doc->guidesPrefs().rulersShown);
 }
 
-void ScribusMainWindow::toggleRulerMode()
+void ScribusMainWindow::setRulerMode(int mode)
 {
 	if (!doc)
 		return;
-	m_guidesStatus[GS_ALL] = false;
-	doc->guidesPrefs().rulerMode = !doc->guidesPrefs().rulerMode;
-	if (doc->guidesPrefs().rulerMode)
+	int oldMode = doc->guidesPrefs().rulerMode;
+	doc->guidesPrefs().rulerMode = mode;
+	// keep the user ruler origin consistent across absolute <-> page-relative, as before
+	if (mode != 0 && oldMode == 0)
 	{
 		doc->rulerXoffset = 0;
 		doc->rulerYoffset = 0;
 	}
-	else
+	else if (mode == 0 && oldMode != 0)
 	{
 		doc->rulerXoffset += doc->currentPage()->xOffset();
 		doc->rulerYoffset += doc->currentPage()->yOffset();
 	}
+	// the two menu items are mutually exclusive views of the one tri-state
+	scrActions["viewRulerMode"]->setChecked(mode == 1);
+	scrActions["viewRulerPerPage"]->setChecked(mode == 2);
 	if (doc->m_Selection->count() == 1)
 	{
 		PageItem* currItem = doc->m_Selection->itemAt(0);
 		if (currItem != nullptr)
 			currItem->emitAllToGUI();
 	}
-	//TODO emit from selection, handle group widths
 	guidePalette->setupPage();
 	view->DrawNew();
+}
+
+void ScribusMainWindow::toggleRulerMode()
+{
+	if (!doc)
+		return;
+	m_guidesStatus[GS_ALL] = false;
+	// "Rulers Relative to Page" - mode 1; toggling it off returns to absolute
+	setRulerMode(doc->guidesPrefs().rulerMode == 1 ? 0 : 1);
+}
+
+void ScribusMainWindow::toggleRulerPerPage()
+{
+	if (!doc)
+		return;
+	m_guidesStatus[GS_ALL] = false;
+	// "Rulers Relative to Each Page" - mode 2; toggling it off returns to absolute
+	setRulerMode(doc->guidesPrefs().rulerMode == 2 ? 0 : 2);
 }
 
 void ScribusMainWindow::toggleSnapGrid()
@@ -6706,7 +6729,8 @@ void ScribusMainWindow::slotDocSetup()
 	scrActions["viewShowTextChain"]->setChecked(doc->guidesPrefs().linkShown);
 	scrActions["viewShowTextControls"]->setChecked(doc->guidesPrefs().showControls);
 	scrActions["viewShowRulers"]->setChecked(doc->guidesPrefs().rulersShown);
-	scrActions["viewRulerMode"]->setChecked(doc->guidesPrefs().rulerMode);
+	scrActions["viewRulerMode"]->setChecked(doc->guidesPrefs().rulerMode == 1);
+	scrActions["viewRulerPerPage"]->setChecked(doc->guidesPrefs().rulerMode == 2);
 	scrActions["extrasGenerateTableOfContents"]->setEnabled(doc->hasTOCSetup() || doc->hasIndexSetup());
 	scrActions["extrasUpdateDocument"]->setEnabled(true);
 	scrActions["viewToggleCMS"]->setChecked(doc->HasCMS);

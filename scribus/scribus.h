@@ -473,6 +473,8 @@ public slots:
 	void toggleColumnBorders();
 	void toggleRulers();
 	void toggleRulerMode();
+	void toggleRulerPerPage();
+	void setRulerMode(int mode);
 	void togglePagePalette();
 	void toggleCheckPal();
 	/** \brief Schaltet M_ViewShowImages ein/aus */
@@ -652,6 +654,7 @@ private:
 
 	bool m_palettesStatus[14] { false };
 	bool m_guidesStatus[13] { false };
+	int m_guidesStatusRulerMode {0};
 
 	//bool m_keyrep;
 	/** @brief Tells if an arrow key is pressed down */

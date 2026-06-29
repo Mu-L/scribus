@@ -205,7 +205,7 @@ void PrefsManager::initDefaults()
 	appPrefs.guidesPrefs.linkShown = false;
 	appPrefs.guidesPrefs.rulersShown = true;
 	appPrefs.guidesPrefs.showBleed = true;
-	appPrefs.guidesPrefs.rulerMode = true;
+	appPrefs.guidesPrefs.rulerMode = 1;
 	appPrefs.guidesPrefs.grabRadius = 4;
 	appPrefs.guidesPrefs.guideRad = 10;
 	appPrefs.guidesPrefs.minorGridSpacing = 20;
@@ -2181,7 +2181,7 @@ bool PrefsManager::readPref(const QString& filePath)
 			appPrefs.guidesPrefs.showControls = static_cast<bool>(dc.attribute("ShowControls", "0").toInt());
 			appPrefs.guidesPrefs.rulersShown = static_cast<bool>(dc.attribute("ShowRulers", "1").toInt());
 			appPrefs.guidesPrefs.showBleed = static_cast<bool>(dc.attribute("ShowBleed", "1").toInt());
-			appPrefs.guidesPrefs.rulerMode = static_cast<bool>(dc.attribute("RulerMode", "1").toInt());
+			appPrefs.guidesPrefs.rulerMode = dc.attribute("RulerMode", "1").toInt();
 			appPrefs.guidesPrefs.minorGridSpacing  = ScCLocale::toDoubleC(dc.attribute("MinorGridSpacing"), 20.0);
 			appPrefs.guidesPrefs.majorGridSpacing  = ScCLocale::toDoubleC(dc.attribute("MajorGridSpacing"), 100.0);
 			appPrefs.guidesPrefs.minorGridColor = QColor(dc.attribute("MinorGridColor"));
