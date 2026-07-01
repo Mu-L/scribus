@@ -1285,8 +1285,9 @@ void StoryText::applyMarkCharstyle(Mark* mrk, CharStyle& currStyle) const
 		return;
 	
 	NotesStyle* nStyle = note->notesStyle();
-	Q_ASSERT(nStyle != nullptr);
-	
+	if (nStyle == nullptr)
+		return;
+
 	QString chsName = nStyle->marksChStyle();
 	if (!chsName.isEmpty())
 	{

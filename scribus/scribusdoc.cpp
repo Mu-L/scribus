@@ -17989,7 +17989,7 @@ PageItem* ScribusDoc::findMarkItem(const Mark* mrk, PageItem* &lastItem) const
 			// qDebug()<<"Found mark in text chain starting on page:"<<item->OwnPage;
 			// qDebug()<<"Frame of char at"<<markTextPos<<"is on page"<<item->frameOfChar(markTextPos)->OwnPage;
 			lastItem = item;
-			return item->frameOfChar(markTextPos);
+			return item;
 		}
 	}
 	lastItem = nullptr;
@@ -18142,7 +18142,7 @@ void ScribusDoc::setUndoDelMark(const Mark *mrk)
 		if (mrk->isUnique())
 		{
 			ims->set("MARK", QString("delete"));
-			PageItem* master = findFirstMarkItem(mrk);
+			PageItem* master = mrk->getItemPtr();
 			if (master->isNoteFrame())
 				ims->set("noteframeName", master->getUName());
 			else

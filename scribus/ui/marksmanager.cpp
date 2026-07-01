@@ -247,7 +247,7 @@ void MarksManager::on_DeleteButton_clicked()
 		m_Doc->setUndoDelNote(mrk->getNotePtr());
 	else
 		m_Doc->setUndoDelMark(mrk);
-	m_Doc->eraseMark(mrk, true, nullptr, true);
+	m_Doc->eraseMark(mrk, true, mrk->getItemPtr(), true);
 	m_Doc->changed();
 	m_Doc->regionsChanged()->update(QRectF());
 	updateListView();
