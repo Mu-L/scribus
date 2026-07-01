@@ -400,37 +400,123 @@ void StyleManager::slotApply()
 
 void StyleManager::slotDelete()
 {
-	if (!m_isEditMode)
-		slotOk(); // switch to edit mode before deleting
-
-	QStringList selected;
+	// Snapshot the selection before entering edit mode. Entering edit mode rebuilds
+	// the style tree (slotClean -> reloadStyleView -> styleView->clear()), and a
+	// selection that spans more than one type does not survive that rebuild, so it
+	// has to be captured while the browse-mode tree is still intact.
+	QMap<StyleItem*, QStringList> selectedByItem;
 
 	if (!m_rcStyle.isNull())
-		selected << m_rcStyle;
+	{
+		if (m_item)
+			selectedByItem[m_item] << m_rcStyle; // right-click: m_item is the clicked type
+	}
 	else
 	{
 		QTreeWidgetItemIterator it(styleView, QTreeWidgetItemIterator::Selected);
 		while (*it)
 		{
-			selected << (*it)->text(0);
+			StyleViewItem* sv = dynamic_cast<StyleViewItem*>(*it);
+			if (sv && !sv->isRoot())
+			{
+				StyleItem* owner = nullptr;
+				for (int i = 0; i < m_items.count(); ++i)
+				{
+					if (m_items.at(i)->typeName() == sv->rootName())
+					{
+						owner = m_items.at(i);
+						break;
+					}
+				}
+				if (owner)
+					selectedByItem[owner] << sv->text(NAME_COL);
+			}
 			++it;
 		}
 	}
 
-	if (!m_item || selected.isEmpty())
+	if (selectedByItem.isEmpty())
 		return; // nothing to delete
-	selected.sort(Qt::CaseSensitive);
 
-	QStringList tmp;
-	QList<StyleName> styles = m_item->styles(false); // get list from cache
-	for (int i = 0; i < styles.count(); ++i)
-		tmp << styles[i].first;
+	if (!m_isEditMode)
+		slotOk(); // switch to edit mode before deleting
 
-	SMReplaceDia dia(selected, tmp, this);
-	if (!dia.exec())
+	// Scan content once; only styles actually in use need a replacement chosen.
+	ResourceCollection usedResources;
+	if (m_doc)
+		m_doc->getUsedStylesFromItems(usedResources);
+
+	QMap<StyleItem*, QStringList> usedByItem;          // styles needing a replacement
+	QMap<StyleItem*, QStringList> candidatesByItem;    // surviving styles, per type
+	QMap<StyleItem*, QList<RemoveItem> > removeByItem; // final delete lists, per type
+
+	for (QMap<StyleItem*, QStringList>::const_iterator sit = selectedByItem.constBegin(); sit != selectedByItem.constEnd(); ++sit)
+	{
+		StyleItem* styleitem = sit.key();
+		QStringList selected = sit.value();
+		selected.sort(Qt::CaseSensitive);
+
+		const QMap<QString, QString>* usedMap = nullptr;
+		if (qobject_cast<SMParagraphStyle*>(styleitem))
+			usedMap = &usedResources.styles();
+		else if (qobject_cast<SMCharacterStyle*>(styleitem))
+			usedMap = &usedResources.charStyles();
+		else if (qobject_cast<SMLineStyle*>(styleitem))
+			usedMap = &usedResources.lineStyles();
+		else if (qobject_cast<SMTableStyle*>(styleitem))
+			usedMap = &usedResources.tableStyles();
+		else if (qobject_cast<SMCellStyle*>(styleitem))
+			usedMap = &usedResources.cellStyles();
+
+		QStringList usedSelected;
+		for (int i = 0; i < selected.count(); ++i)
+		{
+			if (usedMap && usedMap->contains(selected.at(i)))
+				usedSelected << selected.at(i);
+			else
+				// Unused: nothing references it, so delete with no replacement.
+				removeByItem[styleitem].append(RemoveItem(selected.at(i), QString()));
+		}
+
+		if (!usedSelected.isEmpty())
+		{
+			usedByItem[styleitem] = usedSelected;
+
+			// Candidates are this type's surviving styles (exclude everything being
+			// deleted from this type).
+			QStringList tmp;
+			QList<StyleName> styles = styleitem->styles(false);
+			for (int i = 0; i < styles.count(); ++i)
+			{
+				if (!selected.contains(styles[i].first))
+					tmp << styles[i].first;
+			}
+			candidatesByItem[styleitem] = tmp;
+		}
+	}
+
+	// One dialog for every used style across all types; each row only offers its
+	// own type's styles. Cancelling aborts the whole delete.
+	if (!usedByItem.isEmpty())
+	{
+		SMReplaceDia dia(usedByItem, candidatesByItem, this);
+		if (!dia.exec())
+			return;
+
+		QMap<StyleItem*, QList<RemoveItem> > chosen = dia.items();
+		for (QMap<StyleItem*, QList<RemoveItem> >::const_iterator cit = chosen.constBegin(); cit != chosen.constEnd(); ++cit)
+			removeByItem[cit.key()] += cit.value();
+	}
+
+	if (removeByItem.isEmpty())
 		return;
 
-	m_item->deleteStyles(dia.items());
+	for (QMap<StyleItem*, QList<RemoveItem> >::const_iterator rit = removeByItem.constBegin(); rit != removeByItem.constEnd(); ++rit)
+	{
+		if (!rit.value().isEmpty())
+			rit.key()->deleteStyles(rit.value());
+	}
+
 	applyButton->setEnabled(true);
 	resetButton->setEnabled(true);
 	reloadStyleView(false);

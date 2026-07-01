@@ -8,6 +8,8 @@ for which a new license (GPL+exception) is in place.
 #ifndef SMREPLACEDIA_H
 #define SMREPLACEDIA_H
 
+#include <QMap>
+
 #include "ui_smreplacedia.h"
 #include "styleitem.h"
 
@@ -22,13 +24,15 @@ class SMRowWidget : public QWidget
 {
 	Q_OBJECT
 	public:
-		SMRowWidget(const QString &toBeDeleted, const QStringList& replaceOptions, QWidget *parent);
+		SMRowWidget(StyleItem *styleType, const QString &toBeDeleted, const QStringList& replaceOptions, QWidget *parent);
 		~SMRowWidget();
 
+		StyleItem* styleType() const;
 		QString toBeDeleted() const;
 		QString replaceWith() const;
 
 	private:
+		StyleItem   *m_styleType { nullptr };
 		QHBoxLayout *layout { nullptr };
 		QLabel      *deleteLabel { nullptr };
 		QComboBox   *optionsCombo { nullptr };
@@ -41,16 +45,17 @@ class SMReplaceDia : public QDialog, Ui::SMReplaceDia
 {
 	Q_OBJECT
 	public:
-		SMReplaceDia(const QStringList &toBeDeleted, const QStringList &replaceOptions, QWidget *parent);
+		SMReplaceDia(const QMap<StyleItem*, QStringList> &toBeDeleted, const QMap<StyleItem*, QStringList> &replaceOptions, QWidget *parent);
 		~SMReplaceDia();
 
-		QList<RemoveItem> items() const;
+		QMap<StyleItem*, QList<RemoveItem> > items() const;
 
 	private:
 		QVBoxLayout *layout;
 		QHBoxLayout *headerLayout;
 		QLabel      *deleteHeader;
 		QLabel      *optionsHeader;
+		QList<QLabel*>       typeHeaders;
 		QList<SMRowWidget*>  rowWidgets;
 };
 

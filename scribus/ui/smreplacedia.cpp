@@ -10,8 +10,9 @@ for which a new license (GPL+exception) is in place.
 #include <QLabel>
 #include <QComboBox>
 
-SMRowWidget::SMRowWidget(const QString &toBeDeleted, const QStringList& replaceOptions, QWidget *parent)
-: QWidget(parent)
+SMRowWidget::SMRowWidget(StyleItem *styleType, const QString &toBeDeleted, const QStringList& replaceOptions, QWidget *parent)
+: QWidget(parent),
+  m_styleType(styleType)
 {
 	layout = new QHBoxLayout(this);
 	layout->setContentsMargins(0, 0, 0, 0);
@@ -22,6 +23,11 @@ SMRowWidget::SMRowWidget(const QString &toBeDeleted, const QStringList& replaceO
 	optionsCombo->addItem( tr("No Style"));
 	optionsCombo->addItems(replaceOptions);
 	layout->addWidget(optionsCombo);
+}
+
+StyleItem* SMRowWidget::styleType() const
+{
+	return m_styleType;
 }
 
 QString SMRowWidget::toBeDeleted() const
@@ -44,17 +50,9 @@ SMRowWidget::~SMRowWidget()
 /*************************************************************************/
 /*************************************************************************/
 
-SMReplaceDia::SMReplaceDia(const QStringList &toBeDeleted, const QStringList &replaceOptions, QWidget *parent) : QDialog(parent)
+SMReplaceDia::SMReplaceDia(const QMap<StyleItem*, QStringList> &toBeDeleted, const QMap<StyleItem*, QStringList> &replaceOptions, QWidget *parent) : QDialog(parent)
 {
 	setupUi(this);
-
-	QStringList options;
-	for (int i = 0; i < replaceOptions.count(); ++i)
-	{
-		if (!toBeDeleted.contains(replaceOptions[i]))
-			options << replaceOptions[i];
-	}
-	options.sort(Qt::CaseSensitive);
 
 	layout = new QVBoxLayout(mainFrame);
 	layout->setContentsMargins(0, 0, 0, 0);
@@ -67,31 +65,52 @@ SMReplaceDia::SMReplaceDia(const QStringList &toBeDeleted, const QStringList &re
 	headerLayout->addWidget(optionsHeader);
 	layout->addLayout(headerLayout);
 
-	for (int i = 0; i < toBeDeleted.count(); ++i)
+	// One block of rows per style type so each combo only offers replacements of
+	// the matching type. A type heading is shown when more than one type is present.
+	bool showTypeHeaders = toBeDeleted.count() > 1;
+	QMap<StyleItem*, QStringList>::const_iterator it;
+	for (it = toBeDeleted.constBegin(); it != toBeDeleted.constEnd(); ++it)
 	{
-		SMRowWidget *tmp = new SMRowWidget(toBeDeleted[i], options, mainFrame);
-		layout->addWidget(tmp);
-		rowWidgets.append(tmp);
+		StyleItem *styleType = it.key();
+		const QStringList &names = it.value();
+
+		QStringList options = replaceOptions.value(styleType);
+		options.sort(Qt::CaseSensitive);
+
+		if (showTypeHeaders && styleType)
+		{
+			QLabel *typeHeader = new QLabel("<b>" + styleType->typeName() + "</b>", mainFrame);
+			layout->addWidget(typeHeader);
+			typeHeaders.append(typeHeader);
+		}
+
+		for (int i = 0; i < names.count(); ++i)
+		{
+			SMRowWidget *tmp = new SMRowWidget(styleType, names[i], options, mainFrame);
+			layout->addWidget(tmp);
+			rowWidgets.append(tmp);
+		}
 	}
 	layout->addStretch(10);
 }
 
-QList<RemoveItem> SMReplaceDia::items() const
+QMap<StyleItem*, QList<RemoveItem> > SMReplaceDia::items() const
 {
-	QList<RemoveItem> tmp;
+	QMap<StyleItem*, QList<RemoveItem> > result;
 	for (int i = 0; i < rowWidgets.count(); ++i)
 	{
-		QString s1 = rowWidgets.at(i)->toBeDeleted();
-		QString s2 = rowWidgets.at(i)->replaceWith();
-		tmp.append(RemoveItem(s1, s2));
+		SMRowWidget *row = rowWidgets.at(i);
+		result[row->styleType()].append(RemoveItem(row->toBeDeleted(), row->replaceWith()));
 	}
-	return tmp;
+	return result;
 }
 
 SMReplaceDia::~SMReplaceDia()
 {
 	while (!rowWidgets.isEmpty())
 		delete rowWidgets.takeFirst();
+	while (!typeHeaders.isEmpty())
+		delete typeHeaders.takeFirst();
 	delete optionsHeader;
 	delete deleteHeader;
 	delete headerLayout;
